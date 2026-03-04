@@ -14,12 +14,13 @@
       terminattr:
         ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
         disable_aaa: true
-    local_users:
-      - name: cvpadmin
-        privilege: 15
-        role: network-admin
-        sha512_password: "$6$.mFLh0tGzdM/moiC$fqhGOO9gtXz.Zbor3SAu4D6fEX6HpZnq52dt145MvK4nEHr80xL0PECkltLe9s3F2P97L9iuQb3/KHuSFmkFW/"
-    management_api_http:
+    aaa_settings:
+      local_users:
+        - name: cvpadmin
+          privilege: 15
+          role: network-admin
+          sha512_password: "$6$.mFLh0tGzdM/moiC$fqhGOO9gtXz.Zbor3SAu4D6fEX6HpZnq52dt145MvK4nEHr80xL0PECkltLe9s3F2P97L9iuQb3/KHuSFmkFW/"
+    csc_management_api_http:
       enable_vrfs:
         - name: default
         - name: MGMT

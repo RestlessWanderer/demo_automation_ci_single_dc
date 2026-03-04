@@ -17,7 +17,7 @@ l3spine:
       nodes:
         - name: spine-1
           id: 1
-          mgmt_ip: 192.168.0.11/24
+          mgmt_ip: 172.31.0.27/23
         - name: spine-2
           id: 2
-          mgmt_ip: 192.168.0.12/24
+          mgmt_ip: 172.31.0.28/23

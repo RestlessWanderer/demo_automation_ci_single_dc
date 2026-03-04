@@ -11,23 +11,36 @@ ansible_httpapi_port: 443
 ansible_httpapi_use_ssl: true
 ansible_httpapi_validate_certs: false
 ansible_python_interpreter: $(which python3)
-avd_data_validation_mode: error
+
+custom_structured_configuration_prefix:
+  - 'csc_'
 
 # Local Users
-local_users:
-  - name: admin
-    privilege: 15
-    role: network-admin
-    sha512_password: "$6$WIJu6JlXvlQ.u3Ft$1.drgTLjST0D2rgKJsR9BbsY2NhH2HD868nr0Mc1wXXTGonYKodtPXG/Lwei1f5g3kWPMEfg7QjVtZctOJ.2w/"
-  - name: service # used for auto_config_cvp
-    privilege: 15
-    role: network-admin
-    shell: "/bin/bash"
-    sha512_password: "$6$4Ey4qpC8elLHIA2a$GRrcdzVU1anXhn5FrAAEtsPg0zdnEHCza4tHVqTCGFV4XFme7Tl8SRGy.Xe0NA7A8XktXr1ZtNzAoBwzm18Nb0"
+aaa_settings:
+  local_users:
+    - name: admin
+      privilege: 15
+      role: network-admin
+      sha512_password: "$6$WIJu6JlXvlQ.u3Ft$1.drgTLjST0D2rgKJsR9BbsY2NhH2HD868nr0Mc1wXXTGonYKodtPXG/Lwei1f5g3kWPMEfg7QjVtZctOJ.2w/"
+    - name: service # used for auto_config_cvp
+      privilege: 15
+      role: network-admin
+      shell: "/bin/bash"
+      sha512_password: "$6$4Ey4qpC8elLHIA2a$GRrcdzVU1anXhn5FrAAEtsPg0zdnEHCza4tHVqTCGFV4XFme7Tl8SRGy.Xe0NA7A8XktXr1ZtNzAoBwzm18Nb0"
+  authorization:
+    exec:
+      default: local
 
-aaa_authorization:
-  exec:
-    default: local
+ntp_settings:
+  servers:
+    - name: 129.6.15.28
+    - name: 129.6.15.29
+
+timezone: "America/Detroit"
+
+dns_settings:
+  servers:
+    - ip_address: 1.1.1.1
 
 # OOB Management network default gateway.
 # Comment out the mgmt_gateway for ACT.  Default route will be 10.18.x.x for access
@@ -35,6 +48,10 @@ aaa_authorization:
 # mgmt_gateway: 192.168.0.1
 mgmt_interface: Management1
 # mgmt_interface_vrf: default
+
+csc_management_api_http:
+  enable_vrfs:
+    - name: MGMT
 
 fabric_ip_addressing:
   mlag:
