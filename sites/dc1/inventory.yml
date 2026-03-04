@@ -1,0 +1,40 @@
+dc1:
+  children:
+    dc1_fabric:
+      children:
+        dc1_spines:
+          hosts:
+            spine-1:
+              # 7280SR3-1:
+              ansible_host: 172.31.0.27
+              serial_number: JPN2429P0ZZ
+            spine-2:
+              # 7280SR3-2:
+              ansible_host: 172.31.0.28
+              serial_number: JPN2441P0UJ
+        dc1_leafs:
+          hosts:
+            leaf-1a:
+              # 7050SX3-1:
+              ansible_host: 172.31.0.47
+              serial_number: JMX2322A52C
+            leaf-1b:
+              # 7050SX3-2:
+              ansible_host: 172.31.0.48
+              serial_number: SGD22402922
+            leaf-2a:
+              # 7050SX3-3:
+              ansible_host: 172.31.0.49
+              serial_number: HBG25390SS3
+            leaf-2b:
+              # 7050SX3-4:
+              ansible_host: 172.31.0.50
+              serial_number: HBG25390SRN
+    dc1_network_services:
+      children:
+        dc1_spines:
+        dc1_leafs:
+    dc1_endpoints:
+      children:
+        dc1_spines:
+        dc1_leafs:

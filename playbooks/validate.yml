@@ -1,0 +1,15 @@
+---
+- name: validate states on EOS devices using ANTA
+  hosts: "{{ target_fabric }}"
+  gather_facts: false
+  
+  tasks:
+    - name: validate states on EOS devices
+      ansible.builtin.import_role:
+        name: arista.avd.anta_runner
+      vars:
+        # Optionally save catalogs
+        save_catalog: true
+        anta_dir_name: "anta_production"
+        anta_dir: "{{ root_dir }}/{{ anta_dir_name }}"
+        avd_catalogs_allow_bgp_vrfs: true

@@ -1,0 +1,17 @@
+---
+- name: validate states on EOS devices using ANTA
+  hosts: "{{ target_fabric }}"
+  gather_facts: false
+  
+  tasks:
+    - name: validate states on EOS devices
+      ansible.builtin.import_role:
+        name: arista.avd.anta_runner
+      vars:
+        save_catalog: true
+        anta_dir_name: "anta"
+        anta_dir: "{{ root_dir }}/digital_twin/{{ anta_dir_name }}"
+        avd_catalogs_allow_bgp_vrfs: true
+        avd_catalogs_filters:
+          # Skip VerifyNTP for all devices targeted by the run
+          - skip_tests: [ VerifyNTP, 	VerifyLoggingErrors ]

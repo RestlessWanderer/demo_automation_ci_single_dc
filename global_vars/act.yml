@@ -1,0 +1,9 @@
+---
+digital_twin:
+  environment: "act"
+  fabric: 
+    act_os_version: "4.33.4M"
+    act_username: "cvpadmin"
+    act_password: "cvp123!"
+    # act_internet_access: true
+    # act_ensure_eapi_access: true

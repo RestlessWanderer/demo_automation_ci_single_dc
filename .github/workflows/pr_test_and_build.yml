@@ -1,0 +1,43 @@
+---
+name: "Pull Request Testing and Config Build"
+
+on:
+  # Run jobs on any Pull Request activity
+  pull_request:
+
+jobs:
+  build_configs:
+    runs-on: ubuntu-latest
+    name: Test Building Configs and Build If Successful
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          ref: ${{ github.head_ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+          ansible-galaxy collection install -r requirements.yml
+
+      - name: Setup Git config
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+
+      ##### Test Building Configs #####
+      - name: Build Configs
+        run: |
+          make build-dc1
+
+      - name: Commit Changes
+        run: |
+          git add .
+          git commit -m "Build Configs with AVD"
+          git push origin ${{ github.head_ref }}

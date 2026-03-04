@@ -1,0 +1,201 @@
+name: Build and Deploy MkDocs
+
+on:
+  repository_dispatch:
+    types:
+      - mkdocs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: pip install mkdocs-material PyYAML
+
+      - name: Sync Documentation to docs/
+        run: |
+          mkdir -p docs/dc1/devices
+          cp sites/dc1/documentation/fabric/*.md docs/dc1/ 2>/dev/null || true
+          cp sites/dc1/documentation/devices/*.md docs/dc1/devices/ 2>/dev/null || true
+
+      - name: Generate Index Page
+        shell: python
+        run: |
+          import yaml
+          import os
+
+          struct_dir = 'sites/dc1/intended/structured_configs'
+          devices = []
+
+          if os.path.exists(struct_dir):
+              for file in sorted(os.listdir(struct_dir)):
+                  if not file.endswith('.yml'):
+                      continue
+
+                  with open(os.path.join(struct_dir, file), 'r') as f:
+                      data = yaml.safe_load(f)
+
+                  hostname = data.get('hostname', file.replace('.yml', ''))
+                  platform = data.get('metadata', {}).get('platform', 'N/A')
+                  mgmt_ip = next(
+                      (iface.get('ip_address', 'N/A') for iface in data.get('management_interfaces', [])),
+                      'N/A'
+                  )
+                  node_type = 'Other'
+                  for tag in data.get('metadata', {}).get('cv_tags', {}).get('device_tags', []):
+                      if tag.get('name') == 'topology_hint_type':
+                          node_type = tag.get('value', 'Other')
+                          break
+
+                  devices.append({
+                      'hostname': hostname,
+                      'node_type': node_type,
+                      'platform': platform,
+                      'mgmt_ip': mgmt_ip,
+                  })
+
+          # Build table rows grouped and sorted by node_type then hostname
+          rows = '\n'.join(
+              f'| {d["hostname"]} | {d["node_type"].upper()} | {d["platform"]} | {d["mgmt_ip"]} |'
+              for d in sorted(devices, key=lambda d: (d['node_type'], d['hostname']))
+          )
+
+          content = f"""\
+          # DC1 Network Automation
+
+          Auto-generated documentation for the DC1 fabric, built with [Arista Validated Designs (AVD)](https://avd.arista.com/).
+
+          ## Fabric Inventory
+
+          | Hostname | Role | Platform | Management IP |
+          |----------|------|----------|---------------|
+          {rows}
+
+          ## Navigation
+
+          Use the tabs above to browse:
+
+          - **DC1 → Fabric Overview** — IP allocation, topology, and management addressing
+          - **DC1 → Devices** — Per-device configuration documentation grouped by node type
+
+          ---
+          *This page is auto-generated on every production deployment.*
+          """
+
+          # Strip the common leading whitespace introduced by the indented heredoc
+          import textwrap
+          content = textwrap.dedent(content)
+
+          with open('docs/index.md', 'w') as f:
+              f.write(content)
+
+          print(f"index.md generated with {len(devices)} devices.")
+
+      - name: Update MkDocs Navigation
+        shell: python
+        run: |
+          import yaml
+          import os
+
+          mkdocs_file = 'mkdocs.yml'
+          struct_dir = 'sites/dc1/intended/structured_configs'
+          devices_dir = 'docs/dc1/devices'
+
+          if not os.path.exists(mkdocs_file):
+              print(f"No {mkdocs_file} found — skipping nav update.")
+              exit(0)
+
+          with open(mkdocs_file, 'r') as f:
+              config = yaml.safe_load(f)
+
+          # Preserve any top-level nav items that are not site-specific (e.g. Home)
+          full_nav = [
+              item for item in config.get('nav', [])
+              if 'Home' in item or 'index.md' in str(item)
+          ]
+
+          # Group device docs by node type, reading topology_hint_type
+          # from metadata.cv_tags.device_tags in each structured config
+          type_buckets = {}
+          if os.path.exists(devices_dir):
+              for file in sorted(os.listdir(devices_dir)):
+                  if not file.endswith('.md'):
+                      continue
+
+                  hostname = file.replace('.md', '')
+                  struct_path = os.path.join(struct_dir, f'{hostname}.yml')
+
+                  node_type = 'Other'
+                  if os.path.exists(struct_path):
+                      with open(struct_path, 'r') as f:
+                          data = yaml.safe_load(f)
+                      device_tags = (
+                          data.get('metadata', {})
+                              .get('cv_tags', {})
+                              .get('device_tags', [])
+                      )
+                      for tag in device_tags:
+                          if tag.get('name') == 'topology_hint_type':
+                              node_type = tag.get('value', 'Other')
+                              break
+
+                  type_buckets.setdefault(node_type, []).append(
+                      {hostname: f'dc1/devices/{file}'}
+                  )
+
+          # Build the DC1 site nav section
+          site_nav = []
+
+          fabric_doc = 'dc1/dc1_fabric-documentation.md'
+          if os.path.exists(f'docs/{fabric_doc}'):
+              site_nav.append({'Fabric Overview': fabric_doc})
+
+          device_tree = [
+              {node_type.upper(): devices}
+              for node_type, devices in sorted(type_buckets.items())
+          ]
+          if device_tree:
+              site_nav.append({'Devices': device_tree})
+
+          if site_nav:
+              full_nav.append({'DC1': site_nav})
+
+          config['nav'] = full_nav
+
+          with open(mkdocs_file, 'w') as f:
+              yaml.dump(config, f, default_flow_style=False, sort_keys=False)
+
+          print("Nav updated successfully.")
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build MkDocs Site
+        run: mkdocs build --strict
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

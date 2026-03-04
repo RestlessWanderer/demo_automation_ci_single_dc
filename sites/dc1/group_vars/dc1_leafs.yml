@@ -1,0 +1,45 @@
+---
+type: l2leaf
+
+l2leaf:
+  defaults:
+    platform: "7050SX3"
+    mlag_peer_ipv4_pool: 10.253.1.0/31
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 16384
+    uplink_switches: [ spine-1, spine-2 ]
+    uplink_interfaces: [ Ethernet1, Ethernet2 ]
+    mlag_interfaces: [ Ethernet47, Ethernet48 ]
+  node_groups:
+    - group: DC1-LEAF1
+      nodes:
+        - name: leaf-1a
+          id: 1
+          mgmt_ip: 192.168.0.13/24
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+          structured_config:
+            metadata:
+              cv_tags:
+                device_tags:
+                  - name: MLAG_SIDE
+                    value: "A"
+        - name: leaf-1b
+          id: 2
+          mgmt_ip: 192.168.0.14/24
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+          structured_config:
+            metadata:
+              cv_tags:
+                device_tags:
+                  - name: MLAG_SIDE
+                    value: "B"
+    - group: DC1-LEAF2
+      nodes:
+        - name: leaf-2a
+          id: 3
+          mgmt_ip: 192.168.0.15/24
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: leaf-2b
+          id: 4
+          mgmt_ip: 192.168.0.16/24
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]

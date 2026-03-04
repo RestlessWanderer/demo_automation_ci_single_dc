@@ -1,0 +1,23 @@
+---
+type: l3spine
+
+l3spine:
+  defaults:
+    platform: "7280R3"
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 4096
+    loopback_ipv4_pool: 10.252.1.0/24
+    mlag_peer_ipv4_pool: 10.253.1.0/31
+    mlag_peer_l3_ipv4_pool: 10.253.1.2/31
+    virtual_router_mac_address: 00:1c:73:00:dc:01
+    mlag_interfaces: [ Ethernet47, Ethernet48 ]
+
+  node_groups:
+    - group: DC1-SPINES
+      nodes:
+        - name: spine-1
+          id: 1
+          mgmt_ip: 192.168.0.11/24
+        - name: spine-2
+          id: 2
+          mgmt_ip: 192.168.0.12/24

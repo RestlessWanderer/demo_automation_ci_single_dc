@@ -1,0 +1,16 @@
+- name: Configuration deployment
+  hosts: "{{ target_fabric }}"
+  connection: local
+  gather_facts: false
+  
+  tasks:
+    - name: Deploy configurations and tags to CloudVision
+      ansible.builtin.import_role:
+        name: arista.avd.cv_deploy
+      vars:
+        cv_server: 192.168.0.5
+        cv_token: "{{ lookup('ansible.builtin.env', 'ACT_CV_TOKEN') }}"
+        cv_run_change_control: true
+        cv_verify_certs: false
+        eos_config_dir: 'sites/{{ target_fabric }}/digital_twin/intended/configs'
+        structured_dir: 'sites/{{ target_fabric }}/digital_twin/intended/structured_configs'

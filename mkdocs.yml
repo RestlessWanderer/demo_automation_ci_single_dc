@@ -1,0 +1,44 @@
+site_name: DC1 Network Automation
+site_url: https://restlesswanderer.github.io/demo_automation-single-dc-ci/
+repo_url: https://github.com/RestlessWanderer/demo_automation-single-dc-ci
+repo_name: RestlessWanderer/demo_automation-single-dc-ci
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.details
+
+nav:
+  - Home: index.md

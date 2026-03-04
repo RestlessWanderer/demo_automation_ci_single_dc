@@ -1,0 +1,34 @@
+---
+- name: Build Digital Twin Fabric Switch Configuration
+  hosts: "{{ target_fabric }}"
+  gather_facts: false
+  vars:
+    output_dir_name: "digital_twin/intended"
+    documentation_dir_name: "digital_twin/documentation"
+    avd_digital_twin_mode: true
+    cv_settings:
+      onprem_clusters:
+        - name: ACT_CV
+          servers:
+            - name: 192.168.0.5
+      terminattr:
+        ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
+        disable_aaa: true
+    local_users:
+      - name: cvpadmin
+        privilege: 15
+        role: network-admin
+        sha512_password: "$6$.mFLh0tGzdM/moiC$fqhGOO9gtXz.Zbor3SAu4D6fEX6HpZnq52dt145MvK4nEHr80xL0PECkltLe9s3F2P97L9iuQb3/KHuSFmkFW/"
+    management_api_http:
+      enable_vrfs:
+        - name: default
+        - name: MGMT
+
+  tasks:
+    - name: Generate Structured Variables per Device
+      ansible.builtin.import_role:
+        name: arista.avd.eos_designs
+
+    - name: Generate Intended Config and Documentation
+      ansible.builtin.import_role:
+        name: arista.avd.eos_cli_config_gen

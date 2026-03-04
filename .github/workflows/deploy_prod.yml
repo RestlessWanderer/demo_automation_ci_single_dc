@@ -1,0 +1,81 @@
+---
+
+name: Deploy Configs to Production
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+  # repository_dispatch:
+  #   types:
+  #     - deploy_prod
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy_configs:
+    name: Deploy Configs to Production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+          ansible-galaxy collection install -r requirements.yml
+
+      - name: Deploy Configs to Production Fabric
+        env:
+          CV_TOKEN: ${{ secrets.CV_TOKEN }}
+        run: |
+          make deploy-dc1
+
+  post_change_validation:
+    name: Post-Change Validation of Production Environment
+    needs: [deploy_configs]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+          ansible-galaxy collection install -r requirements.yml
+
+      - name: Run ANTA Against Production Fabric - Post Deploy
+        run: |
+          make validate-dc1
+
+      - name: Save output
+        run: |
+            cat sites/dc1/anta/reports/anta_report.md >> $GITHUB_STEP_SUMMARY
+
+  build_mkdocs_trigger:
+    name: Repository Dispatch
+    needs: [ post_change_validation ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+              github.rest.repos.createDispatchEvent({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  event_type: "mkdocs"
+              })

@@ -1,0 +1,14 @@
+- name: Configuration deployment
+  hosts: "{{ target_fabric }}"
+  connection: local
+  gather_facts: false
+  
+  tasks:
+    - name: Deploy configurations and tags to CloudVision
+      ansible.builtin.import_role:
+        name: arista.avd.cv_deploy
+      vars:
+        cv_server: www.cv-staging.corp.arista.io
+        cv_token: "{{ lookup('ansible.builtin.env', 'CV_TOKEN') }}"
+        cv_run_change_control: true
+        cv_verify_certs: false
