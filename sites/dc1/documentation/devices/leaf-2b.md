@@ -1,10 +1,7 @@
 # leaf-2b
 
-Serial Number: HBG25390SRN
-
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Management](#management)
   - [Management Interfaces](#management-interfaces)
   - [IP Name Servers](#ip-name-servers)
@@ -126,12 +123,10 @@ clock timezone America/Detroit
 
 ##### NTP Servers
 
-NTP servers VRF: MGMT
-
-| Server | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
-| ------ | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
-| 129.6.15.28 | True | - | - | - | - | - | - | - |
-| 129.6.15.29 | - | - | - | - | - | - | - | - |
+| Server | VRF | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
+| ------ | --- | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
+| 129.6.15.28 | MGMT | True | - | - | - | - | - | - | - |
+| 129.6.15.29 | MGMT | - | - | - | - | - | - | - | - |
 
 #### NTP Device Configuration
 
@@ -161,6 +156,7 @@ ntp server vrf MGMT 129.6.15.29
 ```eos
 !
 management api http-commands
+   protocol https
    no shutdown
    !
    vrf MGMT
@@ -279,7 +275,7 @@ spanning-tree mst 0 priority 16384
 ### Internal VLAN Allocation Policy Summary
 
 | Policy Allocation | Range Beginning | Range Ending |
-| ----------------- | --------------- | ------------ |
+| ------------------| --------------- | ------------ |
 | ascending | 1006 | 1199 |
 
 ### Internal VLAN Allocation Policy Device Configuration
@@ -297,6 +293,8 @@ vlan internal order ascending range 1006 1199
 | ------- | ---- | ------------ |
 | 110 | DC1_DATA_110 | - |
 | 120 | DC1_DATA_120 | - |
+| 130 | DC1_DATA_130 | - |
+| 140 | DC1_DATA_140 | - |
 | 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
@@ -308,6 +306,12 @@ vlan 110
 !
 vlan 120
    name DC1_DATA_120
+!
+vlan 130
+   name DC1_DATA_130
+!
+vlan 140
+   name DC1_DATA_140
 !
 vlan 4094
    name MLAG
@@ -324,8 +328,8 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_spine-1_Ethernet4 | *trunk | *110,120 | *- | *- | 1 |
-| Ethernet2 | L2_spine-2_Ethernet4 | *trunk | *110,120 | *- | *- | 1 |
+| Ethernet1 | L2_spine-1_Ethernet4 | *trunk | *110,120,130,140 | *- | *- | 1 |
+| Ethernet2 | L2_spine-2_Ethernet4 | *trunk | *110,120,130,140 | *- | *- | 1 |
 | Ethernet47 | MLAG_leaf-2a_Ethernet47 | *trunk | *- | *- | *MLAG | 47 |
 | Ethernet48 | MLAG_leaf-2a_Ethernet48 | *trunk | *- | *- | *MLAG | 47 |
 
@@ -363,8 +367,8 @@ interface Ethernet48
 ##### L2
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_DC1-SPINES_Port-Channel3 | trunk | 110,120 | - | - | - | - | 1 | - |
+| --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| Port-Channel1 | L2_DC1-SPINES_Port-Channel3 | trunk | 110,120,130,140 | - | - | - | - | 1 | - |
 | Port-Channel47 | MLAG_leaf-2a_Port-Channel47 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
@@ -374,7 +378,7 @@ interface Ethernet48
 interface Port-Channel1
    description L2_DC1-SPINES_Port-Channel3
    no shutdown
-   switchport trunk allowed vlan 110,120
+   switchport trunk allowed vlan 110,120,130,140
    switchport mode trunk
    switchport
    mlag 1
@@ -391,15 +395,15 @@ interface Port-Channel47
 
 #### VLAN Interfaces Summary
 
-| Interface | Description | VRF | MTU | Shutdown |
-| --------- | ----------- | --- | --- | -------- |
+| Interface | Description | VRF |  MTU | Shutdown |
+| --------- | ----------- | --- | ---- | -------- |
 | Vlan4094 | MLAG | default | 1500 | False |
 
 ##### IPv4
 
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
-| Vlan4094 | default | 10.253.1.1/31 | - | - | - | - |
+| Vlan4094 |  default  |  10.253.1.1/31  |  -  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 

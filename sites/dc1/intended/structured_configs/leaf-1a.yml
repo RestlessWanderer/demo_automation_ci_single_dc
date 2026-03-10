@@ -26,40 +26,36 @@ ethernet_interfaces:
   channel_group:
     id: 47
     mode: active
-  metadata:
-    peer: leaf-1b
-    peer_interface: Ethernet47
-    peer_type: mlag_peer
+  peer: leaf-1b
+  peer_interface: Ethernet47
+  peer_type: mlag_peer
 - name: Ethernet48
   description: MLAG_leaf-1b_Ethernet48
   shutdown: false
   channel_group:
     id: 47
     mode: active
-  metadata:
-    peer: leaf-1b
-    peer_interface: Ethernet48
-    peer_type: mlag_peer
+  peer: leaf-1b
+  peer_interface: Ethernet48
+  peer_type: mlag_peer
 - name: Ethernet1
   description: L2_spine-1_Ethernet1
   shutdown: false
   channel_group:
     id: 1
     mode: active
-  metadata:
-    peer: spine-1
-    peer_interface: Ethernet1
-    peer_type: l3spine
+  peer: spine-1
+  peer_interface: Ethernet1
+  peer_type: l3spine
 - name: Ethernet2
   description: L2_spine-2_Ethernet1
   shutdown: false
   channel_group:
     id: 1
     mode: active
-  metadata:
-    peer: spine-2
-    peer_interface: Ethernet1
-    peer_type: l3spine
+  peer: spine-2
+  peer_interface: Ethernet1
+  peer_type: l3spine
 hostname: leaf-1a
 ip_domain_lookup:
   source_interfaces:
@@ -67,11 +63,9 @@ ip_domain_lookup:
     vrf: MGMT
 ip_igmp_snooping:
   globally_enabled: true
-ip_name_server:
-  vrfs:
-  - name: MGMT
-    servers:
-    - ip_address: 1.1.1.1
+ip_name_servers:
+- ip_address: 1.1.1.1
+  vrf: MGMT
 local_users:
 - name: admin
   privilege: 15
@@ -83,6 +77,7 @@ local_users:
   sha512_password: $6$4Ey4qpC8elLHIA2a$GRrcdzVU1anXhn5FrAAEtsPg0zdnEHCza4tHVqTCGFV4XFme7Tl8SRGy.Xe0NA7A8XktXr1ZtNzAoBwzm18Nb0
   shell: /bin/bash
 management_api_http:
+  enable_https: true
   enable_vrfs:
   - name: MGMT
 management_interfaces:
@@ -96,7 +91,6 @@ metadata:
   is_deployed: true
   platform: 7050SX3
   fabric_name: dc1_fabric
-  serial_number: JMX2322A52C
   cv_tags:
     device_tags:
     - name: topology_hint_fabric
@@ -119,8 +113,9 @@ ntp:
   servers:
   - name: 129.6.15.28
     preferred: true
+    vrf: MGMT
   - name: 129.6.15.29
-  vrf: MGMT
+    vrf: MGMT
 port_channel_interfaces:
 - name: Port-Channel47
   description: MLAG_leaf-1b_Port-Channel47
@@ -139,7 +134,8 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: 110,120
+      allowed_vlan: 110,120,130,140
+serial_number: JMX2322A52C
 service_routing_protocols_model: multi-agent
 spanning_tree:
   mode: mstp
@@ -165,19 +161,19 @@ vlans:
   name: MLAG
   trunk_groups:
   - MLAG
-  metadata:
-    tenants:
-    - system
+  tenant: system
 - id: 110
   name: DC1_DATA_110
-  metadata:
-    tenants:
-    - DC1
+  tenant: DC1
 - id: 120
   name: DC1_DATA_120
-  metadata:
-    tenants:
-    - DC1
+  tenant: DC1
+- id: 130
+  name: DC1_DATA_130
+  tenant: DC1
+- id: 140
+  name: DC1_DATA_140
+  tenant: DC1
 vrfs:
 - name: MGMT
   ip_routing: false
