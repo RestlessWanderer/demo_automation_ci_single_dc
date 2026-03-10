@@ -1,10 +1,7 @@
 # spine-1
 
-Serial Number: JPN2429P0ZZ
-
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Management](#management)
   - [Management Interfaces](#management-interfaces)
   - [IP Name Servers](#ip-name-servers)
@@ -131,12 +128,10 @@ clock timezone America/Detroit
 
 ##### NTP Servers
 
-NTP servers VRF: MGMT
-
-| Server | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
-| ------ | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
-| 129.6.15.28 | True | - | - | - | - | - | - | - |
-| 129.6.15.29 | - | - | - | - | - | - | - | - |
+| Server | VRF | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
+| ------ | --- | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
+| 129.6.15.28 | MGMT | True | - | - | - | - | - | - | - |
+| 129.6.15.29 | MGMT | - | - | - | - | - | - | - | - |
 
 #### NTP Device Configuration
 
@@ -166,6 +161,7 @@ ntp server vrf MGMT 129.6.15.29
 ```eos
 !
 management api http-commands
+   protocol https
    no shutdown
    !
    vrf MGMT
@@ -296,7 +292,7 @@ spanning-tree mst 0 priority 4096
 ### Internal VLAN Allocation Policy Summary
 
 | Policy Allocation | Range Beginning | Range Ending |
-| ----------------- | --------------- | ------------ |
+| ------------------| --------------- | ------------ |
 | ascending | 1006 | 1199 |
 
 ### Internal VLAN Allocation Policy Device Configuration
@@ -314,6 +310,8 @@ vlan internal order ascending range 1006 1199
 | ------- | ---- | ------------ |
 | 110 | DC1_DATA_110 | - |
 | 120 | DC1_DATA_120 | - |
+| 130 | DC1_DATA_130 | - |
+| 140 | DC1_DATA_140 | - |
 | 4093 | MLAG_L3 | MLAG |
 | 4094 | MLAG | MLAG |
 
@@ -326,6 +324,12 @@ vlan 110
 !
 vlan 120
    name DC1_DATA_120
+!
+vlan 130
+   name DC1_DATA_130
+!
+vlan 140
+   name DC1_DATA_140
 !
 vlan 4093
    name MLAG_L3
@@ -346,10 +350,10 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_leaf-1a_Ethernet1 | *trunk | *110,120 | *- | *- | 1 |
-| Ethernet2 | L2_leaf-1b_Ethernet1 | *trunk | *110,120 | *- | *- | 1 |
-| Ethernet3 | L2_leaf-2a_Ethernet1 | *trunk | *110,120 | *- | *- | 3 |
-| Ethernet4 | L2_leaf-2b_Ethernet1 | *trunk | *110,120 | *- | *- | 3 |
+| Ethernet1 | L2_leaf-1a_Ethernet1 | *trunk | *110,120,130,140 | *- | *- | 1 |
+| Ethernet2 | L2_leaf-1b_Ethernet1 | *trunk | *110,120,130,140 | *- | *- | 1 |
+| Ethernet3 | L2_leaf-2a_Ethernet1 | *trunk | *110,120,130,140 | *- | *- | 3 |
+| Ethernet4 | L2_leaf-2b_Ethernet1 | *trunk | *110,120,130,140 | *- | *- | 3 |
 | Ethernet47 | MLAG_spine-2_Ethernet47 | *trunk | *- | *- | *MLAG | 47 |
 | Ethernet48 | MLAG_spine-2_Ethernet48 | *trunk | *- | *- | *MLAG | 47 |
 
@@ -397,9 +401,9 @@ interface Ethernet48
 ##### L2
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_DC1-LEAF1_Port-Channel1 | trunk | 110,120 | - | - | - | - | 1 | - |
-| Port-Channel3 | L2_DC1-LEAF2_Port-Channel1 | trunk | 110,120 | - | - | - | - | 3 | - |
+| --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| Port-Channel1 | L2_DC1-LEAF1_Port-Channel1 | trunk | 110,120,130,140 | - | - | - | - | 1 | - |
+| Port-Channel3 | L2_DC1-LEAF2_Port-Channel1 | trunk | 110,120,130,140 | - | - | - | - | 3 | - |
 | Port-Channel47 | MLAG_spine-2_Port-Channel47 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
@@ -409,7 +413,7 @@ interface Ethernet48
 interface Port-Channel1
    description L2_DC1-LEAF1_Port-Channel1
    no shutdown
-   switchport trunk allowed vlan 110,120
+   switchport trunk allowed vlan 110,120,130,140
    switchport mode trunk
    switchport
    mlag 1
@@ -417,7 +421,7 @@ interface Port-Channel1
 interface Port-Channel3
    description L2_DC1-LEAF2_Port-Channel1
    no shutdown
-   switchport trunk allowed vlan 110,120
+   switchport trunk allowed vlan 110,120,130,140
    switchport mode trunk
    switchport
    mlag 3
@@ -461,10 +465,12 @@ interface Loopback0
 
 #### VLAN Interfaces Summary
 
-| Interface | Description | VRF | MTU | Shutdown |
-| --------- | ----------- | --- | --- | -------- |
+| Interface | Description | VRF |  MTU | Shutdown |
+| --------- | ----------- | --- | ---- | -------- |
 | Vlan110 | DC1_DATA_110 | default | - | False |
 | Vlan120 | DC1_DATA_120 | default | - | False |
+| Vlan130 | DC1_DATA_130 | default | - | False |
+| Vlan140 | DC1_DATA_140 | default | - | False |
 | Vlan4093 | MLAG_L3 | default | 1500 | False |
 | Vlan4094 | MLAG | default | 1500 | False |
 
@@ -472,16 +478,12 @@ interface Loopback0
 
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
-| Vlan110 | default | 10.1.10.2/24 | - | 10.1.10.1 | - | - |
-| Vlan120 | default | 10.1.20.2/24 | - | 10.1.20.1 | - | - |
-| Vlan4093 | default | 10.253.1.2/31 | - | - | - | - |
-| Vlan4094 | default | 10.253.1.0/31 | - | - | - | - |
-
-##### OSPF
-
-| Interface | OSPF Network Point to Point | OSPF Area | OSPF Cost | OSPF Authentication | IPv6 OSPF Process ID | IPv6 OSPF Area | IPv6 OSPF Network Point to Point |
-| --------- | --------------------------- | --------- | --------- | ------------------- | -------------------- | -------------- | -------------------------------- |
-| Vlan4093 | True | 0.0.0.0 | - | - | - | - | - |
+| Vlan110 |  default  |  10.1.10.2/24  |  -  |  10.1.10.1  |  -  |  -  |
+| Vlan120 |  default  |  10.1.20.2/24  |  -  |  10.1.20.1  |  -  |  -  |
+| Vlan130 |  default  |  10.1.30.2/24  |  -  |  10.1.30.1  |  -  |  -  |
+| Vlan140 |  default  |  10.1.40.2/24  |  -  |  10.1.40.1  |  -  |  -  |
+| Vlan4093 |  default  |  10.253.1.2/31  |  -  |  -  |  -  |  -  |
+| Vlan4094 |  default  |  10.253.1.0/31  |  -  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
@@ -498,6 +500,18 @@ interface Vlan120
    no shutdown
    ip address 10.1.20.2/24
    ip virtual-router address 10.1.20.1
+!
+interface Vlan130
+   description DC1_DATA_130
+   no shutdown
+   ip address 10.1.30.2/24
+   ip virtual-router address 10.1.30.1
+!
+interface Vlan140
+   description DC1_DATA_140
+   no shutdown
+   ip address 10.1.40.2/24
+   ip virtual-router address 10.1.40.1
 !
 interface Vlan4093
    description MLAG_L3
@@ -571,7 +585,7 @@ no ip routing vrf MGMT
 
 | Process ID | Router ID | Default Passive Interface | No Passive Interface | BFD | Max LSA | Default Information Originate | Log Adjacency Changes Detail | Auto Cost Reference Bandwidth | Maximum Paths | MPLS LDP Sync Default | Distribute List In |
 | ---------- | --------- | ------------------------- | -------------------- | --- | ------- | ----------------------------- | ---------------------------- | ----------------------------- | ------------- | --------------------- | ------------------ |
-| 100 | 10.252.1.1 | enabled | Vlan4093 | disabled | 12000 | disabled | disabled | - | - | - | - |
+| 100 | 10.252.1.1 | enabled | Vlan4093 <br> | disabled | 12000 | disabled | disabled | - | - | - | - |
 
 #### Router OSPF Router Redistribution
 
@@ -596,7 +610,6 @@ router ospf 100
    no passive-interface Vlan4093
    redistribute connected
    max-lsa 12000
-   graceful-restart
 ```
 
 ## Multicast
