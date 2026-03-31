@@ -160,7 +160,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: '110'
+      allowed_vlan: 110,120
 - name: Port-Channel3
   description: L2_DC1-LEAF2_Port-Channel1
   shutdown: false
@@ -169,7 +169,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: '110'
+      allowed_vlan: 110,120
 router_ospf:
   process_ids:
   - id: 100
@@ -211,6 +211,13 @@ vlan_interfaces:
   ip_virtual_router_addresses:
   - 10.1.10.1
   tenant: DC1
+- name: Vlan120
+  description: DC1_DATA_120
+  shutdown: false
+  ip_address: 10.1.20.3/24
+  ip_virtual_router_addresses:
+  - 10.1.20.1
+  tenant: DC1
 vlan_internal_order:
   allocation: ascending
   range:
@@ -229,6 +236,9 @@ vlans:
   tenant: system
 - id: 110
   name: DC1_DATA_110
+  tenant: DC1
+- id: 120
+  name: DC1_DATA_120
   tenant: DC1
 vrfs:
 - name: MGMT
