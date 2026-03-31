@@ -35,12 +35,12 @@
 
 | Type | Node | Node Interface | Peer Type | Peer Node | Peer Interface |
 | ---- | ---- | -------------- | --------- | ----------| -------------- |
-| l2leaf | leaf-1a | Ethernet1 | l3spine | spine-1 | Ethernet1 |
-| l2leaf | leaf-1a | Ethernet2 | l3spine | spine-2 | Ethernet1 |
+| l2leaf | leaf-1a | Ethernet1 | l3spine | spine-1 | Ethernet2 |
+| l2leaf | leaf-1a | Ethernet2 | l3spine | spine-2 | Ethernet2 |
 | l2leaf | leaf-1a | Ethernet47 | mlag_peer | leaf-1b | Ethernet47 |
 | l2leaf | leaf-1a | Ethernet48 | mlag_peer | leaf-1b | Ethernet48 |
-| l2leaf | leaf-1b | Ethernet1 | l3spine | spine-1 | Ethernet2 |
-| l2leaf | leaf-1b | Ethernet2 | l3spine | spine-2 | Ethernet2 |
+| l2leaf | leaf-1b | Ethernet1 | l3spine | spine-1 | Ethernet1 |
+| l2leaf | leaf-1b | Ethernet2 | l3spine | spine-2 | Ethernet1 |
 | l2leaf | leaf-2a | Ethernet1 | l3spine | spine-1 | Ethernet3 |
 | l2leaf | leaf-2a | Ethernet2 | l3spine | spine-2 | Ethernet3 |
 | l2leaf | leaf-2a | Ethernet47 | mlag_peer | leaf-2b | Ethernet47 |

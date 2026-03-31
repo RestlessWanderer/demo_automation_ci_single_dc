@@ -39,22 +39,22 @@ ethernet_interfaces:
   peer_interface: Ethernet48
   peer_type: mlag_peer
 - name: Ethernet1
-  description: L2_spine-1_Ethernet1
+  description: L2_spine-1_Ethernet2
   shutdown: false
   channel_group:
     id: 1
     mode: active
   peer: spine-1
-  peer_interface: Ethernet1
+  peer_interface: Ethernet2
   peer_type: l3spine
 - name: Ethernet2
-  description: L2_spine-2_Ethernet1
+  description: L2_spine-2_Ethernet2
   shutdown: false
   channel_group:
     id: 1
     mode: active
   peer: spine-2
-  peer_interface: Ethernet1
+  peer_interface: Ethernet2
   peer_type: l3spine
 hostname: leaf-1a
 ip_domain_lookup:
@@ -127,7 +127,7 @@ port_channel_interfaces:
       groups:
       - MLAG
 - name: Port-Channel1
-  description: L2_DC1-SPINES_Port-Channel1
+  description: L2_DC1-SPINES_Port-Channel2
   shutdown: false
   mlag: 1
   switchport:
