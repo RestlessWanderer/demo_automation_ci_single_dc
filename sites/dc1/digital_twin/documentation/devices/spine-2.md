@@ -312,8 +312,8 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_leaf-1a_Ethernet2 | *trunk | *110,120 | *- | *- | 1 |
-| Ethernet2 | L2_leaf-1b_Ethernet2 | *trunk | *110,120 | *- | *- | 1 |
+| Ethernet1 | L2_leaf-1b_Ethernet2 | *trunk | *110,120 | *- | *- | 2 |
+| Ethernet2 | L2_leaf-1a_Ethernet2 | *trunk | *110,120 | *- | *- | 2 |
 | Ethernet3 | L2_leaf-2a_Ethernet2 | *trunk | *110,120 | *- | *- | 3 |
 | Ethernet4 | L2_leaf-2b_Ethernet2 | *trunk | *110,120 | *- | *- | 3 |
 | Ethernet47 | MLAG_spine-1_Ethernet47 | *trunk | *- | *- | *MLAG | 47 |
@@ -326,14 +326,14 @@ vlan 4094
 ```eos
 !
 interface Ethernet1
-   description L2_leaf-1a_Ethernet2
-   no shutdown
-   channel-group 1 mode active
-!
-interface Ethernet2
    description L2_leaf-1b_Ethernet2
    no shutdown
-   channel-group 1 mode active
+   channel-group 2 mode active
+!
+interface Ethernet2
+   description L2_leaf-1a_Ethernet2
+   no shutdown
+   channel-group 2 mode active
 !
 interface Ethernet3
    description L2_leaf-2a_Ethernet2
@@ -364,7 +364,7 @@ interface Ethernet48
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_DC1-LEAF1_Port-Channel1 | trunk | 110,120 | - | - | - | - | 1 | - |
+| Port-Channel2 | L2_DC1-LEAF1_Port-Channel1 | trunk | 110,120 | - | - | - | - | 2 | - |
 | Port-Channel3 | L2_DC1-LEAF2_Port-Channel1 | trunk | 110,120 | - | - | - | - | 3 | - |
 | Port-Channel47 | MLAG_spine-1_Port-Channel47 | trunk | - | - | MLAG | - | - | - | - |
 
@@ -372,13 +372,13 @@ interface Ethernet48
 
 ```eos
 !
-interface Port-Channel1
+interface Port-Channel2
    description L2_DC1-LEAF1_Port-Channel1
    no shutdown
    switchport trunk allowed vlan 110,120
    switchport mode trunk
    switchport
-   mlag 1
+   mlag 2
 !
 interface Port-Channel3
    description L2_DC1-LEAF2_Port-Channel1

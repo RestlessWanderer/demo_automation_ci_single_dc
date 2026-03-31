@@ -39,21 +39,21 @@ ethernet_interfaces:
   peer_interface: Ethernet48
   peer_type: mlag_peer
 - name: Ethernet1
-  description: L2_leaf-1a_Ethernet1
-  shutdown: false
-  channel_group:
-    id: 1
-    mode: active
-  peer: leaf-1a
-  peer_interface: Ethernet1
-  peer_type: l2leaf
-- name: Ethernet2
   description: L2_leaf-1b_Ethernet1
   shutdown: false
   channel_group:
-    id: 1
+    id: 2
     mode: active
   peer: leaf-1b
+  peer_interface: Ethernet1
+  peer_type: l2leaf
+- name: Ethernet2
+  description: L2_leaf-1a_Ethernet1
+  shutdown: false
+  channel_group:
+    id: 2
+    mode: active
+  peer: leaf-1a
   peer_interface: Ethernet1
   peer_type: l2leaf
 - name: Ethernet3
@@ -152,10 +152,10 @@ port_channel_interfaces:
     trunk:
       groups:
       - MLAG
-- name: Port-Channel1
+- name: Port-Channel2
   description: L2_DC1-LEAF1_Port-Channel1
   shutdown: false
-  mlag: 1
+  mlag: 2
   switchport:
     enabled: true
     mode: trunk

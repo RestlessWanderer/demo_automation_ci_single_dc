@@ -29,10 +29,10 @@ veos:
 links:
 - connection:
   - leaf-1a:Ethernet1
-  - spine-1:Ethernet1
+  - spine-1:Ethernet2
 - connection:
   - leaf-1a:Ethernet2
-  - spine-2:Ethernet1
+  - spine-2:Ethernet2
 - connection:
   - leaf-1a:Ethernet47
   - leaf-1b:Ethernet47
@@ -41,10 +41,10 @@ links:
   - leaf-1b:Ethernet48
 - connection:
   - leaf-1b:Ethernet1
-  - spine-1:Ethernet2
+  - spine-1:Ethernet1
 - connection:
   - leaf-1b:Ethernet2
-  - spine-2:Ethernet2
+  - spine-2:Ethernet1
 - connection:
   - leaf-2a:Ethernet1
   - spine-1:Ethernet3
