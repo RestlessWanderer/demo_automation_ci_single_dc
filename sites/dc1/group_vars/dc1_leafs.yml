@@ -16,11 +16,11 @@ l2leaf:
         - name: leaf-1a
           id: 1
           mgmt_ip: 172.31.0.47/23
-          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
         - name: leaf-1b
           id: 2
           mgmt_ip: 172.31.0.48/23
-          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
     - group: DC1-LEAF2
       nodes:
         - name: leaf-2a
