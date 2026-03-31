@@ -134,7 +134,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: '110'
+      allowed_vlan: 110,120
 serial_number: SGD22402922
 service_routing_protocols_model: multi-agent
 spanning_tree:
@@ -164,6 +164,9 @@ vlans:
   tenant: system
 - id: 110
   name: DC1_DATA_110
+  tenant: DC1
+- id: 120
+  name: DC1_DATA_120
   tenant: DC1
 vrfs:
 - name: MGMT
