@@ -277,7 +277,6 @@ vlan internal order ascending range 1006 1199
 | ------- | ---- | ------------ |
 | 110 | DC1_DATA_110 | - |
 | 120 | DC1_DATA_120 | - |
-| 130 | DC1_DATA_130 | - |
 | 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
@@ -289,9 +288,6 @@ vlan 110
 !
 vlan 120
    name DC1_DATA_120
-!
-vlan 130
-   name DC1_DATA_130
 !
 vlan 4094
    name MLAG
@@ -308,8 +304,8 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_spine-1_Ethernet1 | *trunk | *110,120,130 | *- | *- | 1 |
-| Ethernet2 | L2_spine-2_Ethernet1 | *trunk | *110,120,130 | *- | *- | 1 |
+| Ethernet1 | L2_spine-1_Ethernet1 | *trunk | *110,120 | *- | *- | 1 |
+| Ethernet2 | L2_spine-2_Ethernet1 | *trunk | *110,120 | *- | *- | 1 |
 | Ethernet47 | MLAG_leaf-1a_Ethernet47 | *trunk | *- | *- | *MLAG | 47 |
 | Ethernet48 | MLAG_leaf-1a_Ethernet48 | *trunk | *- | *- | *MLAG | 47 |
 
@@ -348,7 +344,7 @@ interface Ethernet48
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_DC1-SPINES_Port-Channel2 | trunk | 110,120,130 | - | - | - | - | 1 | - |
+| Port-Channel1 | L2_DC1-SPINES_Port-Channel2 | trunk | 110,120 | - | - | - | - | 1 | - |
 | Port-Channel47 | MLAG_leaf-1a_Port-Channel47 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
@@ -358,7 +354,7 @@ interface Ethernet48
 interface Port-Channel1
    description L2_DC1-SPINES_Port-Channel2
    no shutdown
-   switchport trunk allowed vlan 110,120,130
+   switchport trunk allowed vlan 110,120
    switchport mode trunk
    switchport
    mlag 1
