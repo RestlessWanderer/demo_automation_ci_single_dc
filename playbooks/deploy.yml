@@ -10,5 +10,5 @@
       vars:
         cv_server: www.cv-staging.corp.arista.io
         cv_token: "{{ lookup('ansible.builtin.env', 'CV_TOKEN') }}"
-        cv_run_change_control: true
+        cv_run_change_control: false
         cv_verify_certs: false

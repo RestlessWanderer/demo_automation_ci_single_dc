@@ -85,6 +85,11 @@ management_interfaces:
   vrf: MGMT
   ip_address: 172.31.0.20/23
   type: oob
+management_ssh:
+  enable: true
+  vrfs:
+  - name: MGMT
+    enable: true
 metadata:
   is_deployed: true
   platform: vEOS-lab
