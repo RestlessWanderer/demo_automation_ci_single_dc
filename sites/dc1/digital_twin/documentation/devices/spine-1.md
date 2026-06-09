@@ -8,7 +8,6 @@
   - [Domain Lookup](#domain-lookup)
   - [Clock Settings](#clock-settings)
   - [NTP](#ntp)
-  - [Management SSH](#management-ssh)
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
@@ -140,32 +139,6 @@ NTP servers VRF: MGMT
 ntp local-interface vrf MGMT Management1
 ntp server vrf MGMT 129.6.15.28 prefer
 ntp server vrf MGMT 129.6.15.29
-```
-
-### Management SSH
-
-#### VRFs
-
-| VRF | Enabled | IPv4 ACL | IPv6 ACL |
-| --- | ------- | -------- | -------- |
-| MGMT | True | - | - |
-| default | True | - | - |
-
-#### Other SSH Settings
-
-| Idle Timeout | Connection Limit | Max from a single Host | Ciphers | Key-exchange methods | MAC algorithms | Hostkey server algorithms |
-| ------------ | ---------------- | ---------------------- | ------- | -------------------- | -------------- | ------------------------- |
-| default | - | - | default | default | default | default |
-
-#### Management SSH Device Configuration
-
-```eos
-!
-management ssh
-   no shutdown
-   !
-   vrf MGMT
-      no shutdown
 ```
 
 ### Management API HTTP
@@ -307,7 +280,7 @@ vlan internal order ascending range 1006 1199
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
 | 110 | DC1_DATA_110 | - |
-| 120 | DC1_DATA_120 | - |
+| 120 | CI_PIPELINE | - |
 | 4093 | MLAG_L3 | MLAG |
 | 4094 | MLAG | MLAG |
 
@@ -319,7 +292,7 @@ vlan 110
    name DC1_DATA_110
 !
 vlan 120
-   name DC1_DATA_120
+   name CI_PIPELINE
 !
 vlan 4093
    name MLAG_L3
@@ -458,7 +431,7 @@ interface Loopback0
 | Interface | Description | VRF | MTU | Shutdown |
 | --------- | ----------- | --- | --- | -------- |
 | Vlan110 | DC1_DATA_110 | default | - | False |
-| Vlan120 | DC1_DATA_120 | default | - | False |
+| Vlan120 | CI_PIPELINE | default | - | False |
 | Vlan4093 | MLAG_L3 | default | 1500 | False |
 | Vlan4094 | MLAG | default | 1500 | False |
 
@@ -488,7 +461,7 @@ interface Vlan110
    ip virtual-router address 10.1.10.1
 !
 interface Vlan120
-   description DC1_DATA_120
+   description CI_PIPELINE
    no shutdown
    ip address 10.1.20.2/24
    ip virtual-router address 10.1.20.1
