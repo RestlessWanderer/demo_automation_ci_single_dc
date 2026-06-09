@@ -174,7 +174,7 @@ vlans:
     tenants:
     - DC1
 - id: 120
-  name: CI_PIPELINE
+  name: DC1_DATA_120
   metadata:
     tenants:
     - DC1

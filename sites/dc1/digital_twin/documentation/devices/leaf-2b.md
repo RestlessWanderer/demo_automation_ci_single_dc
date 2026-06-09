@@ -277,7 +277,7 @@ vlan internal order ascending range 1006 1199
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
 | 110 | DC1_DATA_110 | - |
-| 120 | CI_PIPELINE | - |
+| 120 | DC1_DATA_120 | - |
 | 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
@@ -288,7 +288,7 @@ vlan 110
    name DC1_DATA_110
 !
 vlan 120
-   name CI_PIPELINE
+   name DC1_DATA_120
 !
 vlan 4094
    name MLAG
