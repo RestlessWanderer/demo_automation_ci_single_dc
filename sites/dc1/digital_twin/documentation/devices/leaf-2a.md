@@ -278,6 +278,77 @@ vlan internal order ascending range 1006 1199
 | ------- | ---- | ------------ |
 | 110 | DC1_DATA_110 | - |
 | 120 | DC1_DATA_120 | - |
+| 130 | DC1_DATA_130 | - |
+| 131 | DC1_DATA_131 | - |
+| 132 | DC1_DATA_132 | - |
+| 133 | DC1_DATA_133 | - |
+| 134 | DC1_DATA_134 | - |
+| 135 | DC1_DATA_135 | - |
+| 136 | DC1_DATA_136 | - |
+| 137 | DC1_DATA_137 | - |
+| 138 | DC1_DATA_138 | - |
+| 139 | DC1_DATA_139 | - |
+| 140 | DC1_DATA_140 | - |
+| 141 | DC1_DATA_141 | - |
+| 142 | DC1_DATA_142 | - |
+| 143 | DC1_DATA_143 | - |
+| 144 | DC1_DATA_144 | - |
+| 145 | DC1_DATA_145 | - |
+| 146 | DC1_DATA_146 | - |
+| 147 | DC1_DATA_147 | - |
+| 148 | DC1_DATA_148 | - |
+| 149 | DC1_DATA_149 | - |
+| 150 | DC1_DATA_150 | - |
+| 151 | DC1_DATA_151 | - |
+| 152 | DC1_DATA_152 | - |
+| 153 | DC1_DATA_153 | - |
+| 154 | DC1_DATA_154 | - |
+| 155 | DC1_DATA_155 | - |
+| 156 | DC1_DATA_156 | - |
+| 157 | DC1_DATA_157 | - |
+| 158 | DC1_DATA_158 | - |
+| 159 | DC1_DATA_159 | - |
+| 160 | DC1_DATA_160 | - |
+| 161 | DC1_DATA_161 | - |
+| 162 | DC1_DATA_162 | - |
+| 163 | DC1_DATA_163 | - |
+| 164 | DC1_DATA_164 | - |
+| 165 | DC1_DATA_165 | - |
+| 166 | DC1_DATA_166 | - |
+| 167 | DC1_DATA_167 | - |
+| 168 | DC1_DATA_168 | - |
+| 169 | DC1_DATA_169 | - |
+| 170 | DC1_DATA_170 | - |
+| 171 | DC1_DATA_171 | - |
+| 172 | DC1_DATA_172 | - |
+| 173 | DC1_DATA_173 | - |
+| 174 | DC1_DATA_174 | - |
+| 175 | DC1_DATA_175 | - |
+| 176 | DC1_DATA_176 | - |
+| 177 | DC1_DATA_177 | - |
+| 178 | DC1_DATA_178 | - |
+| 179 | DC1_DATA_179 | - |
+| 180 | DC1_DATA_180 | - |
+| 181 | DC1_DATA_181 | - |
+| 182 | DC1_DATA_182 | - |
+| 183 | DC1_DATA_183 | - |
+| 184 | DC1_DATA_184 | - |
+| 185 | DC1_DATA_185 | - |
+| 186 | DC1_DATA_186 | - |
+| 187 | DC1_DATA_187 | - |
+| 188 | DC1_DATA_188 | - |
+| 189 | DC1_DATA_189 | - |
+| 190 | DC1_DATA_190 | - |
+| 191 | DC1_DATA_191 | - |
+| 192 | DC1_DATA_192 | - |
+| 193 | DC1_DATA_193 | - |
+| 194 | DC1_DATA_194 | - |
+| 195 | DC1_DATA_195 | - |
+| 196 | DC1_DATA_196 | - |
+| 197 | DC1_DATA_197 | - |
+| 198 | DC1_DATA_198 | - |
+| 199 | DC1_DATA_199 | - |
+| 200 | DC1_DATA_200 | - |
 | 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
@@ -289,6 +360,219 @@ vlan 110
 !
 vlan 120
    name DC1_DATA_120
+!
+vlan 130
+   name DC1_DATA_130
+!
+vlan 131
+   name DC1_DATA_131
+!
+vlan 132
+   name DC1_DATA_132
+!
+vlan 133
+   name DC1_DATA_133
+!
+vlan 134
+   name DC1_DATA_134
+!
+vlan 135
+   name DC1_DATA_135
+!
+vlan 136
+   name DC1_DATA_136
+!
+vlan 137
+   name DC1_DATA_137
+!
+vlan 138
+   name DC1_DATA_138
+!
+vlan 139
+   name DC1_DATA_139
+!
+vlan 140
+   name DC1_DATA_140
+!
+vlan 141
+   name DC1_DATA_141
+!
+vlan 142
+   name DC1_DATA_142
+!
+vlan 143
+   name DC1_DATA_143
+!
+vlan 144
+   name DC1_DATA_144
+!
+vlan 145
+   name DC1_DATA_145
+!
+vlan 146
+   name DC1_DATA_146
+!
+vlan 147
+   name DC1_DATA_147
+!
+vlan 148
+   name DC1_DATA_148
+!
+vlan 149
+   name DC1_DATA_149
+!
+vlan 150
+   name DC1_DATA_150
+!
+vlan 151
+   name DC1_DATA_151
+!
+vlan 152
+   name DC1_DATA_152
+!
+vlan 153
+   name DC1_DATA_153
+!
+vlan 154
+   name DC1_DATA_154
+!
+vlan 155
+   name DC1_DATA_155
+!
+vlan 156
+   name DC1_DATA_156
+!
+vlan 157
+   name DC1_DATA_157
+!
+vlan 158
+   name DC1_DATA_158
+!
+vlan 159
+   name DC1_DATA_159
+!
+vlan 160
+   name DC1_DATA_160
+!
+vlan 161
+   name DC1_DATA_161
+!
+vlan 162
+   name DC1_DATA_162
+!
+vlan 163
+   name DC1_DATA_163
+!
+vlan 164
+   name DC1_DATA_164
+!
+vlan 165
+   name DC1_DATA_165
+!
+vlan 166
+   name DC1_DATA_166
+!
+vlan 167
+   name DC1_DATA_167
+!
+vlan 168
+   name DC1_DATA_168
+!
+vlan 169
+   name DC1_DATA_169
+!
+vlan 170
+   name DC1_DATA_170
+!
+vlan 171
+   name DC1_DATA_171
+!
+vlan 172
+   name DC1_DATA_172
+!
+vlan 173
+   name DC1_DATA_173
+!
+vlan 174
+   name DC1_DATA_174
+!
+vlan 175
+   name DC1_DATA_175
+!
+vlan 176
+   name DC1_DATA_176
+!
+vlan 177
+   name DC1_DATA_177
+!
+vlan 178
+   name DC1_DATA_178
+!
+vlan 179
+   name DC1_DATA_179
+!
+vlan 180
+   name DC1_DATA_180
+!
+vlan 181
+   name DC1_DATA_181
+!
+vlan 182
+   name DC1_DATA_182
+!
+vlan 183
+   name DC1_DATA_183
+!
+vlan 184
+   name DC1_DATA_184
+!
+vlan 185
+   name DC1_DATA_185
+!
+vlan 186
+   name DC1_DATA_186
+!
+vlan 187
+   name DC1_DATA_187
+!
+vlan 188
+   name DC1_DATA_188
+!
+vlan 189
+   name DC1_DATA_189
+!
+vlan 190
+   name DC1_DATA_190
+!
+vlan 191
+   name DC1_DATA_191
+!
+vlan 192
+   name DC1_DATA_192
+!
+vlan 193
+   name DC1_DATA_193
+!
+vlan 194
+   name DC1_DATA_194
+!
+vlan 195
+   name DC1_DATA_195
+!
+vlan 196
+   name DC1_DATA_196
+!
+vlan 197
+   name DC1_DATA_197
+!
+vlan 198
+   name DC1_DATA_198
+!
+vlan 199
+   name DC1_DATA_199
+!
+vlan 200
+   name DC1_DATA_200
 !
 vlan 4094
    name MLAG
@@ -305,8 +589,8 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_spine-1_Ethernet3 | *trunk | *110,120 | *- | *- | 1 |
-| Ethernet2 | L2_spine-2_Ethernet3 | *trunk | *110,120 | *- | *- | 1 |
+| Ethernet1 | L2_spine-1_Ethernet3 | *trunk | *110,120,130-200 | *- | *- | 1 |
+| Ethernet2 | L2_spine-2_Ethernet3 | *trunk | *110,120,130-200 | *- | *- | 1 |
 | Ethernet23 | MLAG_leaf-2b_Ethernet23 | *trunk | *- | *- | *MLAG | 23 |
 | Ethernet24 | MLAG_leaf-2b_Ethernet24 | *trunk | *- | *- | *MLAG | 23 |
 
@@ -345,7 +629,7 @@ interface Ethernet24
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_DC1-SPINES_Port-Channel3 | trunk | 110,120 | - | - | - | - | 1 | - |
+| Port-Channel1 | L2_DC1-SPINES_Port-Channel3 | trunk | 110,120,130-200 | - | - | - | - | 1 | - |
 | Port-Channel23 | MLAG_leaf-2b_Port-Channel23 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
@@ -355,7 +639,7 @@ interface Ethernet24
 interface Port-Channel1
    description L2_DC1-SPINES_Port-Channel3
    no shutdown
-   switchport trunk allowed vlan 110,120
+   switchport trunk allowed vlan 110,120,130-200
    switchport mode trunk
    switchport
    mlag 1
