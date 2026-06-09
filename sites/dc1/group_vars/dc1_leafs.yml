@@ -22,6 +22,7 @@ l2leaf:
           mgmt_ip: 172.31.0.23/23
           uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
     - group: DC1-LEAF2
+      mlag_interfaces: [ Ethernet23, Ethernet24 ]
       nodes:
         - name: leaf-2a #7050SX3-3
           id: 3
