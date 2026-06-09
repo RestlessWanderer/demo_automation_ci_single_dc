@@ -11,7 +11,6 @@ Serial Number: SGD22402922
   - [Domain Lookup](#domain-lookup)
   - [Clock Settings](#clock-settings)
   - [NTP](#ntp)
-  - [Management SSH](#management-ssh)
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
@@ -141,32 +140,6 @@ NTP servers VRF: MGMT
 ntp local-interface vrf MGMT Management1
 ntp server vrf MGMT 129.6.15.28 prefer
 ntp server vrf MGMT 129.6.15.29
-```
-
-### Management SSH
-
-#### VRFs
-
-| VRF | Enabled | IPv4 ACL | IPv6 ACL |
-| --- | ------- | -------- | -------- |
-| MGMT | True | - | - |
-| default | True | - | - |
-
-#### Other SSH Settings
-
-| Idle Timeout | Connection Limit | Max from a single Host | Ciphers | Key-exchange methods | MAC algorithms | Hostkey server algorithms |
-| ------------ | ---------------- | ---------------------- | ------- | -------------------- | -------------- | ------------------------- |
-| default | - | - | default | default | default | default |
-
-#### Management SSH Device Configuration
-
-```eos
-!
-management ssh
-   no shutdown
-   !
-   vrf MGMT
-      no shutdown
 ```
 
 ### Management API HTTP
@@ -323,7 +296,7 @@ vlan internal order ascending range 1006 1199
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
 | 110 | DC1_DATA_110 | - |
-| 120 | DC1_DATA_120 | - |
+| 120 | CI_PIPELINE | - |
 | 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
@@ -334,7 +307,7 @@ vlan 110
    name DC1_DATA_110
 !
 vlan 120
-   name DC1_DATA_120
+   name CI_PIPELINE
 !
 vlan 4094
    name MLAG

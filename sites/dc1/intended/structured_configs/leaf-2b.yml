@@ -92,11 +92,6 @@ management_interfaces:
   vrf: MGMT
   ip_address: 172.31.0.21/23
   type: oob
-management_ssh:
-  enable: true
-  vrfs:
-  - name: MGMT
-    enable: true
 metadata:
   is_deployed: true
   platform: 7050SX3
@@ -179,7 +174,7 @@ vlans:
     tenants:
     - DC1
 - id: 120
-  name: DC1_DATA_120
+  name: CI_PIPELINE
   metadata:
     tenants:
     - DC1
