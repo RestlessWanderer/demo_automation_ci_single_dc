@@ -24,3 +24,713 @@ tenants:
                 ip_address: 10.1.20.2/24
               - node: spine-2
                 ip_address: 10.1.20.3/24
+          - id: 130
+            name: 'DC1_DATA_130'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.30.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.30.2/24
+              - node: spine-2
+                ip_address: 10.1.30.3/24
+          - id: 131
+            name: 'DC1_DATA_131'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.31.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.31.2/24
+              - node: spine-2
+                ip_address: 10.1.31.3/24
+          - id: 132
+            name: 'DC1_DATA_132'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.32.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.32.2/24
+              - node: spine-2
+                ip_address: 10.1.32.3/24
+          - id: 133
+            name: 'DC1_DATA_133'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.33.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.33.2/24
+              - node: spine-2
+                ip_address: 10.1.33.3/24
+          - id: 134
+            name: 'DC1_DATA_134'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.34.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.34.2/24
+              - node: spine-2
+                ip_address: 10.1.34.3/24
+          - id: 135
+            name: 'DC1_DATA_135'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.35.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.35.2/24
+              - node: spine-2
+                ip_address: 10.1.35.3/24
+          - id: 136
+            name: 'DC1_DATA_136'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.36.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.36.2/24
+              - node: spine-2
+                ip_address: 10.1.36.3/24
+          - id: 137
+            name: 'DC1_DATA_137'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.37.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.37.2/24
+              - node: spine-2
+                ip_address: 10.1.37.3/24
+          - id: 138
+            name: 'DC1_DATA_138'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.38.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.38.2/24
+              - node: spine-2
+                ip_address: 10.1.38.3/24
+          - id: 139
+            name: 'DC1_DATA_139'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.39.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.39.2/24
+              - node: spine-2
+                ip_address: 10.1.39.3/24
+          - id: 140
+            name: 'DC1_DATA_140'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.40.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.40.2/24
+              - node: spine-2
+                ip_address: 10.1.40.3/24
+          - id: 141
+            name: 'DC1_DATA_141'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.41.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.41.2/24
+              - node: spine-2
+                ip_address: 10.1.41.3/24
+          - id: 142
+            name: 'DC1_DATA_142'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.42.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.42.2/24
+              - node: spine-2
+                ip_address: 10.1.42.3/24
+          - id: 143
+            name: 'DC1_DATA_143'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.43.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.43.2/24
+              - node: spine-2
+                ip_address: 10.1.43.3/24
+          - id: 144
+            name: 'DC1_DATA_144'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.44.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.44.2/24
+              - node: spine-2
+                ip_address: 10.1.44.3/24
+          - id: 145
+            name: 'DC1_DATA_145'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.45.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.45.2/24
+              - node: spine-2
+                ip_address: 10.1.45.3/24
+          - id: 146
+            name: 'DC1_DATA_146'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.46.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.46.2/24
+              - node: spine-2
+                ip_address: 10.1.46.3/24
+          - id: 147
+            name: 'DC1_DATA_147'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.47.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.47.2/24
+              - node: spine-2
+                ip_address: 10.1.47.3/24
+          - id: 148
+            name: 'DC1_DATA_148'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.48.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.48.2/24
+              - node: spine-2
+                ip_address: 10.1.48.3/24
+          - id: 149
+            name: 'DC1_DATA_149'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.49.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.49.2/24
+              - node: spine-2
+                ip_address: 10.1.49.3/24
+          - id: 150
+            name: 'DC1_DATA_150'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.50.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.50.2/24
+              - node: spine-2
+                ip_address: 10.1.50.3/24
+          - id: 151
+            name: 'DC1_DATA_151'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.51.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.51.2/24
+              - node: spine-2
+                ip_address: 10.1.51.3/24
+          - id: 152
+            name: 'DC1_DATA_152'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.52.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.52.2/24
+              - node: spine-2
+                ip_address: 10.1.52.3/24
+          - id: 153
+            name: 'DC1_DATA_153'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.53.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.53.2/24
+              - node: spine-2
+                ip_address: 10.1.53.3/24
+          - id: 154
+            name: 'DC1_DATA_154'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.54.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.54.2/24
+              - node: spine-2
+                ip_address: 10.1.54.3/24
+          - id: 155
+            name: 'DC1_DATA_155'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.55.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.55.2/24
+              - node: spine-2
+                ip_address: 10.1.55.3/24
+          - id: 156
+            name: 'DC1_DATA_156'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.56.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.56.2/24
+              - node: spine-2
+                ip_address: 10.1.56.3/24
+          - id: 157
+            name: 'DC1_DATA_157'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.57.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.57.2/24
+              - node: spine-2
+                ip_address: 10.1.57.3/24
+          - id: 158
+            name: 'DC1_DATA_158'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.58.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.58.2/24
+              - node: spine-2
+                ip_address: 10.1.58.3/24
+          - id: 159
+            name: 'DC1_DATA_159'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.59.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.59.2/24
+              - node: spine-2
+                ip_address: 10.1.59.3/24
+          - id: 160
+            name: 'DC1_DATA_160'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.60.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.60.2/24
+              - node: spine-2
+                ip_address: 10.1.60.3/24
+          - id: 161
+            name: 'DC1_DATA_161'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.61.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.61.2/24
+              - node: spine-2
+                ip_address: 10.1.61.3/24
+          - id: 162
+            name: 'DC1_DATA_162'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.62.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.62.2/24
+              - node: spine-2
+                ip_address: 10.1.62.3/24
+          - id: 163
+            name: 'DC1_DATA_163'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.63.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.63.2/24
+              - node: spine-2
+                ip_address: 10.1.63.3/24
+          - id: 164
+            name: 'DC1_DATA_164'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.64.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.64.2/24
+              - node: spine-2
+                ip_address: 10.1.64.3/24
+          - id: 165
+            name: 'DC1_DATA_165'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.65.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.65.2/24
+              - node: spine-2
+                ip_address: 10.1.65.3/24
+          - id: 166
+            name: 'DC1_DATA_166'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.66.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.66.2/24
+              - node: spine-2
+                ip_address: 10.1.66.3/24
+          - id: 167
+            name: 'DC1_DATA_167'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.67.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.67.2/24
+              - node: spine-2
+                ip_address: 10.1.67.3/24
+          - id: 168
+            name: 'DC1_DATA_168'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.68.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.68.2/24
+              - node: spine-2
+                ip_address: 10.1.68.3/24
+          - id: 169
+            name: 'DC1_DATA_169'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.69.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.69.2/24
+              - node: spine-2
+                ip_address: 10.1.69.3/24
+          - id: 170
+            name: 'DC1_DATA_170'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.70.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.70.2/24
+              - node: spine-2
+                ip_address: 10.1.70.3/24
+          - id: 171
+            name: 'DC1_DATA_171'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.71.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.71.2/24
+              - node: spine-2
+                ip_address: 10.1.71.3/24
+          - id: 172
+            name: 'DC1_DATA_172'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.72.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.72.2/24
+              - node: spine-2
+                ip_address: 10.1.72.3/24
+          - id: 173
+            name: 'DC1_DATA_173'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.73.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.73.2/24
+              - node: spine-2
+                ip_address: 10.1.73.3/24
+          - id: 174
+            name: 'DC1_DATA_174'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.74.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.74.2/24
+              - node: spine-2
+                ip_address: 10.1.74.3/24
+          - id: 175
+            name: 'DC1_DATA_175'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.75.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.75.2/24
+              - node: spine-2
+                ip_address: 10.1.75.3/24
+          - id: 176
+            name: 'DC1_DATA_176'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.76.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.76.2/24
+              - node: spine-2
+                ip_address: 10.1.76.3/24
+          - id: 177
+            name: 'DC1_DATA_177'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.77.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.77.2/24
+              - node: spine-2
+                ip_address: 10.1.77.3/24
+          - id: 178
+            name: 'DC1_DATA_178'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.78.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.78.2/24
+              - node: spine-2
+                ip_address: 10.1.78.3/24
+          - id: 179
+            name: 'DC1_DATA_179'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.79.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.79.2/24
+              - node: spine-2
+                ip_address: 10.1.79.3/24
+          - id: 180
+            name: 'DC1_DATA_180'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.80.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.80.2/24
+              - node: spine-2
+                ip_address: 10.1.80.3/24
+          - id: 181
+            name: 'DC1_DATA_181'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.81.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.81.2/24
+              - node: spine-2
+                ip_address: 10.1.81.3/24
+          - id: 182
+            name: 'DC1_DATA_182'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.82.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.82.2/24
+              - node: spine-2
+                ip_address: 10.1.82.3/24
+          - id: 183
+            name: 'DC1_DATA_183'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.83.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.83.2/24
+              - node: spine-2
+                ip_address: 10.1.83.3/24
+          - id: 184
+            name: 'DC1_DATA_184'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.84.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.84.2/24
+              - node: spine-2
+                ip_address: 10.1.84.3/24
+          - id: 185
+            name: 'DC1_DATA_185'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.85.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.85.2/24
+              - node: spine-2
+                ip_address: 10.1.85.3/24
+          - id: 186
+            name: 'DC1_DATA_186'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.86.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.86.2/24
+              - node: spine-2
+                ip_address: 10.1.86.3/24
+          - id: 187
+            name: 'DC1_DATA_187'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.87.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.87.2/24
+              - node: spine-2
+                ip_address: 10.1.87.3/24
+          - id: 188
+            name: 'DC1_DATA_188'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.88.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.88.2/24
+              - node: spine-2
+                ip_address: 10.1.88.3/24
+          - id: 189
+            name: 'DC1_DATA_189'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.89.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.89.2/24
+              - node: spine-2
+                ip_address: 10.1.89.3/24
+          - id: 190
+            name: 'DC1_DATA_190'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.90.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.90.2/24
+              - node: spine-2
+                ip_address: 10.1.90.3/24
+          - id: 191
+            name: 'DC1_DATA_191'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.91.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.91.2/24
+              - node: spine-2
+                ip_address: 10.1.91.3/24
+          - id: 192
+            name: 'DC1_DATA_192'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.92.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.92.2/24
+              - node: spine-2
+                ip_address: 10.1.92.3/24
+          - id: 193
+            name: 'DC1_DATA_193'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.93.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.93.2/24
+              - node: spine-2
+                ip_address: 10.1.93.3/24
+          - id: 194
+            name: 'DC1_DATA_194'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.94.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.94.2/24
+              - node: spine-2
+                ip_address: 10.1.94.3/24
+          - id: 195
+            name: 'DC1_DATA_195'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.95.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.95.2/24
+              - node: spine-2
+                ip_address: 10.1.95.3/24
+          - id: 196
+            name: 'DC1_DATA_196'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.96.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.96.2/24
+              - node: spine-2
+                ip_address: 10.1.96.3/24
+          - id: 197
+            name: 'DC1_DATA_197'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.97.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.97.2/24
+              - node: spine-2
+                ip_address: 10.1.97.3/24
+          - id: 198
+            name: 'DC1_DATA_198'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.98.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.98.2/24
+              - node: spine-2
+                ip_address: 10.1.98.3/24
+          - id: 199
+            name: 'DC1_DATA_199'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.99.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.99.2/24
+              - node: spine-2
+                ip_address: 10.1.99.3/24
+          - id: 200
+            name: 'DC1_DATA_200'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.100.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.100.2/24
+              - node: spine-2
+                ip_address: 10.1.100.3/24
