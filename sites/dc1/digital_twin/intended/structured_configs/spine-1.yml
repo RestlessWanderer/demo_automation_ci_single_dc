@@ -23,54 +23,60 @@ ethernet_interfaces:
   channel_group:
     id: 47
     mode: active
-  peer: spine-2
-  peer_interface: Ethernet47
-  peer_type: mlag_peer
+  metadata:
+    peer: spine-2
+    peer_interface: Ethernet47
+    peer_type: mlag_peer
 - name: Ethernet48
   description: MLAG_spine-2_Ethernet48
   shutdown: false
   channel_group:
     id: 47
     mode: active
-  peer: spine-2
-  peer_interface: Ethernet48
-  peer_type: mlag_peer
+  metadata:
+    peer: spine-2
+    peer_interface: Ethernet48
+    peer_type: mlag_peer
 - name: Ethernet1
   description: L2_leaf-1a_Ethernet1
   shutdown: false
   channel_group:
     id: 1
     mode: active
-  peer: leaf-1a
-  peer_interface: Ethernet1
-  peer_type: l2leaf
+  metadata:
+    peer: leaf-1a
+    peer_interface: Ethernet1
+    peer_type: l2leaf
 - name: Ethernet2
   description: L2_leaf-1b_Ethernet1
   shutdown: false
   channel_group:
     id: 1
     mode: active
-  peer: leaf-1b
-  peer_interface: Ethernet1
-  peer_type: l2leaf
+  metadata:
+    peer: leaf-1b
+    peer_interface: Ethernet1
+    peer_type: l2leaf
 - name: Ethernet3
   description: L2_leaf-2a_Ethernet1
   shutdown: false
   channel_group:
     id: 3
     mode: active
-  peer: leaf-2a
-  peer_interface: Ethernet1
-  peer_type: l2leaf
+  metadata:
+    peer: leaf-2a
+    peer_interface: Ethernet1
+    peer_type: l2leaf
 - name: Ethernet4
   description: L2_leaf-2b_Ethernet1
   shutdown: false
   channel_group:
     id: 3
     mode: active
-  peer: leaf-2b
-  peer_interface: Ethernet1
-  peer_type: l2leaf
+  metadata:
+    peer: leaf-2b
+    peer_interface: Ethernet1
+    peer_type: l2leaf
 hostname: spine-1
 ip_domain_lookup:
   source_interfaces:
@@ -78,9 +84,11 @@ ip_domain_lookup:
     vrf: MGMT
 ip_igmp_snooping:
   globally_enabled: true
-ip_name_servers:
-- ip_address: 1.1.1.1
-  vrf: MGMT
+ip_name_server:
+  vrfs:
+  - name: MGMT
+    servers:
+    - ip_address: 1.1.1.1
 ip_routing: true
 ip_virtual_router_mac_address: 00:1c:73:00:dc:01
 local_users:
@@ -95,10 +103,9 @@ loopback_interfaces:
   ip_address: 10.252.1.1/32
   ospf_area: 0.0.0.0
 management_api_http:
-  enable_https: true
   enable_vrfs:
-  - name: MGMT
   - name: default
+  - name: MGMT
 management_interfaces:
 - name: Management1
   description: OOB_MANAGEMENT
@@ -106,10 +113,17 @@ management_interfaces:
   vrf: MGMT
   ip_address: 172.31.0.27/23
   type: oob
+management_ssh:
+  enable: true
+  vrfs:
+  - name: MGMT
+    enable: true
 metadata:
   is_deployed: true
   platform: vEOS-lab
   fabric_name: dc1_fabric
+  validate_hardware:
+    enabled: false
   cv_tags:
     device_tags:
     - name: topology_hint_fabric
@@ -139,9 +153,8 @@ ntp:
   servers:
   - name: 129.6.15.28
     preferred: true
-    vrf: MGMT
   - name: 129.6.15.29
-    vrf: MGMT
+  vrf: MGMT
 port_channel_interfaces:
 - name: Port-Channel47
   description: MLAG_spine-2_Port-Channel47
@@ -182,6 +195,8 @@ router_ospf:
     redistribute:
       connected:
         enabled: true
+    graceful_restart:
+      enabled: true
 service_routing_protocols_model: multi-agent
 spanning_tree:
   mode: mstp
@@ -210,14 +225,18 @@ vlan_interfaces:
   ip_address: 10.1.10.2/24
   ip_virtual_router_addresses:
   - 10.1.10.1
-  tenant: DC1
+  metadata:
+    tenants:
+    - DC1
 - name: Vlan120
-  description: CI_PIPELINE
+  description: DC1_DATA_120
   shutdown: false
   ip_address: 10.1.20.2/24
   ip_virtual_router_addresses:
   - 10.1.20.1
-  tenant: DC1
+  metadata:
+    tenants:
+    - DC1
 vlan_internal_order:
   allocation: ascending
   range:
@@ -228,18 +247,26 @@ vlans:
   name: MLAG_L3
   trunk_groups:
   - MLAG
-  tenant: system
+  metadata:
+    tenants:
+    - system
 - id: 4094
   name: MLAG
   trunk_groups:
   - MLAG
-  tenant: system
+  metadata:
+    tenants:
+    - system
 - id: 110
   name: DC1_DATA_110
-  tenant: DC1
+  metadata:
+    tenants:
+    - DC1
 - id: 120
-  name: CI_PIPELINE
-  tenant: DC1
+  name: DC1_DATA_120
+  metadata:
+    tenants:
+    - DC1
 vrfs:
 - name: MGMT
   ip_routing: false
