@@ -8,6 +8,7 @@
   - [Domain Lookup](#domain-lookup)
   - [Clock Settings](#clock-settings)
   - [NTP](#ntp)
+  - [Management SSH](#management-ssh)
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
@@ -122,10 +123,12 @@ clock timezone America/Detroit
 
 ##### NTP Servers
 
-| Server | VRF | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
-| ------ | --- | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
-| 129.6.15.28 | MGMT | True | - | - | - | - | - | - | - |
-| 129.6.15.29 | MGMT | - | - | - | - | - | - | - | - |
+NTP servers VRF: MGMT
+
+| Server | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
+| ------ | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
+| 129.6.15.28 | True | - | - | - | - | - | - | - |
+| 129.6.15.29 | - | - | - | - | - | - | - | - |
 
 #### NTP Device Configuration
 
@@ -134,6 +137,32 @@ clock timezone America/Detroit
 ntp local-interface vrf MGMT Management1
 ntp server vrf MGMT 129.6.15.28 prefer
 ntp server vrf MGMT 129.6.15.29
+```
+
+### Management SSH
+
+#### VRFs
+
+| VRF | Enabled | IPv4 ACL | IPv6 ACL |
+| --- | ------- | -------- | -------- |
+| MGMT | True | - | - |
+| default | True | - | - |
+
+#### Other SSH Settings
+
+| Idle Timeout | Connection Limit | Max from a single Host | Ciphers | Key-exchange methods | MAC algorithms | Hostkey server algorithms |
+| ------------ | ---------------- | ---------------------- | ------- | -------------------- | -------------- | ------------------------- |
+| default | - | - | default | default | default | default |
+
+#### Management SSH Device Configuration
+
+```eos
+!
+management ssh
+   no shutdown
+   !
+   vrf MGMT
+      no shutdown
 ```
 
 ### Management API HTTP
@@ -156,13 +185,12 @@ ntp server vrf MGMT 129.6.15.29
 ```eos
 !
 management api http-commands
-   protocol https
    no shutdown
    !
-   vrf default
+   vrf MGMT
       no shutdown
    !
-   vrf MGMT
+   vrf default
       no shutdown
 ```
 
@@ -259,7 +287,7 @@ spanning-tree mst 0 priority 16384
 ### Internal VLAN Allocation Policy Summary
 
 | Policy Allocation | Range Beginning | Range Ending |
-| ------------------| --------------- | ------------ |
+| ----------------- | --------------- | ------------ |
 | ascending | 1006 | 1199 |
 
 ### Internal VLAN Allocation Policy Device Configuration
@@ -276,7 +304,7 @@ vlan internal order ascending range 1006 1199
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
 | 110 | DC1_DATA_110 | - |
-| 120 | CI_PIPELINE | - |
+| 120 | DC1_DATA_120 | - |
 | 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
@@ -287,7 +315,7 @@ vlan 110
    name DC1_DATA_110
 !
 vlan 120
-   name CI_PIPELINE
+   name DC1_DATA_120
 !
 vlan 4094
    name MLAG
@@ -343,7 +371,7 @@ interface Ethernet24
 ##### L2
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
 | Port-Channel1 | L2_DC1-SPINES_Port-Channel3 | trunk | 110,120 | - | - | - | - | 1 | - |
 | Port-Channel23 | MLAG_leaf-2a_Port-Channel23 | trunk | - | - | MLAG | - | - | - | - |
 
@@ -371,15 +399,15 @@ interface Port-Channel23
 
 #### VLAN Interfaces Summary
 
-| Interface | Description | VRF |  MTU | Shutdown |
-| --------- | ----------- | --- | ---- | -------- |
+| Interface | Description | VRF | MTU | Shutdown |
+| --------- | ----------- | --- | --- | -------- |
 | Vlan4094 | MLAG | default | 1500 | False |
 
 ##### IPv4
 
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
-| Vlan4094 |  default  |  10.253.1.1/31  |  -  |  -  |  -  |  -  |
+| Vlan4094 | default | 10.253.1.1/31 | - | - | - | - |
 
 #### VLAN Interfaces Device Configuration
 

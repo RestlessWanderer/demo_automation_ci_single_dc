@@ -15,7 +15,7 @@ tenants:
               - node: spine-2
                 ip_address: 10.1.10.3/24
           - id: 120
-            name: 'CI_PIPELINE'
+            name: 'DC1_DATA_120'
             enabled: true
             ip_virtual_router_addresses:
               - 10.1.20.1
