@@ -49,24 +49,6 @@ dns_settings:
 mgmt_interface: Management1
 # mgmt_interface_vrf: default
 
-ssh_settings:
-  # Explicitly enable or disable management ssh for all VRFs. By default EOS enables management ssh for all VRFs.
-  enabled: true
-  vrfs:
-
-      # VRF name.
-      # The value will be interpreted according to these rules:
-      # - `use_mgmt_interface_vrf` will configure SSH for the VRF set with `mgmt_interface_vrf`.
-      #   An error will be raised if `mgmt_ip` or `ipv6_mgmt_ip` are not configured for the device.
-      # - `use_inband_mgmt_vrf` will configure SSH for the VRF set with `inband_mgmt_vrf`.
-      #   An error will be raised if inband management is not configured for the device.
-      # - `use_default_mgmt_method_vrf` will configure the VRF for one of the two options above depending on the value of `default_mgmt_method`.
-      # - Any other string will be used directly as the VRF name.
-    - name: use_mgmt_interface_vrf
-
-      # Enable SSH in VRF.
-      enabled: true
-
 csc_management_api_http:
   enable_vrfs:
     - name: MGMT
