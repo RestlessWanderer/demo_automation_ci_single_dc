@@ -23,40 +23,36 @@ ethernet_interfaces:
   channel_group:
     id: 23
     mode: active
-  metadata:
-    peer: leaf-2b
-    peer_interface: Ethernet23
-    peer_type: mlag_peer
+  peer: leaf-2b
+  peer_interface: Ethernet23
+  peer_type: mlag_peer
 - name: Ethernet24
   description: MLAG_leaf-2b_Ethernet24
   shutdown: false
   channel_group:
     id: 23
     mode: active
-  metadata:
-    peer: leaf-2b
-    peer_interface: Ethernet24
-    peer_type: mlag_peer
+  peer: leaf-2b
+  peer_interface: Ethernet24
+  peer_type: mlag_peer
 - name: Ethernet1
   description: L2_spine-1_Ethernet3
   shutdown: false
   channel_group:
     id: 1
     mode: active
-  metadata:
-    peer: spine-1
-    peer_interface: Ethernet3
-    peer_type: l3spine
+  peer: spine-1
+  peer_interface: Ethernet3
+  peer_type: l3spine
 - name: Ethernet2
   description: L2_spine-2_Ethernet3
   shutdown: false
   channel_group:
     id: 1
     mode: active
-  metadata:
-    peer: spine-2
-    peer_interface: Ethernet3
-    peer_type: l3spine
+  peer: spine-2
+  peer_interface: Ethernet3
+  peer_type: l3spine
 hostname: leaf-2a
 ip_domain_lookup:
   source_interfaces:
@@ -64,20 +60,19 @@ ip_domain_lookup:
     vrf: MGMT
 ip_igmp_snooping:
   globally_enabled: true
-ip_name_server:
-  vrfs:
-  - name: MGMT
-    servers:
-    - ip_address: 1.1.1.1
+ip_name_servers:
+- ip_address: 1.1.1.1
+  vrf: MGMT
 local_users:
 - name: cvpadmin
   privilege: 15
   role: network-admin
   sha512_password: $6$.mFLh0tGzdM/moiC$fqhGOO9gtXz.Zbor3SAu4D6fEX6HpZnq52dt145MvK4nEHr80xL0PECkltLe9s3F2P97L9iuQb3/KHuSFmkFW/
 management_api_http:
+  enable_https: true
   enable_vrfs:
-  - name: default
   - name: MGMT
+  - name: default
 management_interfaces:
 - name: Management1
   description: OOB_MANAGEMENT
@@ -85,17 +80,10 @@ management_interfaces:
   vrf: MGMT
   ip_address: 172.31.0.20/23
   type: oob
-management_ssh:
-  enable: true
-  vrfs:
-  - name: MGMT
-    enable: true
 metadata:
   is_deployed: true
   platform: vEOS-lab
   fabric_name: dc1_fabric
-  validate_hardware:
-    enabled: false
   cv_tags:
     device_tags:
     - name: topology_hint_fabric
@@ -125,8 +113,9 @@ ntp:
   servers:
   - name: 129.6.15.28
     preferred: true
+    vrf: MGMT
   - name: 129.6.15.29
-  vrf: MGMT
+    vrf: MGMT
 port_channel_interfaces:
 - name: Port-Channel23
   description: MLAG_leaf-2b_Port-Channel23
@@ -171,19 +160,13 @@ vlans:
   name: MLAG
   trunk_groups:
   - MLAG
-  metadata:
-    tenants:
-    - system
+  tenant: system
 - id: 110
   name: DC1_DATA_110
-  metadata:
-    tenants:
-    - DC1
+  tenant: DC1
 - id: 120
-  name: DC1_DATA_120
-  metadata:
-    tenants:
-    - DC1
+  name: CI_PIPELINE
+  tenant: DC1
 vrfs:
 - name: MGMT
   ip_routing: false
