@@ -8,7 +8,7 @@
       ansible.builtin.import_role:
         name: arista.avd.cv_deploy
       vars:
-        cv_server: 10.18.183.134
+        cv_server: 10.18.169.5
         cv_token: "{{ lookup('ansible.builtin.env', 'ACT_CV_TOKEN') }}"
         cv_run_change_control: true
         cv_verify_certs: false
