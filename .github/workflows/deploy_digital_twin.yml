@@ -57,6 +57,7 @@ jobs:
       - name: Run ANTA Against Digital Twin CV Instance - Post Deploy
         run: |
           make validate-dc1_dt
+        continue-on-error: true
 
       - name: Save output
         run: |

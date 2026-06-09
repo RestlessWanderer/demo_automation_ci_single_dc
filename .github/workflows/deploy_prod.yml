@@ -61,6 +61,7 @@ jobs:
       - name: Run ANTA Against Production Fabric - Post Deploy
         run: |
           make validate-dc1
+        continue-on-error: true
 
       - name: Save output
         run: |

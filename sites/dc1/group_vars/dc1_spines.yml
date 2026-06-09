@@ -15,9 +15,9 @@ l3spine:
   node_groups:
     - group: DC1-SPINES
       nodes:
-        - name: spine-1
+        - name: spine-1 #7280SR3-1
           id: 1
           mgmt_ip: 172.31.0.27/23
-        - name: spine-2
+        - name: spine-2 #7280SR3-2
           id: 2
           mgmt_ip: 172.31.0.28/23
