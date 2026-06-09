@@ -1,7 +1,8 @@
-# avd-5.5-template
-Devcontainer Template using AVD 5.5.1 and python 3.13 universal image
+# CI Pipeline Demo Topology
+Devcontainer Template using AVD 6.0.0
 
-Also contains the following playbooks:
-- build.yml - eos_designs/cli_config_gen
-- cv_deploy.yml - deploy with static config studio
-- validate.yml - eos_validate role
+Single Data Center - L2LS
+ - 2 Spines
+ - 4 Leafs
+
+CI/CD Pipelines to auto-build and deploy
