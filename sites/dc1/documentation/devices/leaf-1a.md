@@ -368,6 +368,105 @@ vlan internal order ascending range 1006 1199
 | 198 | DC1_DATA_198 | - |
 | 199 | DC1_DATA_199 | - |
 | 200 | DC1_DATA_200 | - |
+| 201 | DC1_DATA_201 | - |
+| 202 | DC1_DATA_202 | - |
+| 203 | DC1_DATA_203 | - |
+| 204 | DC1_DATA_204 | - |
+| 205 | DC1_DATA_205 | - |
+| 206 | DC1_DATA_206 | - |
+| 207 | DC1_DATA_207 | - |
+| 208 | DC1_DATA_208 | - |
+| 209 | DC1_DATA_209 | - |
+| 210 | DC1_DATA_210 | - |
+| 211 | DC1_DATA_211 | - |
+| 212 | DC1_DATA_212 | - |
+| 213 | DC1_DATA_213 | - |
+| 214 | DC1_DATA_214 | - |
+| 215 | DC1_DATA_215 | - |
+| 216 | DC1_DATA_216 | - |
+| 217 | DC1_DATA_217 | - |
+| 218 | DC1_DATA_218 | - |
+| 219 | DC1_DATA_219 | - |
+| 220 | DC1_DATA_220 | - |
+| 221 | DC1_DATA_221 | - |
+| 222 | DC1_DATA_222 | - |
+| 223 | DC1_DATA_223 | - |
+| 224 | DC1_DATA_224 | - |
+| 225 | DC1_DATA_225 | - |
+| 226 | DC1_DATA_226 | - |
+| 227 | DC1_DATA_227 | - |
+| 228 | DC1_DATA_228 | - |
+| 229 | DC1_DATA_229 | - |
+| 230 | DC1_DATA_230 | - |
+| 231 | DC1_DATA_231 | - |
+| 232 | DC1_DATA_232 | - |
+| 233 | DC1_DATA_233 | - |
+| 234 | DC1_DATA_234 | - |
+| 235 | DC1_DATA_235 | - |
+| 236 | DC1_DATA_236 | - |
+| 237 | DC1_DATA_237 | - |
+| 238 | DC1_DATA_238 | - |
+| 239 | DC1_DATA_239 | - |
+| 240 | DC1_DATA_240 | - |
+| 241 | DC1_DATA_241 | - |
+| 242 | DC1_DATA_242 | - |
+| 243 | DC1_DATA_243 | - |
+| 244 | DC1_DATA_244 | - |
+| 245 | DC1_DATA_245 | - |
+| 246 | DC1_DATA_246 | - |
+| 247 | DC1_DATA_247 | - |
+| 248 | DC1_DATA_248 | - |
+| 249 | DC1_DATA_249 | - |
+| 250 | DC1_DATA_250 | - |
+| 251 | DC1_DATA_251 | - |
+| 252 | DC1_DATA_252 | - |
+| 253 | DC1_DATA_253 | - |
+| 254 | DC1_DATA_254 | - |
+| 255 | DC1_DATA_255 | - |
+| 256 | DC1_DATA_256 | - |
+| 257 | DC1_DATA_257 | - |
+| 258 | DC1_DATA_258 | - |
+| 259 | DC1_DATA_259 | - |
+| 260 | DC1_DATA_260 | - |
+| 261 | DC1_DATA_261 | - |
+| 262 | DC1_DATA_262 | - |
+| 263 | DC1_DATA_263 | - |
+| 264 | DC1_DATA_264 | - |
+| 265 | DC1_DATA_265 | - |
+| 266 | DC1_DATA_266 | - |
+| 267 | DC1_DATA_267 | - |
+| 268 | DC1_DATA_268 | - |
+| 269 | DC1_DATA_269 | - |
+| 270 | DC1_DATA_270 | - |
+| 271 | DC1_DATA_271 | - |
+| 272 | DC1_DATA_272 | - |
+| 273 | DC1_DATA_273 | - |
+| 274 | DC1_DATA_274 | - |
+| 275 | DC1_DATA_275 | - |
+| 276 | DC1_DATA_276 | - |
+| 277 | DC1_DATA_277 | - |
+| 278 | DC1_DATA_278 | - |
+| 279 | DC1_DATA_279 | - |
+| 280 | DC1_DATA_280 | - |
+| 281 | DC1_DATA_281 | - |
+| 282 | DC1_DATA_282 | - |
+| 283 | DC1_DATA_283 | - |
+| 284 | DC1_DATA_284 | - |
+| 285 | DC1_DATA_285 | - |
+| 286 | DC1_DATA_286 | - |
+| 287 | DC1_DATA_287 | - |
+| 288 | DC1_DATA_288 | - |
+| 289 | DC1_DATA_289 | - |
+| 290 | DC1_DATA_290 | - |
+| 291 | DC1_DATA_291 | - |
+| 292 | DC1_DATA_292 | - |
+| 293 | DC1_DATA_293 | - |
+| 294 | DC1_DATA_294 | - |
+| 295 | DC1_DATA_295 | - |
+| 296 | DC1_DATA_296 | - |
+| 297 | DC1_DATA_297 | - |
+| 298 | DC1_DATA_298 | - |
+| 299 | DC1_DATA_299 | - |
 | 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
@@ -593,6 +692,303 @@ vlan 199
 vlan 200
    name DC1_DATA_200
 !
+vlan 201
+   name DC1_DATA_201
+!
+vlan 202
+   name DC1_DATA_202
+!
+vlan 203
+   name DC1_DATA_203
+!
+vlan 204
+   name DC1_DATA_204
+!
+vlan 205
+   name DC1_DATA_205
+!
+vlan 206
+   name DC1_DATA_206
+!
+vlan 207
+   name DC1_DATA_207
+!
+vlan 208
+   name DC1_DATA_208
+!
+vlan 209
+   name DC1_DATA_209
+!
+vlan 210
+   name DC1_DATA_210
+!
+vlan 211
+   name DC1_DATA_211
+!
+vlan 212
+   name DC1_DATA_212
+!
+vlan 213
+   name DC1_DATA_213
+!
+vlan 214
+   name DC1_DATA_214
+!
+vlan 215
+   name DC1_DATA_215
+!
+vlan 216
+   name DC1_DATA_216
+!
+vlan 217
+   name DC1_DATA_217
+!
+vlan 218
+   name DC1_DATA_218
+!
+vlan 219
+   name DC1_DATA_219
+!
+vlan 220
+   name DC1_DATA_220
+!
+vlan 221
+   name DC1_DATA_221
+!
+vlan 222
+   name DC1_DATA_222
+!
+vlan 223
+   name DC1_DATA_223
+!
+vlan 224
+   name DC1_DATA_224
+!
+vlan 225
+   name DC1_DATA_225
+!
+vlan 226
+   name DC1_DATA_226
+!
+vlan 227
+   name DC1_DATA_227
+!
+vlan 228
+   name DC1_DATA_228
+!
+vlan 229
+   name DC1_DATA_229
+!
+vlan 230
+   name DC1_DATA_230
+!
+vlan 231
+   name DC1_DATA_231
+!
+vlan 232
+   name DC1_DATA_232
+!
+vlan 233
+   name DC1_DATA_233
+!
+vlan 234
+   name DC1_DATA_234
+!
+vlan 235
+   name DC1_DATA_235
+!
+vlan 236
+   name DC1_DATA_236
+!
+vlan 237
+   name DC1_DATA_237
+!
+vlan 238
+   name DC1_DATA_238
+!
+vlan 239
+   name DC1_DATA_239
+!
+vlan 240
+   name DC1_DATA_240
+!
+vlan 241
+   name DC1_DATA_241
+!
+vlan 242
+   name DC1_DATA_242
+!
+vlan 243
+   name DC1_DATA_243
+!
+vlan 244
+   name DC1_DATA_244
+!
+vlan 245
+   name DC1_DATA_245
+!
+vlan 246
+   name DC1_DATA_246
+!
+vlan 247
+   name DC1_DATA_247
+!
+vlan 248
+   name DC1_DATA_248
+!
+vlan 249
+   name DC1_DATA_249
+!
+vlan 250
+   name DC1_DATA_250
+!
+vlan 251
+   name DC1_DATA_251
+!
+vlan 252
+   name DC1_DATA_252
+!
+vlan 253
+   name DC1_DATA_253
+!
+vlan 254
+   name DC1_DATA_254
+!
+vlan 255
+   name DC1_DATA_255
+!
+vlan 256
+   name DC1_DATA_256
+!
+vlan 257
+   name DC1_DATA_257
+!
+vlan 258
+   name DC1_DATA_258
+!
+vlan 259
+   name DC1_DATA_259
+!
+vlan 260
+   name DC1_DATA_260
+!
+vlan 261
+   name DC1_DATA_261
+!
+vlan 262
+   name DC1_DATA_262
+!
+vlan 263
+   name DC1_DATA_263
+!
+vlan 264
+   name DC1_DATA_264
+!
+vlan 265
+   name DC1_DATA_265
+!
+vlan 266
+   name DC1_DATA_266
+!
+vlan 267
+   name DC1_DATA_267
+!
+vlan 268
+   name DC1_DATA_268
+!
+vlan 269
+   name DC1_DATA_269
+!
+vlan 270
+   name DC1_DATA_270
+!
+vlan 271
+   name DC1_DATA_271
+!
+vlan 272
+   name DC1_DATA_272
+!
+vlan 273
+   name DC1_DATA_273
+!
+vlan 274
+   name DC1_DATA_274
+!
+vlan 275
+   name DC1_DATA_275
+!
+vlan 276
+   name DC1_DATA_276
+!
+vlan 277
+   name DC1_DATA_277
+!
+vlan 278
+   name DC1_DATA_278
+!
+vlan 279
+   name DC1_DATA_279
+!
+vlan 280
+   name DC1_DATA_280
+!
+vlan 281
+   name DC1_DATA_281
+!
+vlan 282
+   name DC1_DATA_282
+!
+vlan 283
+   name DC1_DATA_283
+!
+vlan 284
+   name DC1_DATA_284
+!
+vlan 285
+   name DC1_DATA_285
+!
+vlan 286
+   name DC1_DATA_286
+!
+vlan 287
+   name DC1_DATA_287
+!
+vlan 288
+   name DC1_DATA_288
+!
+vlan 289
+   name DC1_DATA_289
+!
+vlan 290
+   name DC1_DATA_290
+!
+vlan 291
+   name DC1_DATA_291
+!
+vlan 292
+   name DC1_DATA_292
+!
+vlan 293
+   name DC1_DATA_293
+!
+vlan 294
+   name DC1_DATA_294
+!
+vlan 295
+   name DC1_DATA_295
+!
+vlan 296
+   name DC1_DATA_296
+!
+vlan 297
+   name DC1_DATA_297
+!
+vlan 298
+   name DC1_DATA_298
+!
+vlan 299
+   name DC1_DATA_299
+!
 vlan 4094
    name MLAG
    trunk group MLAG
@@ -608,8 +1004,8 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_spine-1_Ethernet1 | *trunk | *110,120,130-200 | *- | *- | 1 |
-| Ethernet2 | L2_spine-2_Ethernet1 | *trunk | *110,120,130-200 | *- | *- | 1 |
+| Ethernet1 | L2_spine-1_Ethernet1 | *trunk | *110,120,130-299 | *- | *- | 1 |
+| Ethernet2 | L2_spine-2_Ethernet1 | *trunk | *110,120,130-299 | *- | *- | 1 |
 | Ethernet47 | MLAG_leaf-1b_Ethernet47 | *trunk | *- | *- | *MLAG | 47 |
 | Ethernet48 | MLAG_leaf-1b_Ethernet48 | *trunk | *- | *- | *MLAG | 47 |
 
@@ -648,7 +1044,7 @@ interface Ethernet48
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_DC1-SPINES_Port-Channel1 | trunk | 110,120,130-200 | - | - | - | - | 1 | - |
+| Port-Channel1 | L2_DC1-SPINES_Port-Channel1 | trunk | 110,120,130-299 | - | - | - | - | 1 | - |
 | Port-Channel47 | MLAG_leaf-1b_Port-Channel47 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
@@ -658,7 +1054,7 @@ interface Ethernet48
 interface Port-Channel1
    description L2_DC1-SPINES_Port-Channel1
    no shutdown
-   switchport trunk allowed vlan 110,120,130-200
+   switchport trunk allowed vlan 110,120,130-299
    switchport mode trunk
    switchport
    mlag 1
