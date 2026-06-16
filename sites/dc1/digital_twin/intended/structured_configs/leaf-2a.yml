@@ -140,7 +140,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: 110,120,130-200
+      allowed_vlan: 110,120,130-299
 service_routing_protocols_model: multi-agent
 spanning_tree:
   mode: mstp
@@ -531,6 +531,501 @@ vlans:
     - DC1
 - id: 200
   name: DC1_DATA_200
+  metadata:
+    tenants:
+    - DC1
+- id: 201
+  name: DC1_DATA_201
+  metadata:
+    tenants:
+    - DC1
+- id: 202
+  name: DC1_DATA_202
+  metadata:
+    tenants:
+    - DC1
+- id: 203
+  name: DC1_DATA_203
+  metadata:
+    tenants:
+    - DC1
+- id: 204
+  name: DC1_DATA_204
+  metadata:
+    tenants:
+    - DC1
+- id: 205
+  name: DC1_DATA_205
+  metadata:
+    tenants:
+    - DC1
+- id: 206
+  name: DC1_DATA_206
+  metadata:
+    tenants:
+    - DC1
+- id: 207
+  name: DC1_DATA_207
+  metadata:
+    tenants:
+    - DC1
+- id: 208
+  name: DC1_DATA_208
+  metadata:
+    tenants:
+    - DC1
+- id: 209
+  name: DC1_DATA_209
+  metadata:
+    tenants:
+    - DC1
+- id: 210
+  name: DC1_DATA_210
+  metadata:
+    tenants:
+    - DC1
+- id: 211
+  name: DC1_DATA_211
+  metadata:
+    tenants:
+    - DC1
+- id: 212
+  name: DC1_DATA_212
+  metadata:
+    tenants:
+    - DC1
+- id: 213
+  name: DC1_DATA_213
+  metadata:
+    tenants:
+    - DC1
+- id: 214
+  name: DC1_DATA_214
+  metadata:
+    tenants:
+    - DC1
+- id: 215
+  name: DC1_DATA_215
+  metadata:
+    tenants:
+    - DC1
+- id: 216
+  name: DC1_DATA_216
+  metadata:
+    tenants:
+    - DC1
+- id: 217
+  name: DC1_DATA_217
+  metadata:
+    tenants:
+    - DC1
+- id: 218
+  name: DC1_DATA_218
+  metadata:
+    tenants:
+    - DC1
+- id: 219
+  name: DC1_DATA_219
+  metadata:
+    tenants:
+    - DC1
+- id: 220
+  name: DC1_DATA_220
+  metadata:
+    tenants:
+    - DC1
+- id: 221
+  name: DC1_DATA_221
+  metadata:
+    tenants:
+    - DC1
+- id: 222
+  name: DC1_DATA_222
+  metadata:
+    tenants:
+    - DC1
+- id: 223
+  name: DC1_DATA_223
+  metadata:
+    tenants:
+    - DC1
+- id: 224
+  name: DC1_DATA_224
+  metadata:
+    tenants:
+    - DC1
+- id: 225
+  name: DC1_DATA_225
+  metadata:
+    tenants:
+    - DC1
+- id: 226
+  name: DC1_DATA_226
+  metadata:
+    tenants:
+    - DC1
+- id: 227
+  name: DC1_DATA_227
+  metadata:
+    tenants:
+    - DC1
+- id: 228
+  name: DC1_DATA_228
+  metadata:
+    tenants:
+    - DC1
+- id: 229
+  name: DC1_DATA_229
+  metadata:
+    tenants:
+    - DC1
+- id: 230
+  name: DC1_DATA_230
+  metadata:
+    tenants:
+    - DC1
+- id: 231
+  name: DC1_DATA_231
+  metadata:
+    tenants:
+    - DC1
+- id: 232
+  name: DC1_DATA_232
+  metadata:
+    tenants:
+    - DC1
+- id: 233
+  name: DC1_DATA_233
+  metadata:
+    tenants:
+    - DC1
+- id: 234
+  name: DC1_DATA_234
+  metadata:
+    tenants:
+    - DC1
+- id: 235
+  name: DC1_DATA_235
+  metadata:
+    tenants:
+    - DC1
+- id: 236
+  name: DC1_DATA_236
+  metadata:
+    tenants:
+    - DC1
+- id: 237
+  name: DC1_DATA_237
+  metadata:
+    tenants:
+    - DC1
+- id: 238
+  name: DC1_DATA_238
+  metadata:
+    tenants:
+    - DC1
+- id: 239
+  name: DC1_DATA_239
+  metadata:
+    tenants:
+    - DC1
+- id: 240
+  name: DC1_DATA_240
+  metadata:
+    tenants:
+    - DC1
+- id: 241
+  name: DC1_DATA_241
+  metadata:
+    tenants:
+    - DC1
+- id: 242
+  name: DC1_DATA_242
+  metadata:
+    tenants:
+    - DC1
+- id: 243
+  name: DC1_DATA_243
+  metadata:
+    tenants:
+    - DC1
+- id: 244
+  name: DC1_DATA_244
+  metadata:
+    tenants:
+    - DC1
+- id: 245
+  name: DC1_DATA_245
+  metadata:
+    tenants:
+    - DC1
+- id: 246
+  name: DC1_DATA_246
+  metadata:
+    tenants:
+    - DC1
+- id: 247
+  name: DC1_DATA_247
+  metadata:
+    tenants:
+    - DC1
+- id: 248
+  name: DC1_DATA_248
+  metadata:
+    tenants:
+    - DC1
+- id: 249
+  name: DC1_DATA_249
+  metadata:
+    tenants:
+    - DC1
+- id: 250
+  name: DC1_DATA_250
+  metadata:
+    tenants:
+    - DC1
+- id: 251
+  name: DC1_DATA_251
+  metadata:
+    tenants:
+    - DC1
+- id: 252
+  name: DC1_DATA_252
+  metadata:
+    tenants:
+    - DC1
+- id: 253
+  name: DC1_DATA_253
+  metadata:
+    tenants:
+    - DC1
+- id: 254
+  name: DC1_DATA_254
+  metadata:
+    tenants:
+    - DC1
+- id: 255
+  name: DC1_DATA_255
+  metadata:
+    tenants:
+    - DC1
+- id: 256
+  name: DC1_DATA_256
+  metadata:
+    tenants:
+    - DC1
+- id: 257
+  name: DC1_DATA_257
+  metadata:
+    tenants:
+    - DC1
+- id: 258
+  name: DC1_DATA_258
+  metadata:
+    tenants:
+    - DC1
+- id: 259
+  name: DC1_DATA_259
+  metadata:
+    tenants:
+    - DC1
+- id: 260
+  name: DC1_DATA_260
+  metadata:
+    tenants:
+    - DC1
+- id: 261
+  name: DC1_DATA_261
+  metadata:
+    tenants:
+    - DC1
+- id: 262
+  name: DC1_DATA_262
+  metadata:
+    tenants:
+    - DC1
+- id: 263
+  name: DC1_DATA_263
+  metadata:
+    tenants:
+    - DC1
+- id: 264
+  name: DC1_DATA_264
+  metadata:
+    tenants:
+    - DC1
+- id: 265
+  name: DC1_DATA_265
+  metadata:
+    tenants:
+    - DC1
+- id: 266
+  name: DC1_DATA_266
+  metadata:
+    tenants:
+    - DC1
+- id: 267
+  name: DC1_DATA_267
+  metadata:
+    tenants:
+    - DC1
+- id: 268
+  name: DC1_DATA_268
+  metadata:
+    tenants:
+    - DC1
+- id: 269
+  name: DC1_DATA_269
+  metadata:
+    tenants:
+    - DC1
+- id: 270
+  name: DC1_DATA_270
+  metadata:
+    tenants:
+    - DC1
+- id: 271
+  name: DC1_DATA_271
+  metadata:
+    tenants:
+    - DC1
+- id: 272
+  name: DC1_DATA_272
+  metadata:
+    tenants:
+    - DC1
+- id: 273
+  name: DC1_DATA_273
+  metadata:
+    tenants:
+    - DC1
+- id: 274
+  name: DC1_DATA_274
+  metadata:
+    tenants:
+    - DC1
+- id: 275
+  name: DC1_DATA_275
+  metadata:
+    tenants:
+    - DC1
+- id: 276
+  name: DC1_DATA_276
+  metadata:
+    tenants:
+    - DC1
+- id: 277
+  name: DC1_DATA_277
+  metadata:
+    tenants:
+    - DC1
+- id: 278
+  name: DC1_DATA_278
+  metadata:
+    tenants:
+    - DC1
+- id: 279
+  name: DC1_DATA_279
+  metadata:
+    tenants:
+    - DC1
+- id: 280
+  name: DC1_DATA_280
+  metadata:
+    tenants:
+    - DC1
+- id: 281
+  name: DC1_DATA_281
+  metadata:
+    tenants:
+    - DC1
+- id: 282
+  name: DC1_DATA_282
+  metadata:
+    tenants:
+    - DC1
+- id: 283
+  name: DC1_DATA_283
+  metadata:
+    tenants:
+    - DC1
+- id: 284
+  name: DC1_DATA_284
+  metadata:
+    tenants:
+    - DC1
+- id: 285
+  name: DC1_DATA_285
+  metadata:
+    tenants:
+    - DC1
+- id: 286
+  name: DC1_DATA_286
+  metadata:
+    tenants:
+    - DC1
+- id: 287
+  name: DC1_DATA_287
+  metadata:
+    tenants:
+    - DC1
+- id: 288
+  name: DC1_DATA_288
+  metadata:
+    tenants:
+    - DC1
+- id: 289
+  name: DC1_DATA_289
+  metadata:
+    tenants:
+    - DC1
+- id: 290
+  name: DC1_DATA_290
+  metadata:
+    tenants:
+    - DC1
+- id: 291
+  name: DC1_DATA_291
+  metadata:
+    tenants:
+    - DC1
+- id: 292
+  name: DC1_DATA_292
+  metadata:
+    tenants:
+    - DC1
+- id: 293
+  name: DC1_DATA_293
+  metadata:
+    tenants:
+    - DC1
+- id: 294
+  name: DC1_DATA_294
+  metadata:
+    tenants:
+    - DC1
+- id: 295
+  name: DC1_DATA_295
+  metadata:
+    tenants:
+    - DC1
+- id: 296
+  name: DC1_DATA_296
+  metadata:
+    tenants:
+    - DC1
+- id: 297
+  name: DC1_DATA_297
+  metadata:
+    tenants:
+    - DC1
+- id: 298
+  name: DC1_DATA_298
+  metadata:
+    tenants:
+    - DC1
+- id: 299
+  name: DC1_DATA_299
   metadata:
     tenants:
     - DC1
