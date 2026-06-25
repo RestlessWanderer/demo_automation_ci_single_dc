@@ -5757,7 +5757,7 @@ interface Loopback0
 
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
-| Vlan20 | default | 10.1.20.2/24 | - | 10.1.20.1 | - | - |
+| Vlan20 | default | 10.1.120.2/24 | - | 10.1.120.1 | - | - |
 | Vlan21 | default | 10.1.21.2/24 | - | 10.1.21.1 | - | - |
 | Vlan22 | default | 10.1.22.2/24 | - | 10.1.22.1 | - | - |
 | Vlan23 | default | 10.1.23.2/24 | - | 10.1.23.1 | - | - |
@@ -6832,8 +6832,8 @@ interface Loopback0
 interface Vlan20
    description DC1_DATA_20
    no shutdown
-   ip address 10.1.20.2/24
-   ip virtual-router address 10.1.20.1
+   ip address 10.1.120.2/24
+   ip virtual-router address 10.1.120.1
 !
 interface Vlan21
    description DC1_DATA_21
