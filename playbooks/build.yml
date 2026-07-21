@@ -11,3 +11,20 @@
     - name: Generate Intended Config and Documentation
       ansible.builtin.import_role:
         name: arista.avd.eos_cli_config_gen
+
+    - name: Count input lines (data model)
+      ansible.builtin.shell: "grep -c '' {{ inventory_dir }}/group_vars/*.yml {{ inventory_dir }}/../../global_vars/*.yml 2>/dev/null | awk -F: '{s+=$NF} END{print s}'"
+      register: input_lines
+      run_once: true
+      changed_when: false
+
+    - name: Count output lines (generated configs)
+      ansible.builtin.shell: "grep -c '' {{ inventory_dir }}/intended/configs/*.cfg 2>/dev/null | awk -F: '{s+=$NF} END{print s}'"
+      register: output_lines
+      run_once: true
+      changed_when: false
+
+    - name: AVD Amplification Factor
+      ansible.builtin.debug:
+        msg: "{{ input_lines.stdout | int }} lines of input -> {{ output_lines.stdout | int }} lines of config = {{ (output_lines.stdout | int / input_lines.stdout | int) | round(0) | int }}x amplification"
+      run_once: true
