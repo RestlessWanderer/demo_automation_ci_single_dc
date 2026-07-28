@@ -4,7 +4,7 @@
 
 | | | | | |
 |:---:|:---:|:---:|:---:|:---:|
-| <h2>168</h2> | | <h2>750</h2> | | <h2>4x</h2> |
+| <h2>225</h2> | | <h2>3,626</h2> | | <h2>16x</h2> |
 | **Lines of Input** | &xrarr; | **Lines of Config** | = | **Amplification** |
 
 </div>
@@ -16,34 +16,38 @@
 
 ### Data Model Input
 
-*168 total lines*
+*225 total lines*
 
 | File | Lines |
 |------|------:|
-| **`global_vars/`** | **91** |
+| **`global_vars/`** | **100** |
+| &nbsp;&nbsp;&nbsp;&nbsp;`act.yml` | 9 |
 | &nbsp;&nbsp;&nbsp;&nbsp;`management.yml` | 91 |
-| **`sites/dc1/group_vars/`** | **77** |
-| &nbsp;&nbsp;&nbsp;&nbsp;`dc1_fabric.yml` | 4 |
+| **`sites/dc1/group_vars/`** | **125** |
+| &nbsp;&nbsp;&nbsp;&nbsp;`dc1_endpoints.yml` | 32 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`dc1_fabric.yml` | 20 |
 | &nbsp;&nbsp;&nbsp;&nbsp;`dc1_leafs.yml` | 34 |
 | &nbsp;&nbsp;&nbsp;&nbsp;`dc1_network_services.yml` | 16 |
 | &nbsp;&nbsp;&nbsp;&nbsp;`dc1_spines.yml` | 23 |
+
 
 </td>
 <td width="50%" valign="top">
 
 ### Configuration Output
 
-*750 total lines*
+*3,626 total lines*
 
 | File | Lines |
 |------|------:|
-| **`sites/dc1/intended/configs/`** | **750** |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1a.cfg` | 106 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1b.cfg` | 106 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2a.cfg` | 106 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2b.cfg` | 106 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`spine-1.cfg` | 163 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`spine-2.cfg` | 163 |
+| **`sites/dc1/intended/configs/`** | **3,626** |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1a.cfg` | 820 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1b.cfg` | 820 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2a.cfg` | 820 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2b.cfg` | 820 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`spine-1.cfg` | 173 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`spine-2.cfg` | 173 |
+
 
 </td>
 </tr>

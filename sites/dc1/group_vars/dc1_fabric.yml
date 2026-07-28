@@ -2,3 +2,19 @@
 fabric_name: "dc1_fabric"
 
 underlay_routing_protocol: ospf
+
+dot1x_settings:
+  enabled: true
+  authentication:
+    radius_groups:
+      - "DOT1X"
+
+aaa_settings:
+  radius:
+    servers:
+      - host: 1.1.1.1
+        groups: 
+          - "DOT1X"
+        cleartext_key: "RADIUSKEY"
+    vrfs:
+      - name: MGMT

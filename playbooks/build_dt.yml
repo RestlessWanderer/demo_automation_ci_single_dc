@@ -15,6 +15,14 @@
         ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
         disable_aaa: true
     aaa_settings:
+      radius:
+        servers:
+          - host: 1.1.1.1
+            groups: 
+              - "DOT1X"
+            cleartext_key: "RADIUSKEY"
+        vrfs:
+          - name: MGMT
       local_users:
         - name: cvpadmin
           privilege: 15

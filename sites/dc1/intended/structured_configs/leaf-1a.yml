@@ -1,8 +1,22 @@
-aaa_authorization:
-  exec:
-    default: local
+aaa_accounting:
+  dot1x:
+    default:
+      type: start-stop
+      methods:
+      - multicast: false
+        method: group
+        group: radius
+aaa_authentication:
+  dot1x:
+    default: group DOT1X
 aaa_root:
   disabled: true
+aaa_server_groups:
+- name: DOT1X
+  type: radius
+  servers:
+  - server: 1.1.1.1
+    vrf: MGMT
 clock:
   timezone: America/Detroit
 config_end: true
@@ -17,6 +31,11 @@ daemon_terminattr:
   disable_aaa: true
   ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
   smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+dot1x:
+  system_auth_control: true
+  protocol_lldp_bypass: true
+  protocol_bpdu_bypass: true
+  dynamic_authorization: true
 enable_password:
   disabled: true
 ethernet_interfaces:
@@ -60,6 +79,1282 @@ ethernet_interfaces:
     peer: spine-2
     peer_interface: Ethernet1
     peer_type: l3spine
+- name: Ethernet3
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet4
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet5
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet6
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet7
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet8
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet9
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet10
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet11
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet12
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet13
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet14
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet15
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet16
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet17
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet18
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet19
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet20
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet21
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet22
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet23
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet24
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet25
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet26
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet27
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet28
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet29
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet30
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet31
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet32
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet33
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet34
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet35
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet36
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet37
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet38
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet39
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet40
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet41
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet42
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet43
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet44
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet45
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
+- name: Ethernet46
+  shutdown: false
+  dot1x:
+    port_control: auto
+    reauthentication: true
+    pae:
+      mode: authenticator
+    authentication_failure:
+      action: allow
+      allow_vlan: 999
+    host_mode:
+      mode: multi-host
+      multi_host_authenticated: true
+    mac_based_authentication:
+      enabled: true
+    timeout:
+      reauth_period: server
+      tx_period: 3
+    reauthorization_request_limit: 3
+  spanning_tree_portfast: edge
+  metadata:
+    peer_type: network_port
+    peer_key: network_ports
+    port_profile: vlan20
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '20'
 hostname: leaf-1a
 ip_domain_lookup:
   source_interfaces:
@@ -72,16 +1367,9 @@ ip_name_server:
   - name: MGMT
     servers:
     - ip_address: 1.1.1.1
-local_users:
-- name: admin
-  privilege: 15
-  role: network-admin
-  sha512_password: $6$WIJu6JlXvlQ.u3Ft$1.drgTLjST0D2rgKJsR9BbsY2NhH2HD868nr0Mc1wXXTGonYKodtPXG/Lwei1f5g3kWPMEfg7QjVtZctOJ.2w/
-- name: service
-  privilege: 15
-  role: network-admin
-  sha512_password: $6$4Ey4qpC8elLHIA2a$GRrcdzVU1anXhn5FrAAEtsPg0zdnEHCza4tHVqTCGFV4XFme7Tl8SRGy.Xe0NA7A8XktXr1ZtNzAoBwzm18Nb0
-  shell: /bin/bash
+ip_radius_source_interfaces:
+- name: Management1
+  vrf: MGMT
 management_api_http:
   enable_vrfs:
   - name: MGMT
@@ -140,6 +1428,12 @@ port_channel_interfaces:
     mode: trunk
     trunk:
       allowed_vlan: '20'
+radius_server:
+  vrfs:
+  - name: MGMT
+    servers:
+    - host: 1.1.1.1
+      key: 1425332F253119000111
 service_routing_protocols_model: multi-agent
 spanning_tree:
   mode: mstp

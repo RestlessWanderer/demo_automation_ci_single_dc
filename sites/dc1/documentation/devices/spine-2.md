@@ -13,9 +13,12 @@ Serial Number: JPN2441P0UJ
   - [NTP](#ntp)
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
-  - [Local Users](#local-users)
   - [Enable Password](#enable-password)
-  - [AAA Authorization](#aaa-authorization)
+  - [RADIUS Server](#radius-server)
+  - [IP RADIUS Source Interfaces](#ip-radius-source-interfaces)
+  - [AAA Server Groups](#aaa-server-groups)
+  - [AAA Authentication](#aaa-authentication)
+  - [AAA Accounting](#aaa-accounting)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
 - [Hardware TCAM Profile](#hardware-tcam-profile)
@@ -45,6 +48,8 @@ Serial Number: JPN2441P0UJ
   - [Router OSPF](#router-ospf)
 - [Multicast](#multicast)
   - [IP IGMP Snooping](#ip-igmp-snooping)
+- [802.1X Port Security](#8021x-port-security)
+  - [802.1X Summary](#8021x-summary)
 - [VRF Instances](#vrf-instances)
   - [VRF Instances Summary](#vrf-instances-summary)
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
@@ -174,42 +179,82 @@ management api http-commands
 
 ## Authentication
 
-### Local Users
-
-#### Local Users Summary
-
-| User | Privilege | Role | Disabled | Shell |
-| ---- | --------- | ---- | -------- | ----- |
-| admin | 15 | network-admin | False | - |
-| service | 15 | network-admin | False | /bin/bash |
-
-#### Local Users Device Configuration
-
-```eos
-!
-username admin privilege 15 role network-admin secret sha512 <removed>
-username service privilege 15 role network-admin shell /bin/bash secret sha512 <removed>
-```
-
 ### Enable Password
 
 Enable password has been disabled
 
-### AAA Authorization
+### RADIUS Server
 
-#### AAA Authorization Summary
+#### RADIUS Server Hosts
 
-| Type | User Stores |
-| ---- | ----------- |
-| Exec | local |
+| VRF | RADIUS Servers | TLS | TLS Port | SSL Profile | Timeout | Retransmit |
+| --- | -------------- | --- | ---- | ----------- | ------- | ---------- |
+| MGMT | 1.1.1.1 | - | - | - | - | - |
 
-Authorization for configuration commands is disabled.
-
-#### AAA Authorization Device Configuration
+#### RADIUS Server Device Configuration
 
 ```eos
-aaa authorization exec default local
 !
+radius-server host 1.1.1.1 vrf MGMT key 7 <removed>
+```
+
+### IP RADIUS Source Interfaces
+
+#### IP RADIUS Source Interfaces
+
+| VRF | Source Interface Name |
+| --- | --------------- |
+| MGMT | Management1 |
+
+#### IP SOURCE Source Interfaces Device Configuration
+
+```eos
+!
+ip radius vrf MGMT source-interface Management1
+```
+
+### AAA Server Groups
+
+#### AAA Server Groups Summary
+
+| Server Group Name | Type | VRF | IP address |
+| ----------------- | ---- | --- | ---------- |
+| DOT1X | radius | MGMT | 1.1.1.1 |
+
+#### AAA Server Groups Device Configuration
+
+```eos
+!
+aaa group server radius DOT1X
+   server 1.1.1.1 vrf MGMT
+```
+
+### AAA Authentication
+
+#### AAA Authentication Summary
+
+| Type | Sub-type | User Stores |
+| ---- | -------- | ---------- |
+
+#### AAA Authentication Device Configuration
+
+```eos
+aaa authentication dot1x default group DOT1X
+!
+```
+
+### AAA Accounting
+
+#### AAA Accounting Summary
+
+| Type | Commands | Record type | Groups | Logging |
+| ---- | -------- | ----------- | ------ | ------- |
+| Dot1x - Default | - | start-stop | radius(multicast) | False |
+
+#### AAA Accounting Device Configuration
+
+```eos
+aaa accounting dot1x default start-stop group radius
 ```
 
 ## Monitoring
@@ -600,6 +645,26 @@ router ospf 100
 #### IP IGMP Snooping Device Configuration
 
 ```eos
+```
+
+## 802.1X Port Security
+
+### 802.1X Summary
+
+#### 802.1X Global
+
+| System Auth Control | Protocol LLDP Bypass | Dynamic Authorization | Dropped Packets Statistics |
+| ------------------- | -------------------- | --------------------- | -------------------------- |
+| True | True | True | - |
+
+#### Dot1x Configuration
+
+```eos
+!
+dot1x system-auth-control
+dot1x protocol lldp bypass
+dot1x protocol bpdu bypass
+dot1x dynamic-authorization
 ```
 
 ## VRF Instances
