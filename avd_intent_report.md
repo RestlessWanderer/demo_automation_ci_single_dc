@@ -4,7 +4,7 @@
 
 | | | | | |
 |:---:|:---:|:---:|:---:|:---:|
-| <h2>225</h2> | | <h2>3,626</h2> | | <h2>16x</h2> |
+| <h2>225</h2> | | <h2>3,638</h2> | | <h2>16x</h2> |
 | **Lines of Input** | &xrarr; | **Lines of Config** | = | **Amplification** |
 
 </div>
@@ -36,17 +36,17 @@
 
 ### Configuration Output
 
-*3,626 total lines*
+*3,638 total lines*
 
 | File | Lines |
 |------|------:|
-| **`sites/dc1/intended/configs/`** | **3,626** |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1a.cfg` | 820 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1b.cfg` | 820 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2a.cfg` | 820 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2b.cfg` | 820 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`spine-1.cfg` | 173 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`spine-2.cfg` | 173 |
+| **`sites/dc1/intended/configs/`** | **3,638** |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1a.cfg` | 822 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1b.cfg` | 822 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2a.cfg` | 822 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2b.cfg` | 822 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`spine-1.cfg` | 175 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`spine-2.cfg` | 175 |
 
 
 </td>

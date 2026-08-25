@@ -138,6 +138,7 @@ management_interfaces:
   vrf: MGMT
   ip_address: 172.31.0.27/23
   type: oob
+  gateway: 172.31.0.5
 metadata:
   is_deployed: true
   platform: vEOS-lab
@@ -230,6 +231,10 @@ spanning_tree:
   - id: '0'
     priority: 4096
   no_spanning_tree_vlan: 4093-4094
+static_routes:
+- vrf: MGMT
+  prefix: 0.0.0.0/0
+  next_hop: 172.31.0.5
 transceiver_qsfp_default_mode_4x10: true
 vlan_interfaces:
 - name: Vlan4093

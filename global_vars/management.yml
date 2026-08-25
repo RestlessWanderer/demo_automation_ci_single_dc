@@ -47,7 +47,7 @@ dns_settings:
 # out of ACT environment.
 # mgmt_gateway: 192.168.0.1
 mgmt_interface: Management1
-# mgmt_interface_vrf: default
+mgmt_gateway: 172.31.0.5
 
 # ssh_settings:
 #   # Explicitly enable or disable management ssh for all VRFs. By default EOS enables management ssh for all VRFs.
