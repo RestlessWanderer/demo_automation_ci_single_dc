@@ -14,3 +14,13 @@ tenants:
                 ip_address: 10.1.20.2/24
               - node: spine-2
                 ip_address: 10.1.20.3/24
+          - id: 21
+            name: 'DC1_DATA_21'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.1.21.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.1.21.2/24
+              - node: spine-2
+                ip_address: 10.1.21.3/24
