@@ -241,9 +241,9 @@ vlan_interfaces:
 - name: Vlan20
   description: DC1_DATA_20
   shutdown: false
-  ip_address: 10.1.120.2/24
+  ip_address: 10.1.20.2/24
   ip_virtual_router_addresses:
-  - 10.1.120.1
+  - 10.1.20.1
   metadata:
     tenants:
     - DC1
