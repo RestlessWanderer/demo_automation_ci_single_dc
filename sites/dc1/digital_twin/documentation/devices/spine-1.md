@@ -362,6 +362,7 @@ vlan internal order ascending range 1006 1199
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
 | 20 | DC1_DATA_20 | - |
+| 21 | DC1_DATA_21 | - |
 | 4093 | MLAG_L3 | MLAG |
 | 4094 | MLAG | MLAG |
 
@@ -371,6 +372,9 @@ vlan internal order ascending range 1006 1199
 !
 vlan 20
    name DC1_DATA_20
+!
+vlan 21
+   name DC1_DATA_21
 !
 vlan 4093
    name MLAG_L3
@@ -391,10 +395,10 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_leaf-1a_Ethernet1 | *trunk | *20 | *- | *- | 1 |
-| Ethernet2 | L2_leaf-1b_Ethernet1 | *trunk | *20 | *- | *- | 1 |
-| Ethernet3 | L2_leaf-2a_Ethernet1 | *trunk | *20 | *- | *- | 3 |
-| Ethernet4 | L2_leaf-2b_Ethernet1 | *trunk | *20 | *- | *- | 3 |
+| Ethernet1 | L2_leaf-1a_Ethernet1 | *trunk | *20-21 | *- | *- | 1 |
+| Ethernet2 | L2_leaf-1b_Ethernet1 | *trunk | *20-21 | *- | *- | 1 |
+| Ethernet3 | L2_leaf-2a_Ethernet1 | *trunk | *20-21 | *- | *- | 3 |
+| Ethernet4 | L2_leaf-2b_Ethernet1 | *trunk | *20-21 | *- | *- | 3 |
 | Ethernet47 | MLAG_spine-2_Ethernet47 | *trunk | *- | *- | *MLAG | 47 |
 | Ethernet48 | MLAG_spine-2_Ethernet48 | *trunk | *- | *- | *MLAG | 47 |
 
@@ -443,8 +447,8 @@ interface Ethernet48
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_DC1-LEAF1_Port-Channel1 | trunk | 20 | - | - | - | - | 1 | - |
-| Port-Channel3 | L2_DC1-LEAF2_Port-Channel1 | trunk | 20 | - | - | - | - | 3 | - |
+| Port-Channel1 | L2_DC1-LEAF1_Port-Channel1 | trunk | 20-21 | - | - | - | - | 1 | - |
+| Port-Channel3 | L2_DC1-LEAF2_Port-Channel1 | trunk | 20-21 | - | - | - | - | 3 | - |
 | Port-Channel47 | MLAG_spine-2_Port-Channel47 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
@@ -454,7 +458,7 @@ interface Ethernet48
 interface Port-Channel1
    description L2_DC1-LEAF1_Port-Channel1
    no shutdown
-   switchport trunk allowed vlan 20
+   switchport trunk allowed vlan 20-21
    switchport mode trunk
    switchport
    mlag 1
@@ -462,7 +466,7 @@ interface Port-Channel1
 interface Port-Channel3
    description L2_DC1-LEAF2_Port-Channel1
    no shutdown
-   switchport trunk allowed vlan 20
+   switchport trunk allowed vlan 20-21
    switchport mode trunk
    switchport
    mlag 3
@@ -509,6 +513,7 @@ interface Loopback0
 | Interface | Description | VRF | MTU | Shutdown |
 | --------- | ----------- | --- | --- | -------- |
 | Vlan20 | DC1_DATA_20 | default | - | False |
+| Vlan21 | DC1_DATA_21 | default | - | False |
 | Vlan4093 | MLAG_L3 | default | 1500 | False |
 | Vlan4094 | MLAG | default | 1500 | False |
 
@@ -517,6 +522,7 @@ interface Loopback0
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
 | Vlan20 | default | 10.1.20.2/24 | - | 10.1.20.1 | - | - |
+| Vlan21 | default | 10.1.21.2/24 | - | 10.1.21.1 | - | - |
 | Vlan4093 | default | 10.253.1.2/31 | - | - | - | - |
 | Vlan4094 | default | 10.253.1.0/31 | - | - | - | - |
 
@@ -535,6 +541,12 @@ interface Vlan20
    no shutdown
    ip address 10.1.20.2/24
    ip virtual-router address 10.1.20.1
+!
+interface Vlan21
+   description DC1_DATA_21
+   no shutdown
+   ip address 10.1.21.2/24
+   ip virtual-router address 10.1.21.1
 !
 interface Vlan4093
    description MLAG_L3
