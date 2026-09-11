@@ -44,3 +44,13 @@ tenants:
                 ip_address: 10.1.23.2/24
               - node: spine-2
                 ip_address: 10.1.23.3/24
+          - id: 30
+            name: 'v30'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.30.30.17
+            nodes:
+              - node: spine-1
+                ip_address: 10.30.30.18/29
+              - node: spine-2
+                ip_address: 10.30.30.19/29
