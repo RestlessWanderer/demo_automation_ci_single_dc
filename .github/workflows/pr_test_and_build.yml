@@ -39,5 +39,5 @@ jobs:
       - name: Commit Changes
         run: |
           git add .
-          git commit -m "Build Configs with AVD"
+          git commit -m "Build Configs with AVD [skip ci]"
           git push origin ${{ github.head_ref }}
