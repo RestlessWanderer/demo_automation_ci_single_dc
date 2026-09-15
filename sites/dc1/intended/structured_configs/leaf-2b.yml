@@ -152,7 +152,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: 20-23
+      allowed_vlan: 20-23,30
 radius_server:
   vrfs:
   - name: MGMT
@@ -208,6 +208,11 @@ vlans:
     - DC1
 - id: 23
   name: DC1_DATA_23
+  metadata:
+    tenants:
+    - DC1
+- id: 30
+  name: v30
   metadata:
     tenants:
     - DC1
