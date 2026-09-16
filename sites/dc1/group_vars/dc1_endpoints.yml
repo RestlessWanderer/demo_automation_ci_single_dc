@@ -1,25 +1,25 @@
-# ---
+---
 
-# port_profiles:
+port_profiles:
 
-#   - profile: vlan20
-#     mode: "access"
-#     vlans: "20"
-#
-#   - profile: vlan21
-#     mode: "access"
-#     vlans: "21"
+  - profile: vlan20
+    mode: "access"
+    vlans: "20"
+
+  - profile: vlan21
+    mode: "access"
+    vlans: "21"
 
 
-# servers:
-#   - name: host1-10
-#     adapters:
-#       - switch_ports: [ Ethernet3 ]
-#         switches: [ leaf-1a ]
-#         profile: vlan20
+servers:
+  - name: host1-10
+    adapters:
+      - switch_ports: [ Ethernet3 ]
+        switches: [ leaf-1a ]
+        profile: vlan20
   
-#   - name: host1-11
-#     adapters:
-#       - switch_ports: [ Ethernet3 ]
-#         switches: [ leaf-2a ]
-#         profile: vlan21
+  - name: host1-11
+    adapters:
+      - switch_ports: [ Ethernet3 ]
+        switches: [ leaf-2a ]
+        profile: vlan21
