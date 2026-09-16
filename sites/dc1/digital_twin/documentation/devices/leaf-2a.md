@@ -397,6 +397,7 @@ vlan 4094
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
 | Ethernet1 | L2_spine-1_Ethernet3 | *trunk | *20-23 | *- | *- | 1 |
 | Ethernet2 | L2_spine-2_Ethernet3 | *trunk | *20-23 | *- | *- | 1 |
+| Ethernet3 | SERVER_host1-11 | access | 21 | - | - | - |
 | Ethernet23 | MLAG_leaf-2b_Ethernet23 | *trunk | *- | *- | *MLAG | 23 |
 | Ethernet24 | MLAG_leaf-2b_Ethernet24 | *trunk | *- | *- | *MLAG | 23 |
 
@@ -415,6 +416,13 @@ interface Ethernet2
    description L2_spine-2_Ethernet3
    no shutdown
    channel-group 1 mode active
+!
+interface Ethernet3
+   description SERVER_host1-11
+   no shutdown
+   switchport access vlan 21
+   switchport mode access
+   switchport
 !
 interface Ethernet23
    description MLAG_leaf-2b_Ethernet23
