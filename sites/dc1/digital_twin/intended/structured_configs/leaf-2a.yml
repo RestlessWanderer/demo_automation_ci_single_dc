@@ -79,6 +79,18 @@ ethernet_interfaces:
     peer: spine-2
     peer_interface: Ethernet3
     peer_type: l3spine
+- name: Ethernet3
+  description: SERVER_host1-11
+  shutdown: false
+  metadata:
+    peer: host1-11
+    peer_type: server
+    peer_key: servers
+    port_profile: vlan21
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: 21
 hostname: leaf-2a
 ip_domain_lookup:
   source_interfaces:
