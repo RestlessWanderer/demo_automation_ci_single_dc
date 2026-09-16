@@ -11,6 +11,7 @@ l3spine:
     mlag_peer_l3_ipv4_pool: 10.253.1.2/31
     virtual_router_mac_address: 00:1c:73:00:dc:01
     mlag_interfaces: [ Ethernet47, Ethernet48 ]
+    # bgp_as: 65100
 
   node_groups:
     - group: DC1-SPINES

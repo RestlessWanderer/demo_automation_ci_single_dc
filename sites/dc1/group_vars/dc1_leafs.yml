@@ -5,13 +5,21 @@ l2leaf:
   defaults:
     platform: "7050SX3"
     mlag_peer_ipv4_pool: 10.253.1.0/31
+    # loopback_ipv4_pool: 10.252.1.0/24
+    # loopback_ipv4_offset: 2
+    # vtep_loopback_ipv4_pool: 10.254.1.0/24
     spanning_tree_mode: mstp
     spanning_tree_priority: 16384
     uplink_switches: [ spine-1, spine-2 ]
     uplink_interfaces: [ Ethernet1, Ethernet2 ]
     mlag_interfaces: [ Ethernet47, Ethernet48 ]
+    # mlag_peer_ipv4_pool: 10.251.1.0/24
+    # mlag_peer_l3_ipv4_pool: 10.252.1.0/24
+    # virtual_router_mac_address: 00:1c:73:00:00:99
+    # uplink_ipv4_pool: 2.2.2.0/24
   node_groups:
     - group: DC1-LEAF1
+      # bgp_as: 65101
       nodes:
         - name: leaf-1a #7050SX3-1
           id: 1
@@ -22,6 +30,7 @@ l2leaf:
           mgmt_ip: 172.31.0.23/23
           uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
     - group: DC1-LEAF2
+      # bgp_as: 65102
       mlag_interfaces: [ Ethernet23, Ethernet24 ]
       nodes:
         - name: leaf-2a #7050SX3-3
