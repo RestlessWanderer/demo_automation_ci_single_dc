@@ -44,3 +44,13 @@ tenants:
                 ip_address: 10.1.23.2/24
               - node: spine-2
                 ip_address: 10.1.23.3/24
+          - id: 250
+            name: 'VLAN_250'
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.60.78.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.60.78.2/24
+              - node: spine-2
+                ip_address: 10.60.78.3/24
