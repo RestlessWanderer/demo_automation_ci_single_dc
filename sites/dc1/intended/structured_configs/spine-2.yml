@@ -180,7 +180,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: 20-23
+      allowed_vlan: 20-23,60
 - name: Port-Channel3
   description: L2_DC1-LEAF2_Port-Channel1
   shutdown: false
@@ -189,7 +189,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: 20-23
+      allowed_vlan: 20-23,60
 radius_server:
   vrfs:
   - name: MGMT
@@ -274,6 +274,15 @@ vlan_interfaces:
   metadata:
     tenants:
     - DC1
+- name: Vlan60
+  description: DemoingStuff
+  shutdown: false
+  ip_address: 10.60.60.3/24
+  ip_virtual_router_addresses:
+  - 10.60.60.1
+  metadata:
+    tenants:
+    - DC1
 vlan_internal_order:
   allocation: ascending
   range:
@@ -311,6 +320,11 @@ vlans:
     - DC1
 - id: 23
   name: DC1_DATA_23
+  metadata:
+    tenants:
+    - DC1
+- id: 60
+  name: DemoingStuff
   metadata:
     tenants:
     - DC1
