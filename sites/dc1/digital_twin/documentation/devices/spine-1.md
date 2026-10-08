@@ -19,32 +19,26 @@
   - [AAA Accounting](#aaa-accounting)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
-- [MLAG](#mlag)
-  - [MLAG Summary](#mlag-summary)
-  - [MLAG Device Configuration](#mlag-device-configuration)
 - [Spanning Tree](#spanning-tree)
   - [Spanning Tree Summary](#spanning-tree-summary)
   - [Spanning Tree Device Configuration](#spanning-tree-device-configuration)
 - [Internal VLAN Allocation Policy](#internal-vlan-allocation-policy)
   - [Internal VLAN Allocation Policy Summary](#internal-vlan-allocation-policy-summary)
   - [Internal VLAN Allocation Policy Device Configuration](#internal-vlan-allocation-policy-device-configuration)
-- [VLANs](#vlans)
-  - [VLANs Summary](#vlans-summary)
-  - [VLANs Device Configuration](#vlans-device-configuration)
 - [Interfaces](#interfaces)
   - [Ethernet Interfaces](#ethernet-interfaces)
-  - [Port-Channel Interfaces](#port-channel-interfaces)
   - [Loopback Interfaces](#loopback-interfaces)
-  - [VLAN Interfaces](#vlan-interfaces)
 - [Routing](#routing)
   - [Service Routing Protocols Model](#service-routing-protocols-model)
-  - [Virtual Router MAC Address](#virtual-router-mac-address)
   - [IP Routing](#ip-routing)
   - [IPv6 Routing](#ipv6-routing)
   - [Static Routes](#static-routes)
-  - [Router OSPF](#router-ospf)
-- [Multicast](#multicast)
-  - [IP IGMP Snooping](#ip-igmp-snooping)
+  - [Router BGP](#router-bgp)
+- [BFD](#bfd)
+  - [Router BFD](#router-bfd)
+- [Filters](#filters)
+  - [Prefix-lists](#prefix-lists)
+  - [Route-maps](#route-maps)
 - [802.1X Port Security](#8021x-port-security)
   - [802.1X Summary](#8021x-summary)
 - [VRF Instances](#vrf-instances)
@@ -292,52 +286,17 @@ daemon TerminAttr
    no shutdown
 ```
 
-## MLAG
-
-### MLAG Summary
-
-| Domain-id | Local-interface | Peer-address | Peer-link |
-| --------- | --------------- | ------------ | --------- |
-| DC1-SPINES | Vlan4094 | 10.253.1.1 | Port-Channel47 |
-
-Dual primary detection is disabled.
-
-### MLAG Device Configuration
-
-```eos
-!
-mlag configuration
-   domain-id DC1-SPINES
-   local-interface Vlan4094
-   peer-address 10.253.1.1
-   peer-link Port-Channel47
-   reload-delay mlag 300
-   reload-delay non-mlag 330
-```
-
 ## Spanning Tree
 
 ### Spanning Tree Summary
 
-STP mode: **mstp**
-
-#### MSTP Instance and Priority
-
-| Instance(s) | Priority |
-| -------- | -------- |
-| 0 | 4096 |
-
-#### Global Spanning-Tree Settings
-
-- Spanning Tree disabled for VLANs: **4093-4094**
+STP mode: **none**
 
 ### Spanning Tree Device Configuration
 
 ```eos
 !
-spanning-tree mode mstp
-no spanning-tree vlan-id 4093-4094
-spanning-tree mst 0 priority 4096
+spanning-tree mode none
 ```
 
 ## Internal VLAN Allocation Policy
@@ -355,44 +314,6 @@ spanning-tree mst 0 priority 4096
 vlan internal order ascending range 1006 1199
 ```
 
-## VLANs
-
-### VLANs Summary
-
-| VLAN ID | Name | Trunk Groups |
-| ------- | ---- | ------------ |
-| 20 | DC1_DATA_20 | - |
-| 21 | DC1_DATA_21 | - |
-| 22 | DC1_DATA_22 | - |
-| 23 | DC1_DATA_23 | - |
-| 4093 | MLAG_L3 | MLAG |
-| 4094 | MLAG | MLAG |
-
-### VLANs Device Configuration
-
-```eos
-!
-vlan 20
-   name DC1_DATA_20
-!
-vlan 21
-   name DC1_DATA_21
-!
-vlan 22
-   name DC1_DATA_22
-!
-vlan 23
-   name DC1_DATA_23
-!
-vlan 4093
-   name MLAG_L3
-   trunk group MLAG
-!
-vlan 4094
-   name MLAG
-   trunk group MLAG
-```
-
 ## Interfaces
 
 ### Ethernet Interfaces
@@ -403,88 +324,49 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_leaf-1a_Ethernet1 | *trunk | *20-23 | *- | *- | 1 |
-| Ethernet2 | L2_leaf-1b_Ethernet1 | *trunk | *20-23 | *- | *- | 1 |
-| Ethernet3 | L2_leaf-2a_Ethernet1 | *trunk | *20-23 | *- | *- | 3 |
-| Ethernet4 | L2_leaf-2b_Ethernet1 | *trunk | *20-23 | *- | *- | 3 |
-| Ethernet47 | MLAG_spine-2_Ethernet47 | *trunk | *- | *- | *MLAG | 47 |
-| Ethernet48 | MLAG_spine-2_Ethernet48 | *trunk | *- | *- | *MLAG | 47 |
 
 *Inherited from Port-Channel Interface
+
+##### IPv4
+
+| Interface | Description | Channel Group | IP Address | VRF | MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | --- | --- | -------- | ------ | ------- |
+| Ethernet1 | P2P_leaf-1a_Ethernet1 | - | 100.100.1.0/31 | default | 1500 | False | - | - |
+| Ethernet2 | P2P_leaf-1b_Ethernet1 | - | 100.100.1.4/31 | default | 1500 | False | - | - |
+| Ethernet3 | P2P_leaf-2a_Ethernet1 | - | 100.100.1.8/31 | default | 1500 | False | - | - |
+| Ethernet4 | P2P_leaf-2b_Ethernet1 | - | 100.100.1.12/31 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1
-   description L2_leaf-1a_Ethernet1
+   description P2P_leaf-1a_Ethernet1
    no shutdown
-   channel-group 1 mode active
+   mtu 1500
+   no switchport
+   ip address 100.100.1.0/31
 !
 interface Ethernet2
-   description L2_leaf-1b_Ethernet1
+   description P2P_leaf-1b_Ethernet1
    no shutdown
-   channel-group 1 mode active
+   mtu 1500
+   no switchport
+   ip address 100.100.1.4/31
 !
 interface Ethernet3
-   description L2_leaf-2a_Ethernet1
+   description P2P_leaf-2a_Ethernet1
    no shutdown
-   channel-group 3 mode active
+   mtu 1500
+   no switchport
+   ip address 100.100.1.8/31
 !
 interface Ethernet4
-   description L2_leaf-2b_Ethernet1
+   description P2P_leaf-2b_Ethernet1
    no shutdown
-   channel-group 3 mode active
-!
-interface Ethernet47
-   description MLAG_spine-2_Ethernet47
-   no shutdown
-   channel-group 47 mode active
-!
-interface Ethernet48
-   description MLAG_spine-2_Ethernet48
-   no shutdown
-   channel-group 47 mode active
-```
-
-### Port-Channel Interfaces
-
-#### Port-Channel Interfaces Summary
-
-##### L2
-
-| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_DC1-LEAF1_Port-Channel1 | trunk | 20-23 | - | - | - | - | 1 | - |
-| Port-Channel3 | L2_DC1-LEAF2_Port-Channel1 | trunk | 20-23 | - | - | - | - | 3 | - |
-| Port-Channel47 | MLAG_spine-2_Port-Channel47 | trunk | - | - | MLAG | - | - | - | - |
-
-#### Port-Channel Interfaces Device Configuration
-
-```eos
-!
-interface Port-Channel1
-   description L2_DC1-LEAF1_Port-Channel1
-   no shutdown
-   switchport trunk allowed vlan 20-23
-   switchport mode trunk
-   switchport
-   mlag 1
-!
-interface Port-Channel3
-   description L2_DC1-LEAF2_Port-Channel1
-   no shutdown
-   switchport trunk allowed vlan 20-23
-   switchport mode trunk
-   switchport
-   mlag 3
-!
-interface Port-Channel47
-   description MLAG_spine-2_Port-Channel47
-   no shutdown
-   switchport mode trunk
-   switchport trunk group MLAG
-   switchport
+   mtu 1500
+   no switchport
+   ip address 100.100.1.12/31
 ```
 
 ### Loopback Interfaces
@@ -511,81 +393,6 @@ interface Loopback0
    description ROUTER_ID
    no shutdown
    ip address 10.252.1.1/32
-   ip ospf area 0.0.0.0
-```
-
-### VLAN Interfaces
-
-#### VLAN Interfaces Summary
-
-| Interface | Description | VRF | MTU | Shutdown |
-| --------- | ----------- | --- | --- | -------- |
-| Vlan20 | DC1_DATA_20 | default | - | False |
-| Vlan21 | DC1_DATA_21 | default | - | False |
-| Vlan22 | DC1_DATA_22 | default | - | False |
-| Vlan23 | DC1_DATA_23 | default | - | False |
-| Vlan4093 | MLAG_L3 | default | 1500 | False |
-| Vlan4094 | MLAG | default | 1500 | False |
-
-##### IPv4
-
-| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
-| --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
-| Vlan20 | default | 10.1.20.2/24 | - | 10.1.20.1 | - | - |
-| Vlan21 | default | 10.1.21.2/24 | - | 10.1.21.1 | - | - |
-| Vlan22 | default | 10.1.22.2/24 | - | 10.1.22.1 | - | - |
-| Vlan23 | default | 10.1.23.2/24 | - | 10.1.23.1 | - | - |
-| Vlan4093 | default | 10.253.1.2/31 | - | - | - | - |
-| Vlan4094 | default | 10.253.1.0/31 | - | - | - | - |
-
-##### OSPF
-
-| Interface | OSPF Network Point to Point | OSPF Area | OSPF Cost | OSPF Authentication | IPv6 OSPF Process ID | IPv6 OSPF Area | IPv6 OSPF Network Point to Point |
-| --------- | --------------------------- | --------- | --------- | ------------------- | -------------------- | -------------- | -------------------------------- |
-| Vlan4093 | True | 0.0.0.0 | - | - | - | - | - |
-
-#### VLAN Interfaces Device Configuration
-
-```eos
-!
-interface Vlan20
-   description DC1_DATA_20
-   no shutdown
-   ip address 10.1.20.2/24
-   ip virtual-router address 10.1.20.1
-!
-interface Vlan21
-   description DC1_DATA_21
-   no shutdown
-   ip address 10.1.21.2/24
-   ip virtual-router address 10.1.21.1
-!
-interface Vlan22
-   description DC1_DATA_22
-   no shutdown
-   ip address 10.1.22.2/24
-   ip virtual-router address 10.1.22.1
-!
-interface Vlan23
-   description DC1_DATA_23
-   no shutdown
-   ip address 10.1.23.2/24
-   ip virtual-router address 10.1.23.1
-!
-interface Vlan4093
-   description MLAG_L3
-   no shutdown
-   mtu 1500
-   ip address 10.253.1.2/31
-   ip ospf network point-to-point
-   ip ospf area 0.0.0.0
-!
-interface Vlan4094
-   description MLAG
-   no shutdown
-   mtu 1500
-   no autostate
-   ip address 10.253.1.0/31
 ```
 
 ## Routing
@@ -597,19 +404,6 @@ Multi agent routing protocol model enabled
 ```eos
 !
 service routing protocols model multi-agent
-```
-
-### Virtual Router MAC Address
-
-#### Virtual Router MAC Address Summary
-
-Virtual Router MAC Address: 00:1c:73:00:dc:01
-
-#### Virtual Router MAC Address Device Configuration
-
-```eos
-!
-ip virtual-router mac-address 00:1c:73:00:dc:01
 ```
 
 ### IP Routing
@@ -653,53 +447,170 @@ no ip routing vrf MGMT
 ip route vrf MGMT 0.0.0.0/0 172.31.0.5
 ```
 
-### Router OSPF
+### Router BGP
 
-#### Router OSPF Summary
+ASN Notation: asplain
 
-| Process ID | Router ID | Default Passive Interface | No Passive Interface | BFD | Max LSA | Default Information Originate | Log Adjacency Changes Detail | Auto Cost Reference Bandwidth | Maximum Paths | MPLS LDP Sync Default | Distribute List In |
-| ---------- | --------- | ------------------------- | -------------------- | --- | ------- | ----------------------------- | ---------------------------- | ----------------------------- | ------------- | --------------------- | ------------------ |
-| 100 | 10.252.1.1 | enabled | Vlan4093 | disabled | 12000 | disabled | disabled | - | - | - | - |
+#### Router BGP Summary
 
-#### Router OSPF Router Redistribution
+| BGP AS | Router ID |
+| ------ | --------- |
+| 65100 | 10.252.1.1 |
 
-| Process ID | Source Protocol | Include Leaked | Route Map |
-| ---------- | --------------- | -------------- | --------- |
-| 100 | connected | disabled | - |
+| BGP Tuning |
+| ---------- |
+| no bgp default ipv4-unicast |
+| maximum-paths 4 |
 
-#### OSPF Interfaces
+#### Router BGP Peer Groups
 
-| Interface | Area | Cost | Point To Point |
-| -------- | -------- | -------- | -------- |
-| Vlan4093 | 0.0.0.0 | - | True |
-| Loopback0 | 0.0.0.0 | - | - |
+##### EVPN-OVERLAY-PEERS
 
-#### Router OSPF Device Configuration
+| Settings | Value |
+| -------- | ----- |
+| Address Family | evpn |
+| Next-hop unchanged | True |
+| Source | Loopback0 |
+| BFD | True |
+| Ebgp multihop | 3 |
+| Send community | all |
+| Maximum routes | 0 (no limit) |
+
+##### IPv4-UNDERLAY-PEERS
+
+| Settings | Value |
+| -------- | ----- |
+| Address Family | ipv4 |
+| Send community | all |
+| Maximum routes | 256000 |
+
+#### BGP Neighbors
+
+| Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
+| -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
+| 10.252.1.3 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 10.252.1.4 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 10.252.1.5 | 65102 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 10.252.1.6 | 65102 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 100.100.1.1 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 100.100.1.5 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 100.100.1.9 | 65102 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 100.100.1.13 | 65102 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+
+#### Router BGP EVPN Address Family
+
+##### EVPN Peer Groups
+
+| Peer Group | Activate | Route-map In | Route-map Out | Peer-tag In | Peer-tag Out | Encapsulation | Next-hop-self Source Interface |
+| ---------- | -------- | ------------ | ------------- | ----------- | ------------ | ------------- | ------------------------------ |
+| EVPN-OVERLAY-PEERS | True | - | - | - | - | default | - |
+
+#### Router BGP Device Configuration
 
 ```eos
 !
-router ospf 100
+router bgp 65100
    router-id 10.252.1.1
-   passive-interface default
-   no passive-interface Vlan4093
-   redistribute connected
-   max-lsa 12000
-   graceful-restart
+   no bgp default ipv4-unicast
+   maximum-paths 4
+   neighbor EVPN-OVERLAY-PEERS peer group
+   neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
+   neighbor EVPN-OVERLAY-PEERS update-source Loopback0
+   neighbor EVPN-OVERLAY-PEERS bfd
+   neighbor EVPN-OVERLAY-PEERS ebgp-multihop 3
+   neighbor EVPN-OVERLAY-PEERS send-community
+   neighbor EVPN-OVERLAY-PEERS maximum-routes 0
+   neighbor IPv4-UNDERLAY-PEERS peer group
+   neighbor IPv4-UNDERLAY-PEERS send-community
+   neighbor IPv4-UNDERLAY-PEERS maximum-routes 256000
+   neighbor 10.252.1.3 peer group EVPN-OVERLAY-PEERS
+   neighbor 10.252.1.3 remote-as 65101
+   neighbor 10.252.1.3 description leaf-1a_Loopback0
+   neighbor 10.252.1.4 peer group EVPN-OVERLAY-PEERS
+   neighbor 10.252.1.4 remote-as 65101
+   neighbor 10.252.1.4 description leaf-1b_Loopback0
+   neighbor 10.252.1.5 peer group EVPN-OVERLAY-PEERS
+   neighbor 10.252.1.5 remote-as 65102
+   neighbor 10.252.1.5 description leaf-2a_Loopback0
+   neighbor 10.252.1.6 peer group EVPN-OVERLAY-PEERS
+   neighbor 10.252.1.6 remote-as 65102
+   neighbor 10.252.1.6 description leaf-2b_Loopback0
+   neighbor 100.100.1.1 peer group IPv4-UNDERLAY-PEERS
+   neighbor 100.100.1.1 remote-as 65101
+   neighbor 100.100.1.1 description leaf-1a_Ethernet1
+   neighbor 100.100.1.5 peer group IPv4-UNDERLAY-PEERS
+   neighbor 100.100.1.5 remote-as 65101
+   neighbor 100.100.1.5 description leaf-1b_Ethernet1
+   neighbor 100.100.1.9 peer group IPv4-UNDERLAY-PEERS
+   neighbor 100.100.1.9 remote-as 65102
+   neighbor 100.100.1.9 description leaf-2a_Ethernet1
+   neighbor 100.100.1.13 peer group IPv4-UNDERLAY-PEERS
+   neighbor 100.100.1.13 remote-as 65102
+   neighbor 100.100.1.13 description leaf-2b_Ethernet1
+   redistribute connected route-map RM-CONN-2-BGP
+   !
+   address-family evpn
+      neighbor EVPN-OVERLAY-PEERS activate
+   !
+   address-family ipv4
+      no neighbor EVPN-OVERLAY-PEERS activate
+      neighbor IPv4-UNDERLAY-PEERS activate
 ```
 
-## Multicast
+## BFD
 
-### IP IGMP Snooping
+### Router BFD
 
-#### IP IGMP Snooping Summary
+#### Router BFD Multihop Summary
 
-| IGMP Snooping | Fast Leave | Interface Restart Query | Proxy | Restart Query Interval | Robustness Variable |
-| ------------- | ---------- | ----------------------- | ----- | ---------------------- | ------------------- |
-| Enabled | - | - | - | - | - |
+| Interval | Minimum RX | Multiplier |
+| -------- | ---------- | ---------- |
+| 300 | 300 | 3 |
 
-#### IP IGMP Snooping Device Configuration
+#### Router BFD Device Configuration
 
 ```eos
+!
+router bfd
+   multihop interval 300 min-rx 300 multiplier 3
+```
+
+## Filters
+
+### Prefix-lists
+
+#### Prefix-lists Summary
+
+##### PL-LOOPBACKS-EVPN-OVERLAY
+
+| Sequence | Action |
+| -------- | ------ |
+| 10 | permit 10.252.1.0/24 eq 32 |
+
+#### Prefix-lists Device Configuration
+
+```eos
+!
+ip prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+   seq 10 permit 10.252.1.0/24 eq 32
+```
+
+### Route-maps
+
+#### Route-maps Summary
+
+##### RM-CONN-2-BGP
+
+| Sequence | Type | Match | Set | Sub-Route-Map | Continue |
+| -------- | ---- | ----- | --- | ------------- | -------- |
+| 10 | permit | ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY | - | - | - |
+
+#### Route-maps Device Configuration
+
+```eos
+!
+route-map RM-CONN-2-BGP permit 10
+   match ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
 ```
 
 ## 802.1X Port Security

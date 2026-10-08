@@ -1,8 +1,11 @@
 ---
 tenants:
   - name: DC1
+    mac_vrf_vni_base: 10000
     vrfs:
-      - name: default
+      - name: OVERLAY
+        vrf_vni: 10
+        
         svis:
           - id: 20
             name: 'DC1_DATA_20'

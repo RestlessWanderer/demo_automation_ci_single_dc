@@ -1,7 +1,7 @@
 ---
 fabric_name: "dc1_fabric"
 
-underlay_routing_protocol: ospf
+# underlay_routing_protocol: isis
 
 dot1x_settings:
   enabled: true

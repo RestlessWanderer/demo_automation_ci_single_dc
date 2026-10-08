@@ -63,9 +63,3 @@ links:
 - connection:
   - leaf-2b:Ethernet2
   - spine-2:Ethernet4
-- connection:
-  - spine-1:Ethernet47
-  - spine-2:Ethernet47
-- connection:
-  - spine-1:Ethernet48
-  - spine-2:Ethernet48
