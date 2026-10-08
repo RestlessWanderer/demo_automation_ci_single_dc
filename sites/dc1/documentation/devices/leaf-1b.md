@@ -354,8 +354,13 @@ vlan internal order ascending range 1006 1199
 | 21 | DC1_DATA_21 | - |
 | 22 | DC1_DATA_22 | - |
 | 23 | DC1_DATA_23 | - |
+<<<<<<< HEAD
 | 3009 | MLAG_L3_VRF_OVERLAY | MLAG |
 | 4093 | MLAG_L3 | MLAG |
+=======
+| 25 | v25 | - |
+| 999 | BLACKHOLE | - |
+>>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 | 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
@@ -374,6 +379,7 @@ vlan 22
 vlan 23
    name DC1_DATA_23
 !
+<<<<<<< HEAD
 vlan 3009
    name MLAG_L3_VRF_OVERLAY
    trunk group MLAG
@@ -381,6 +387,13 @@ vlan 3009
 vlan 4093
    name MLAG_L3
    trunk group MLAG
+=======
+vlan 25
+   name v25
+!
+vlan 999
+   name BLACKHOLE
+>>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 !
 vlan 4094
    name MLAG
@@ -397,6 +410,11 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
+<<<<<<< HEAD
+=======
+| Ethernet1 | L2_spine-1_Ethernet2 | *trunk | *20-23,25,999 | *- | *- | 1 |
+| Ethernet2 | L2_spine-2_Ethernet2 | *trunk | *20-23,25,999 | *- | *- | 1 |
+>>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 | Ethernet47 | MLAG_leaf-1a_Ethernet47 | *trunk | *- | *- | *MLAG | 47 |
 | Ethernet48 | MLAG_leaf-1a_Ethernet48 | *trunk | *- | *- | *MLAG | 47 |
 
@@ -446,12 +464,27 @@ interface Ethernet48
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
+<<<<<<< HEAD
+=======
+| Port-Channel1 | L2_DC1-SPINES_Port-Channel1 | trunk | 20-23,25,999 | - | - | - | - | 1 | - |
+>>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 | Port-Channel47 | MLAG_leaf-1a_Port-Channel47 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
+<<<<<<< HEAD
+=======
+interface Port-Channel1
+   description L2_DC1-SPINES_Port-Channel1
+   no shutdown
+   switchport trunk allowed vlan 20-23,25,999
+   switchport mode trunk
+   switchport
+   mlag 1
+!
+>>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 interface Port-Channel47
    description MLAG_leaf-1a_Port-Channel47
    no shutdown

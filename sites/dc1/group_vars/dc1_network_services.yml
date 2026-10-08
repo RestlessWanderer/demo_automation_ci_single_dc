@@ -1,4 +1,3 @@
----
 tenants:
   - name: DC1
     mac_vrf_vni_base: 10000
@@ -8,7 +7,7 @@ tenants:
         
         svis:
           - id: 20
-            name: 'DC1_DATA_20'
+            name: DC1_DATA_20
             enabled: true
             ip_virtual_router_addresses:
               - 10.1.20.1
@@ -18,7 +17,7 @@ tenants:
               - node: spine-2
                 ip_address: 10.1.20.3/24
           - id: 21
-            name: 'DC1_DATA_21'
+            name: DC1_DATA_21
             enabled: true
             ip_virtual_router_addresses:
               - 10.1.21.1
@@ -28,7 +27,7 @@ tenants:
               - node: spine-2
                 ip_address: 10.1.21.3/24
           - id: 22
-            name: 'DC1_DATA_22'
+            name: DC1_DATA_22
             enabled: true
             ip_virtual_router_addresses:
               - 10.1.22.1
@@ -38,7 +37,7 @@ tenants:
               - node: spine-2
                 ip_address: 10.1.22.3/24
           - id: 23
-            name: 'DC1_DATA_23'
+            name: DC1_DATA_23
             enabled: true
             ip_virtual_router_addresses:
               - 10.1.23.1
@@ -47,3 +46,23 @@ tenants:
                 ip_address: 10.1.23.2/24
               - node: spine-2
                 ip_address: 10.1.23.3/24
+          - id: 999
+            name: BLACKHOLE
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.200.34.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.200.34.2/24
+              - node: spine-2
+                ip_address: 10.200.34.3/24
+          - id: 25
+            name: v25
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.25.25.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.25.25.2/24
+              - node: spine-2
+                ip_address: 10.25.25.3/24
