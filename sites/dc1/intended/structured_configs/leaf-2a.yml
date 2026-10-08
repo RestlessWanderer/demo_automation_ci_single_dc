@@ -169,7 +169,6 @@ port_channel_interfaces:
     trunk:
       groups:
       - MLAG
-<<<<<<< HEAD
 prefix_lists:
 - name: PL-LOOPBACKS-EVPN-OVERLAY
   sequence_numbers:
@@ -181,17 +180,6 @@ prefix_lists:
   sequence_numbers:
   - sequence: 10
     action: permit 10.250.1.0/31
-=======
-- name: Port-Channel1
-  description: L2_DC1-SPINES_Port-Channel3
-  shutdown: false
-  mlag: 1
-  switchport:
-    enabled: true
-    mode: trunk
-    trunk:
-      allowed_vlan: 20-23,25,999
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 radius_server:
   vrfs:
   - name: MGMT
@@ -337,6 +325,39 @@ router_bgp:
     redistribute_routes:
     - learned
     - dot1x
+  - id: 25
+    metadata:
+      tenants:
+      - DC1
+    rd: 10.252.1.5:10025
+    route_targets:
+      both:
+      - 10025:10025
+    redistribute_routes:
+    - learned
+    - dot1x
+  - id: 33
+    metadata:
+      tenants:
+      - DC1
+    rd: 10.252.1.5:10033
+    route_targets:
+      both:
+      - 10033:10033
+    redistribute_routes:
+    - learned
+    - dot1x
+  - id: 999
+    metadata:
+      tenants:
+      - DC1
+    rd: 10.252.1.5:10999
+    route_targets:
+      both:
+      - 10999:10999
+    redistribute_routes:
+    - learned
+    - dot1x
   address_family_evpn:
     peer_groups:
     - name: EVPN-OVERLAY-PEERS
@@ -424,6 +445,27 @@ vlan_interfaces:
   metadata:
     tenants:
     - DC1
+- name: Vlan25
+  description: v25
+  shutdown: false
+  vrf: OVERLAY
+  metadata:
+    tenants:
+    - DC1
+- name: Vlan33
+  description: v33
+  shutdown: false
+  vrf: OVERLAY
+  metadata:
+    tenants:
+    - DC1
+- name: Vlan999
+  description: BLACKHOLE
+  shutdown: false
+  vrf: OVERLAY
+  metadata:
+    tenants:
+    - DC1
 - name: Vlan3009
   description: MLAG_L3_VRF_OVERLAY
   shutdown: false
@@ -474,20 +516,25 @@ vlans:
   metadata:
     tenants:
     - DC1
-<<<<<<< HEAD
-- id: 3009
-  name: MLAG_L3_VRF_OVERLAY
-  trunk_groups:
-  - MLAG
-=======
 - id: 25
   name: v25
   metadata:
     tenants:
     - DC1
+- id: 33
+  name: v33
+  metadata:
+    tenants:
+    - DC1
 - id: 999
   name: BLACKHOLE
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
+  metadata:
+    tenants:
+    - DC1
+- id: 3009
+  name: MLAG_L3_VRF_OVERLAY
+  trunk_groups:
+  - MLAG
   metadata:
     tenants:
     - DC1
@@ -515,6 +562,12 @@ vxlan_interface:
         vni: 10022
       - id: 23
         vni: 10023
+      - id: 25
+        vni: 10025
+      - id: 33
+        vni: 10033
+      - id: 999
+        vni: 10999
       vrfs:
       - name: OVERLAY
         vni: 10
