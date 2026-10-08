@@ -7,6 +7,7 @@ on:
 
 jobs:
   build_configs:
+    if: github.event.sender.login != 'github-actions[bot]'
     runs-on: ubuntu-latest
     name: Test Building Configs and Build If Successful
     steps:
@@ -39,5 +40,5 @@ jobs:
       - name: Commit Changes
         run: |
           git add .
-          git commit -m "Build Configs with AVD [skip ci]"
+          git commit -m "Build Configs with AVD"
           git push origin ${{ github.head_ref }}
