@@ -367,6 +367,7 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
+| 16 | v16 | - |
 | 20 | DC1_DATA_20 | - |
 | 21 | DC1_DATA_21 | - |
 | 22 | DC1_DATA_22 | - |
@@ -381,6 +382,9 @@ vlan internal order ascending range 1006 1199
 ### VLANs Device Configuration
 
 ```eos
+!
+vlan 16
+   name v16
 !
 vlan 20
    name DC1_DATA_20
@@ -528,6 +532,7 @@ interface Loopback1
 
 | Interface | Description | VRF | MTU | Shutdown |
 | --------- | ----------- | --- | --- | -------- |
+| Vlan16 | v16 | OVERLAY | - | False |
 | Vlan20 | DC1_DATA_20 | OVERLAY | - | False |
 | Vlan21 | DC1_DATA_21 | OVERLAY | - | False |
 | Vlan22 | DC1_DATA_22 | OVERLAY | - | False |
@@ -543,6 +548,7 @@ interface Loopback1
 
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
+| Vlan16 | OVERLAY | - | - | - | - | - |
 | Vlan20 | OVERLAY | - | - | - | - | - |
 | Vlan21 | OVERLAY | - | - | - | - | - |
 | Vlan22 | OVERLAY | - | - | - | - | - |
@@ -557,6 +563,11 @@ interface Loopback1
 #### VLAN Interfaces Device Configuration
 
 ```eos
+!
+interface Vlan16
+   description v16
+   no shutdown
+   vrf OVERLAY
 !
 interface Vlan20
    description DC1_DATA_20
@@ -628,6 +639,7 @@ interface Vlan4094
 
 | VLAN | VNI | Flood List | Multicast Group |
 | ---- | --- | ---------- | --------------- |
+| 16 | 10016 | - | - |
 | 20 | 10020 | - | - |
 | 21 | 10021 | - | - |
 | 22 | 10022 | - | - |
@@ -651,6 +663,7 @@ interface Vxlan1
    vxlan source-interface Loopback1
    vxlan virtual-router encapsulation mac-address mlag-system-id
    vxlan udp-port 4789
+   vxlan vlan 16 vni 10016
    vxlan vlan 20 vni 10020
    vxlan vlan 21 vni 10021
    vxlan vlan 22 vni 10022
@@ -798,6 +811,7 @@ ASN Notation: asplain
 
 | VLAN | Route-Distinguisher | Both Route-Target | Import Route Target | Export Route-Target | Redistribute |
 | ---- | ------------------- | ----------------- | ------------------- | ------------------- | ------------ |
+| 16 | 10.252.1.6:10016 | 10016:10016 | - | - | learned<br>dot1x |
 | 20 | 10.252.1.6:10020 | 10020:10020 | - | - | learned<br>dot1x |
 | 21 | 10.252.1.6:10021 | 10021:10021 | - | - | learned<br>dot1x |
 | 22 | 10.252.1.6:10022 | 10022:10022 | - | - | learned<br>dot1x |
@@ -851,6 +865,12 @@ router bgp 65102
    neighbor 100.100.1.14 remote-as 65100
    neighbor 100.100.1.14 description spine-2_Ethernet4
    redistribute connected route-map RM-CONN-2-BGP
+   !
+   vlan 16
+      rd 10.252.1.6:10016
+      route-target both 10016:10016
+      redistribute dot1x
+      redistribute learned
    !
    vlan 20
       rd 10.252.1.6:10020
