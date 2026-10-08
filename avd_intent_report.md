@@ -4,11 +4,7 @@
 
 | | | | | |
 |:---:|:---:|:---:|:---:|:---:|
-<<<<<<< HEAD
-| <h2>261</h2> | | <h2>1,494</h2> | | <h2>6x</h2> |
-=======
-| <h2>277</h2> | | <h2>972</h2> | | <h2>4x</h2> |
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
+| <h2>289</h2> | | <h2>1,674</h2> | | <h2>6x</h2> |
 | **Lines of Input** | &xrarr; | **Lines of Config** | = | **Amplification** |
 
 </div>
@@ -20,30 +16,18 @@
 
 ### Data Model Input
 
-<<<<<<< HEAD
-*261 total lines*
-=======
-*277 total lines*
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
+*289 total lines*
 
 | File | Lines |
 |------|------:|
 | **`global_vars/`** | **100** |
 | &nbsp;&nbsp;&nbsp;&nbsp;`act.yml` | 9 |
 | &nbsp;&nbsp;&nbsp;&nbsp;`management.yml` | 91 |
-<<<<<<< HEAD
-| **`sites/dc1/group_vars/`** | **161** |
+| **`sites/dc1/group_vars/`** | **189** |
 | &nbsp;&nbsp;&nbsp;&nbsp;`dc1_endpoints.yml` | 25 |
 | &nbsp;&nbsp;&nbsp;&nbsp;`dc1_fabric.yml` | 20 |
 | &nbsp;&nbsp;&nbsp;&nbsp;`dc1_leafs.yml` | 43 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`dc1_network_services.yml` | 49 |
-=======
-| **`sites/dc1/group_vars/`** | **177** |
-| &nbsp;&nbsp;&nbsp;&nbsp;`dc1_endpoints.yml` | 25 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`dc1_fabric.yml` | 20 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`dc1_leafs.yml` | 43 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`dc1_network_services.yml` | 65 |
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
+| &nbsp;&nbsp;&nbsp;&nbsp;`dc1_network_services.yml` | 77 |
 | &nbsp;&nbsp;&nbsp;&nbsp;`dc1_spines.yml` | 24 |
 
 
@@ -52,31 +36,17 @@
 
 ### Configuration Output
 
-<<<<<<< HEAD
-*1,494 total lines*
+*1,674 total lines*
 
 | File | Lines |
 |------|------:|
-| **`sites/dc1/intended/configs/`** | **1,494** |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1a.cfg` | 300 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1b.cfg` | 293 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2a.cfg` | 300 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2b.cfg` | 293 |
+| **`sites/dc1/intended/configs/`** | **1,674** |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1a.cfg` | 345 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1b.cfg` | 338 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2a.cfg` | 345 |
+| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2b.cfg` | 338 |
 | &nbsp;&nbsp;&nbsp;&nbsp;`spine-1.cfg` | 154 |
 | &nbsp;&nbsp;&nbsp;&nbsp;`spine-2.cfg` | 154 |
-=======
-*972 total lines*
-
-| File | Lines |
-|------|------:|
-| **`sites/dc1/intended/configs/`** | **972** |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1a.cfg` | 133 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-1b.cfg` | 133 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2a.cfg` | 133 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`leaf-2b.cfg` | 133 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`spine-1.cfg` | 220 |
-| &nbsp;&nbsp;&nbsp;&nbsp;`spine-2.cfg` | 220 |
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 
 
 </td>

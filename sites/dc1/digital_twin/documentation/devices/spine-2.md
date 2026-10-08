@@ -314,55 +314,6 @@ spanning-tree mode none
 vlan internal order ascending range 1006 1199
 ```
 
-<<<<<<< HEAD
-=======
-## VLANs
-
-### VLANs Summary
-
-| VLAN ID | Name | Trunk Groups |
-| ------- | ---- | ------------ |
-| 20 | DC1_DATA_20 | - |
-| 21 | DC1_DATA_21 | - |
-| 22 | DC1_DATA_22 | - |
-| 23 | DC1_DATA_23 | - |
-| 25 | v25 | - |
-| 999 | BLACKHOLE | - |
-| 4093 | MLAG_L3 | MLAG |
-| 4094 | MLAG | MLAG |
-
-### VLANs Device Configuration
-
-```eos
-!
-vlan 20
-   name DC1_DATA_20
-!
-vlan 21
-   name DC1_DATA_21
-!
-vlan 22
-   name DC1_DATA_22
-!
-vlan 23
-   name DC1_DATA_23
-!
-vlan 25
-   name v25
-!
-vlan 999
-   name BLACKHOLE
-!
-vlan 4093
-   name MLAG_L3
-   trunk group MLAG
-!
-vlan 4094
-   name MLAG
-   trunk group MLAG
-```
-
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 ## Interfaces
 
 ### Ethernet Interfaces
@@ -373,15 +324,6 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-<<<<<<< HEAD
-=======
-| Ethernet1 | L2_leaf-1a_Ethernet2 | *trunk | *20-23,25,999 | *- | *- | 1 |
-| Ethernet2 | L2_leaf-1b_Ethernet2 | *trunk | *20-23,25,999 | *- | *- | 1 |
-| Ethernet3 | L2_leaf-2a_Ethernet2 | *trunk | *20-23,25,999 | *- | *- | 3 |
-| Ethernet4 | L2_leaf-2b_Ethernet2 | *trunk | *20-23,25,999 | *- | *- | 3 |
-| Ethernet47 | MLAG_spine-1_Ethernet47 | *trunk | *- | *- | *MLAG | 47 |
-| Ethernet48 | MLAG_spine-1_Ethernet48 | *trunk | *- | *- | *MLAG | 47 |
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 
 *Inherited from Port-Channel Interface
 
@@ -422,53 +364,9 @@ interface Ethernet3
 interface Ethernet4
    description P2P_leaf-2b_Ethernet2
    no shutdown
-<<<<<<< HEAD
    mtu 1500
    no switchport
    ip address 100.100.1.14/31
-=======
-   channel-group 47 mode active
-```
-
-### Port-Channel Interfaces
-
-#### Port-Channel Interfaces Summary
-
-##### L2
-
-| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_DC1-LEAF1_Port-Channel1 | trunk | 20-23,25,999 | - | - | - | - | 1 | - |
-| Port-Channel3 | L2_DC1-LEAF2_Port-Channel1 | trunk | 20-23,25,999 | - | - | - | - | 3 | - |
-| Port-Channel47 | MLAG_spine-1_Port-Channel47 | trunk | - | - | MLAG | - | - | - | - |
-
-#### Port-Channel Interfaces Device Configuration
-
-```eos
-!
-interface Port-Channel1
-   description L2_DC1-LEAF1_Port-Channel1
-   no shutdown
-   switchport trunk allowed vlan 20-23,25,999
-   switchport mode trunk
-   switchport
-   mlag 1
-!
-interface Port-Channel3
-   description L2_DC1-LEAF2_Port-Channel1
-   no shutdown
-   switchport trunk allowed vlan 20-23,25,999
-   switchport mode trunk
-   switchport
-   mlag 3
-!
-interface Port-Channel47
-   description MLAG_spine-1_Port-Channel47
-   no shutdown
-   switchport mode trunk
-   switchport trunk group MLAG
-   switchport
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 ```
 
 ### Loopback Interfaces
@@ -495,100 +393,6 @@ interface Loopback0
    description ROUTER_ID
    no shutdown
    ip address 10.252.1.2/32
-<<<<<<< HEAD
-=======
-   ip ospf area 0.0.0.0
-```
-
-### VLAN Interfaces
-
-#### VLAN Interfaces Summary
-
-| Interface | Description | VRF | MTU | Shutdown |
-| --------- | ----------- | --- | --- | -------- |
-| Vlan20 | DC1_DATA_20 | default | - | False |
-| Vlan21 | DC1_DATA_21 | default | - | False |
-| Vlan22 | DC1_DATA_22 | default | - | False |
-| Vlan23 | DC1_DATA_23 | default | - | False |
-| Vlan25 | v25 | default | - | False |
-| Vlan999 | BLACKHOLE | default | - | False |
-| Vlan4093 | MLAG_L3 | default | 1500 | False |
-| Vlan4094 | MLAG | default | 1500 | False |
-
-##### IPv4
-
-| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
-| --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
-| Vlan20 | default | 10.1.20.3/24 | - | 10.1.20.1 | - | - |
-| Vlan21 | default | 10.1.21.3/24 | - | 10.1.21.1 | - | - |
-| Vlan22 | default | 10.1.22.3/24 | - | 10.1.22.1 | - | - |
-| Vlan23 | default | 10.1.23.3/24 | - | 10.1.23.1 | - | - |
-| Vlan25 | default | 10.25.25.3/24 | - | 10.25.25.1 | - | - |
-| Vlan999 | default | 10.200.34.3/24 | - | 10.200.34.1 | - | - |
-| Vlan4093 | default | 10.253.1.3/31 | - | - | - | - |
-| Vlan4094 | default | 10.253.1.1/31 | - | - | - | - |
-
-##### OSPF
-
-| Interface | OSPF Network Point to Point | OSPF Area | OSPF Cost | OSPF Authentication | IPv6 OSPF Process ID | IPv6 OSPF Area | IPv6 OSPF Network Point to Point |
-| --------- | --------------------------- | --------- | --------- | ------------------- | -------------------- | -------------- | -------------------------------- |
-| Vlan4093 | True | 0.0.0.0 | - | - | - | - | - |
-
-#### VLAN Interfaces Device Configuration
-
-```eos
-!
-interface Vlan20
-   description DC1_DATA_20
-   no shutdown
-   ip address 10.1.20.3/24
-   ip virtual-router address 10.1.20.1
-!
-interface Vlan21
-   description DC1_DATA_21
-   no shutdown
-   ip address 10.1.21.3/24
-   ip virtual-router address 10.1.21.1
-!
-interface Vlan22
-   description DC1_DATA_22
-   no shutdown
-   ip address 10.1.22.3/24
-   ip virtual-router address 10.1.22.1
-!
-interface Vlan23
-   description DC1_DATA_23
-   no shutdown
-   ip address 10.1.23.3/24
-   ip virtual-router address 10.1.23.1
-!
-interface Vlan25
-   description v25
-   no shutdown
-   ip address 10.25.25.3/24
-   ip virtual-router address 10.25.25.1
-!
-interface Vlan999
-   description BLACKHOLE
-   no shutdown
-   ip address 10.200.34.3/24
-   ip virtual-router address 10.200.34.1
-!
-interface Vlan4093
-   description MLAG_L3
-   no shutdown
-   mtu 1500
-   ip address 10.253.1.3/31
-   ip ospf network point-to-point
-   ip ospf area 0.0.0.0
-!
-interface Vlan4094
-   description MLAG
-   no shutdown
-   mtu 1500
-   no autostate
-   ip address 10.253.1.1/31
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 ```
 
 ## Routing

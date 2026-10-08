@@ -354,13 +354,11 @@ vlan internal order ascending range 1006 1199
 | 21 | DC1_DATA_21 | - |
 | 22 | DC1_DATA_22 | - |
 | 23 | DC1_DATA_23 | - |
-<<<<<<< HEAD
+| 25 | v25 | - |
+| 33 | v33 | - |
+| 999 | BLACKHOLE | - |
 | 3009 | MLAG_L3_VRF_OVERLAY | MLAG |
 | 4093 | MLAG_L3 | MLAG |
-=======
-| 25 | v25 | - |
-| 999 | BLACKHOLE | - |
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 | 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
@@ -379,7 +377,15 @@ vlan 22
 vlan 23
    name DC1_DATA_23
 !
-<<<<<<< HEAD
+vlan 25
+   name v25
+!
+vlan 33
+   name v33
+!
+vlan 999
+   name BLACKHOLE
+!
 vlan 3009
    name MLAG_L3_VRF_OVERLAY
    trunk group MLAG
@@ -387,13 +393,6 @@ vlan 3009
 vlan 4093
    name MLAG_L3
    trunk group MLAG
-=======
-vlan 25
-   name v25
-!
-vlan 999
-   name BLACKHOLE
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 !
 vlan 4094
    name MLAG
@@ -410,12 +409,7 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-<<<<<<< HEAD
 | Ethernet3 | SERVER_host1-11 | access | 21 | - | - | - |
-=======
-| Ethernet1 | L2_spine-1_Ethernet3 | *trunk | *20-23,25,999 | *- | *- | 1 |
-| Ethernet2 | L2_spine-2_Ethernet3 | *trunk | *20-23,25,999 | *- | *- | 1 |
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 | Ethernet23 | MLAG_leaf-2b_Ethernet23 | *trunk | *- | *- | *MLAG | 23 |
 | Ethernet24 | MLAG_leaf-2b_Ethernet24 | *trunk | *- | *- | *MLAG | 23 |
 
@@ -472,27 +466,12 @@ interface Ethernet24
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-<<<<<<< HEAD
-=======
-| Port-Channel1 | L2_DC1-SPINES_Port-Channel3 | trunk | 20-23,25,999 | - | - | - | - | 1 | - |
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 | Port-Channel23 | MLAG_leaf-2b_Port-Channel23 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
-<<<<<<< HEAD
-=======
-interface Port-Channel1
-   description L2_DC1-SPINES_Port-Channel3
-   no shutdown
-   switchport trunk allowed vlan 20-23,25,999
-   switchport mode trunk
-   switchport
-   mlag 1
-!
->>>>>>> 7ba9e166a0e0222f43d0e392344107259f94e422
 interface Port-Channel23
    description MLAG_leaf-2b_Port-Channel23
    no shutdown
@@ -544,6 +523,9 @@ interface Loopback1
 | Vlan21 | DC1_DATA_21 | OVERLAY | - | False |
 | Vlan22 | DC1_DATA_22 | OVERLAY | - | False |
 | Vlan23 | DC1_DATA_23 | OVERLAY | - | False |
+| Vlan25 | v25 | OVERLAY | - | False |
+| Vlan33 | v33 | OVERLAY | - | False |
+| Vlan999 | BLACKHOLE | OVERLAY | - | False |
 | Vlan3009 | MLAG_L3_VRF_OVERLAY | OVERLAY | 1500 | False |
 | Vlan4093 | MLAG_L3 | default | 1500 | False |
 | Vlan4094 | MLAG | default | 1500 | False |
@@ -556,6 +538,9 @@ interface Loopback1
 | Vlan21 | OVERLAY | - | - | - | - | - |
 | Vlan22 | OVERLAY | - | - | - | - | - |
 | Vlan23 | OVERLAY | - | - | - | - | - |
+| Vlan25 | OVERLAY | - | - | - | - | - |
+| Vlan33 | OVERLAY | - | - | - | - | - |
+| Vlan999 | OVERLAY | - | - | - | - | - |
 | Vlan3009 | OVERLAY | 10.250.1.0/31 | - | - | - | - |
 | Vlan4093 | default | 10.250.1.0/31 | - | - | - | - |
 | Vlan4094 | default | 10.253.1.0/31 | - | - | - | - |
@@ -581,6 +566,21 @@ interface Vlan22
 !
 interface Vlan23
    description DC1_DATA_23
+   no shutdown
+   vrf OVERLAY
+!
+interface Vlan25
+   description v25
+   no shutdown
+   vrf OVERLAY
+!
+interface Vlan33
+   description v33
+   no shutdown
+   vrf OVERLAY
+!
+interface Vlan999
+   description BLACKHOLE
    no shutdown
    vrf OVERLAY
 !
@@ -623,6 +623,9 @@ interface Vlan4094
 | 21 | 10021 | - | - |
 | 22 | 10022 | - | - |
 | 23 | 10023 | - | - |
+| 25 | 10025 | - | - |
+| 33 | 10033 | - | - |
+| 999 | 10999 | - | - |
 
 ##### VRF to VNI and Multicast Group Mappings
 
@@ -643,6 +646,9 @@ interface Vxlan1
    vxlan vlan 21 vni 10021
    vxlan vlan 22 vni 10022
    vxlan vlan 23 vni 10023
+   vxlan vlan 25 vni 10025
+   vxlan vlan 33 vni 10033
+   vxlan vlan 999 vni 10999
    vxlan vrf OVERLAY vni 10
 ```
 
@@ -788,6 +794,9 @@ ASN Notation: asplain
 | 21 | 10.252.1.5:10021 | 10021:10021 | - | - | learned<br>dot1x |
 | 22 | 10.252.1.5:10022 | 10022:10022 | - | - | learned<br>dot1x |
 | 23 | 10.252.1.5:10023 | 10023:10023 | - | - | learned<br>dot1x |
+| 25 | 10.252.1.5:10025 | 10025:10025 | - | - | learned<br>dot1x |
+| 33 | 10.252.1.5:10033 | 10033:10033 | - | - | learned<br>dot1x |
+| 999 | 10.252.1.5:10999 | 10999:10999 | - | - | learned<br>dot1x |
 
 #### Router BGP VRFs
 
@@ -857,6 +866,24 @@ router bgp 65102
    vlan 23
       rd 10.252.1.5:10023
       route-target both 10023:10023
+      redistribute dot1x
+      redistribute learned
+   !
+   vlan 25
+      rd 10.252.1.5:10025
+      route-target both 10025:10025
+      redistribute dot1x
+      redistribute learned
+   !
+   vlan 33
+      rd 10.252.1.5:10033
+      route-target both 10033:10033
+      redistribute dot1x
+      redistribute learned
+   !
+   vlan 999
+      rd 10.252.1.5:10999
+      route-target both 10999:10999
       redistribute dot1x
       redistribute learned
    !
