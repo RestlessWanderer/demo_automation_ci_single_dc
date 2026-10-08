@@ -4,7 +4,6 @@ tenants:
     vrfs:
       - name: OVERLAY
         vrf_vni: 10
-        
         svis:
           - id: 20
             name: DC1_DATA_20
@@ -66,3 +65,13 @@ tenants:
                 ip_address: 10.25.25.2/24
               - node: spine-2
                 ip_address: 10.25.25.3/24
+          - id: 33
+            name: v33
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.33.33.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.33.33.2/24
+              - node: spine-2
+                ip_address: 10.33.33.3/24
