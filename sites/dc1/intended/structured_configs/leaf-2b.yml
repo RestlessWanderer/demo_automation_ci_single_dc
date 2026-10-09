@@ -335,6 +335,17 @@ router_bgp:
     redistribute_routes:
     - learned
     - dot1x
+  - id: 88
+    metadata:
+      tenants:
+      - DC1
+    rd: 10.252.1.6:10088
+    route_targets:
+      both:
+      - 10088:10088
+    redistribute_routes:
+    - learned
+    - dot1x
   - id: 999
     metadata:
       tenants:
@@ -447,6 +458,13 @@ vlan_interfaces:
   metadata:
     tenants:
     - DC1
+- name: Vlan88
+  description: v88
+  shutdown: false
+  vrf: OVERLAY
+  metadata:
+    tenants:
+    - DC1
 - name: Vlan999
   description: BLACKHOLE
   shutdown: false
@@ -514,6 +532,11 @@ vlans:
   metadata:
     tenants:
     - DC1
+- id: 88
+  name: v88
+  metadata:
+    tenants:
+    - DC1
 - id: 999
   name: BLACKHOLE
   metadata:
@@ -554,6 +577,8 @@ vxlan_interface:
         vni: 10025
       - id: 33
         vni: 10033
+      - id: 88
+        vni: 10088
       - id: 999
         vni: 10999
       vrfs:
