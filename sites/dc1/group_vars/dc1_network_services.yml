@@ -75,3 +75,13 @@ tenants:
                 ip_address: 10.33.33.2/24
               - node: spine-2
                 ip_address: 10.33.33.3/24
+          - id: 88
+            name: v88
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.88.88.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.88.88.2/24
+              - node: spine-2
+                ip_address: 10.88.88.3/24
