@@ -356,6 +356,7 @@ vlan internal order ascending range 1006 1199
 | 23 | DC1_DATA_23 | - |
 | 25 | v25 | - |
 | 33 | v33 | - |
+| 88 | v88 | - |
 | 999 | BLACKHOLE | - |
 | 3009 | MLAG_L3_VRF_OVERLAY | MLAG |
 | 4093 | MLAG_L3 | MLAG |
@@ -382,6 +383,9 @@ vlan 25
 !
 vlan 33
    name v33
+!
+vlan 88
+   name v88
 !
 vlan 999
    name BLACKHOLE
@@ -517,6 +521,7 @@ interface Loopback1
 | Vlan23 | DC1_DATA_23 | OVERLAY | - | False |
 | Vlan25 | v25 | OVERLAY | - | False |
 | Vlan33 | v33 | OVERLAY | - | False |
+| Vlan88 | v88 | OVERLAY | - | False |
 | Vlan999 | BLACKHOLE | OVERLAY | - | False |
 | Vlan3009 | MLAG_L3_VRF_OVERLAY | OVERLAY | 1500 | False |
 | Vlan4093 | MLAG_L3 | default | 1500 | False |
@@ -532,6 +537,7 @@ interface Loopback1
 | Vlan23 | OVERLAY | - | - | - | - | - |
 | Vlan25 | OVERLAY | - | - | - | - | - |
 | Vlan33 | OVERLAY | - | - | - | - | - |
+| Vlan88 | OVERLAY | - | - | - | - | - |
 | Vlan999 | OVERLAY | - | - | - | - | - |
 | Vlan3009 | OVERLAY | 10.250.1.1/31 | - | - | - | - |
 | Vlan4093 | default | 10.250.1.1/31 | - | - | - | - |
@@ -568,6 +574,11 @@ interface Vlan25
 !
 interface Vlan33
    description v33
+   no shutdown
+   vrf OVERLAY
+!
+interface Vlan88
+   description v88
    no shutdown
    vrf OVERLAY
 !
@@ -617,6 +628,7 @@ interface Vlan4094
 | 23 | 10023 | - | - |
 | 25 | 10025 | - | - |
 | 33 | 10033 | - | - |
+| 88 | 10088 | - | - |
 | 999 | 10999 | - | - |
 
 ##### VRF to VNI and Multicast Group Mappings
@@ -640,6 +652,7 @@ interface Vxlan1
    vxlan vlan 23 vni 10023
    vxlan vlan 25 vni 10025
    vxlan vlan 33 vni 10033
+   vxlan vlan 88 vni 10088
    vxlan vlan 999 vni 10999
    vxlan vrf OVERLAY vni 10
 ```
@@ -788,6 +801,7 @@ ASN Notation: asplain
 | 23 | 10.252.1.4:10023 | 10023:10023 | - | - | learned<br>dot1x |
 | 25 | 10.252.1.4:10025 | 10025:10025 | - | - | learned<br>dot1x |
 | 33 | 10.252.1.4:10033 | 10033:10033 | - | - | learned<br>dot1x |
+| 88 | 10.252.1.4:10088 | 10088:10088 | - | - | learned<br>dot1x |
 | 999 | 10.252.1.4:10999 | 10999:10999 | - | - | learned<br>dot1x |
 
 #### Router BGP VRFs
@@ -870,6 +884,12 @@ router bgp 65101
    vlan 33
       rd 10.252.1.4:10033
       route-target both 10033:10033
+      redistribute dot1x
+      redistribute learned
+   !
+   vlan 88
+      rd 10.252.1.4:10088
+      route-target both 10088:10088
       redistribute dot1x
       redistribute learned
    !
