@@ -347,6 +347,7 @@ vlan internal order ascending range 1006 1199
 | 23 | DC1_DATA_23 | - |
 | 25 | v25 | - |
 | 33 | v33 | - |
+| 44 | AGPDemo | - |
 | 999 | BLACKHOLE | - |
 | 4094 | MLAG | MLAG |
 
@@ -372,6 +373,9 @@ vlan 25
 vlan 33
    name v33
 !
+vlan 44
+   name AGPDemo
+!
 vlan 999
    name BLACKHOLE
 !
@@ -390,8 +394,8 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_spine-1_Ethernet4 | *trunk | *20-23,25,33,999 | *- | *- | 1 |
-| Ethernet2 | L2_spine-2_Ethernet4 | *trunk | *20-23,25,33,999 | *- | *- | 1 |
+| Ethernet1 | L2_spine-1_Ethernet4 | *trunk | *20-23,25,33,44,999 | *- | *- | 1 |
+| Ethernet2 | L2_spine-2_Ethernet4 | *trunk | *20-23,25,33,44,999 | *- | *- | 1 |
 | Ethernet23 | MLAG_leaf-2a_Ethernet23 | *trunk | *- | *- | *MLAG | 23 |
 | Ethernet24 | MLAG_leaf-2a_Ethernet24 | *trunk | *- | *- | *MLAG | 23 |
 
@@ -430,7 +434,7 @@ interface Ethernet24
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_DC1-SPINES_Port-Channel3 | trunk | 20-23,25,33,999 | - | - | - | - | 1 | - |
+| Port-Channel1 | L2_DC1-SPINES_Port-Channel3 | trunk | 20-23,25,33,44,999 | - | - | - | - | 1 | - |
 | Port-Channel23 | MLAG_leaf-2a_Port-Channel23 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
@@ -440,7 +444,7 @@ interface Ethernet24
 interface Port-Channel1
    description L2_DC1-SPINES_Port-Channel3
    no shutdown
-   switchport trunk allowed vlan 20-23,25,33,999
+   switchport trunk allowed vlan 20-23,25,33,44,999
    switchport mode trunk
    switchport
    mlag 1
