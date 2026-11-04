@@ -364,6 +364,7 @@ vlan internal order ascending range 1006 1199
 | 23 | DC1_DATA_23 | - |
 | 25 | v25 | - |
 | 33 | v33 | - |
+| 44 | AGPDemo | - |
 | 999 | BLACKHOLE | - |
 | 4093 | MLAG_L3 | MLAG |
 | 4094 | MLAG | MLAG |
@@ -390,6 +391,9 @@ vlan 25
 vlan 33
    name v33
 !
+vlan 44
+   name AGPDemo
+!
 vlan 999
    name BLACKHOLE
 !
@@ -412,10 +416,10 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_leaf-1a_Ethernet1 | *trunk | *20-23,25,33,999 | *- | *- | 1 |
-| Ethernet2 | L2_leaf-1b_Ethernet1 | *trunk | *20-23,25,33,999 | *- | *- | 1 |
-| Ethernet3 | L2_leaf-2a_Ethernet1 | *trunk | *20-23,25,33,999 | *- | *- | 3 |
-| Ethernet4 | L2_leaf-2b_Ethernet1 | *trunk | *20-23,25,33,999 | *- | *- | 3 |
+| Ethernet1 | L2_leaf-1a_Ethernet1 | *trunk | *20-23,25,33,44,999 | *- | *- | 1 |
+| Ethernet2 | L2_leaf-1b_Ethernet1 | *trunk | *20-23,25,33,44,999 | *- | *- | 1 |
+| Ethernet3 | L2_leaf-2a_Ethernet1 | *trunk | *20-23,25,33,44,999 | *- | *- | 3 |
+| Ethernet4 | L2_leaf-2b_Ethernet1 | *trunk | *20-23,25,33,44,999 | *- | *- | 3 |
 | Ethernet47 | MLAG_spine-2_Ethernet47 | *trunk | *- | *- | *MLAG | 47 |
 | Ethernet48 | MLAG_spine-2_Ethernet48 | *trunk | *- | *- | *MLAG | 47 |
 
@@ -464,8 +468,8 @@ interface Ethernet48
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_DC1-LEAF1_Port-Channel1 | trunk | 20-23,25,33,999 | - | - | - | - | 1 | - |
-| Port-Channel3 | L2_DC1-LEAF2_Port-Channel1 | trunk | 20-23,25,33,999 | - | - | - | - | 3 | - |
+| Port-Channel1 | L2_DC1-LEAF1_Port-Channel1 | trunk | 20-23,25,33,44,999 | - | - | - | - | 1 | - |
+| Port-Channel3 | L2_DC1-LEAF2_Port-Channel1 | trunk | 20-23,25,33,44,999 | - | - | - | - | 3 | - |
 | Port-Channel47 | MLAG_spine-2_Port-Channel47 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
@@ -475,7 +479,7 @@ interface Ethernet48
 interface Port-Channel1
    description L2_DC1-LEAF1_Port-Channel1
    no shutdown
-   switchport trunk allowed vlan 20-23,25,33,999
+   switchport trunk allowed vlan 20-23,25,33,44,999
    switchport mode trunk
    switchport
    mlag 1
@@ -483,7 +487,7 @@ interface Port-Channel1
 interface Port-Channel3
    description L2_DC1-LEAF2_Port-Channel1
    no shutdown
-   switchport trunk allowed vlan 20-23,25,33,999
+   switchport trunk allowed vlan 20-23,25,33,44,999
    switchport mode trunk
    switchport
    mlag 3
@@ -535,6 +539,7 @@ interface Loopback0
 | Vlan23 | DC1_DATA_23 | default | - | False |
 | Vlan25 | v25 | default | - | False |
 | Vlan33 | v33 | default | - | False |
+| Vlan44 | AGPDemo | default | - | False |
 | Vlan999 | BLACKHOLE | default | - | False |
 | Vlan4093 | MLAG_L3 | default | 1500 | False |
 | Vlan4094 | MLAG | default | 1500 | False |
@@ -549,6 +554,7 @@ interface Loopback0
 | Vlan23 | default | 10.1.23.2/24 | - | 10.1.23.1 | - | - |
 | Vlan25 | default | 10.25.25.2/24 | - | 10.25.25.1 | - | - |
 | Vlan33 | default | 10.33.33.2/24 | - | 10.33.33.1 | - | - |
+| Vlan44 | default | 10.44.44.2/24 | - | 10.44.44.1 | - | - |
 | Vlan999 | default | 10.200.34.2/24 | - | 10.200.34.1 | - | - |
 | Vlan4093 | default | 10.253.1.2/31 | - | - | - | - |
 | Vlan4094 | default | 10.253.1.0/31 | - | - | - | - |
@@ -598,6 +604,12 @@ interface Vlan33
    no shutdown
    ip address 10.33.33.2/24
    ip virtual-router address 10.33.33.1
+!
+interface Vlan44
+   description AGPDemo
+   no shutdown
+   ip address 10.44.44.2/24
+   ip virtual-router address 10.44.44.1
 !
 interface Vlan999
    description BLACKHOLE
