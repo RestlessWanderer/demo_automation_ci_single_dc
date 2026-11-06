@@ -83,3 +83,13 @@ tenants:
                 ip_address: 10.44.44.2/24
               - node: spine-2
                 ip_address: 10.44.44.3/24
+          - id: 116
+            name: RVs
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.116.116.1
+            nodes:
+              - node: spine-1
+                ip_address: 10.116.116.2/24
+              - node: spine-2
+                ip_address: 10.116.116.3/24
