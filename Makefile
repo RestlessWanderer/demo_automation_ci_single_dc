@@ -1,3 +1,7 @@
+.PHONY: help
+help: ## Display help message
+	@grep -E '^[0-9a-zA-Z_-]+\.*[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
 .PHONY: build-dc1
 build-dc1: ## Build Production and Digital Twin Configs
 	ansible-playbook playbooks/build_dt.yml -i sites/dc1/inventory_act.yml -e "target_fabric=dc1"
