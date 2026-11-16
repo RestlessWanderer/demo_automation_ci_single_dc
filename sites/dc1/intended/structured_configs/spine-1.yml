@@ -180,7 +180,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: 20-23,25,33,44,999
+      allowed_vlan: 20-23,25,33,44,116,999
 - name: Port-Channel3
   description: L2_DC1-LEAF2_Port-Channel1
   shutdown: false
@@ -189,7 +189,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: 20-23,25,33,44,999
+      allowed_vlan: 20-23,25,33,44,116,999
 radius_server:
   vrfs:
   - name: MGMT
@@ -301,6 +301,15 @@ vlan_interfaces:
   metadata:
     tenants:
     - DC1
+- name: Vlan116
+  description: RVs
+  shutdown: false
+  ip_address: 10.116.116.2/24
+  ip_virtual_router_addresses:
+  - 10.116.116.1
+  metadata:
+    tenants:
+    - DC1
 - name: Vlan999
   description: BLACKHOLE
   shutdown: false
@@ -362,6 +371,11 @@ vlans:
     - DC1
 - id: 44
   name: AGPDemo
+  metadata:
+    tenants:
+    - DC1
+- id: 116
+  name: RVs
   metadata:
     tenants:
     - DC1
