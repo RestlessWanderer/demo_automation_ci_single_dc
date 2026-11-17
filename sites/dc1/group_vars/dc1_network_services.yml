@@ -93,3 +93,13 @@ tenants:
                 ip_address: 10.116.116.2/24
               - node: spine-2
                 ip_address: 10.116.116.3/24
+          - id: 200
+            name: TXRH
+            enabled: true
+            ip_virtual_router_addresses:
+              - 172.200.10.1
+            nodes:
+              - node: spine-1
+                ip_address: 172.200.10.2/24
+              - node: spine-2
+                ip_address: 172.200.10.3/24
